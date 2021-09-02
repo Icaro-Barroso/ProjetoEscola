@@ -92,10 +92,11 @@ end;
 
 function TDataModule1.Excluir(iCliente: Integer; out sErro: string): boolean;
 begin
+sqlExcluir.Params[0].AsInteger := iCliente;
   with sqlExcluir do
   begin
     try
-      ExecSQL();
+      sqlExcluir.ExecSQL();
       Result := true;
     except on E: Exception do
       begin

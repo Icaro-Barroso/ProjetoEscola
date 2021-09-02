@@ -82,13 +82,13 @@ object DataModule1: TDataModule1
   end
   object sqlExcluir: TSQLDataSet
     SchemaName = 'sa'
-    CommandText = 'DELETE FROM PESSOA'#13#10' WHERE (PESCOD = :ID)'
+    CommandText = 'DELETE FROM PESSOA'#13#10' WHERE (PESCOD = :PESCOD)'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <
       item
-        DataType = ftInteger
-        Name = 'ID'
+        DataType = ftUnknown
+        Name = 'PESCOD'
         ParamType = ptInput
       end>
     SQLConnection = DmConexao.sqlConexao

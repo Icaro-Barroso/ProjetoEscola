@@ -35,6 +35,7 @@ type
     btnAlterar: TButton;
     btnGravar: TButton;
     btnCancelar: TButton;
+    edtCodigoEscola: TLabeledEdit;
     procedure FormShow(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -64,7 +65,7 @@ type
   end;
 
 var
-  //Cadastro : TCadastro;
+  Cadastro : TCadastro;
 
 
 
@@ -165,6 +166,7 @@ begin
     with oCliente do
     begin
       edtCodigo.Text := IntToStr(ID);
+      edtCodigoEscola.Text := IntToStr(CodigoEscola);
       edtNome.Text := Nome;
       if Tipo = 'F' then
         cbxTipo.ItemIndex := 0
@@ -219,7 +221,7 @@ begin
         if oClienteController.Excluir(DataModule1.cdsPesquisarPESCOD.AsInteger,
           sErro) = False then
           raise Exception.Create(sErro);
-        oClienteController.Pesquisar(edtPesquisar.Text);
+       oClienteController.Pesquisar(edtPesquisar.Text);
       end;
     end
     else
@@ -303,12 +305,14 @@ begin
     begin
       ID := 0;
       Nome := edtNome.Text;
+      CodigoEscola := StrToInt(edtCodigoEscola.Text);
       if cbxTipo.ItemIndex = 0 then
         Tipo := 'F'
       else if cbxTipo.ItemIndex = 1 then
         Tipo := 'J'
       else
         Tipo := EmptyStr;
+        Endereco := edtEndereco.Text;
       Documento := edtDocumento.Text;
     end;
     if oCLienteController.Inserir(oCliente, sErro) = False then
@@ -340,7 +344,7 @@ begin
     dsPesq.DataSet.Filtered := False;
     dsPesq.DataSet.Filter := 'PESNOM = ' + QuotedStr(edtPesquisar.Text);
     dsPesq.DataSet.Filtered := True;
-    //    oClienteController.Pesquisar(edtPesquisar.Text);
+    oClienteController.Pesquisar(edtPesquisar.Text);
   finally
     FreeAndNil(oClienteController);
   end;

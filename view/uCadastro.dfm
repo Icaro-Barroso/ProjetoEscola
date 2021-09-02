@@ -36,6 +36,7 @@ object Cadastro: TCadastro
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = -3
         object edtPesquisar: TLabeledEdit
           Left = 8
           Top = 24
@@ -135,10 +136,8 @@ object Cadastro: TCadastro
     object tbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      ExplicitLeft = 68
+      ExplicitTop = 28
       object Label1: TLabel
         Left = 5
         Top = 80
@@ -183,7 +182,7 @@ object Cadastro: TCadastro
         Top = 96
         Width = 73
         Height = 21
-        ItemHeight = 0
+        ItemHeight = 13
         TabOrder = 2
         Text = 'cbxTipo'
         Items.Strings = (
@@ -247,6 +246,16 @@ object Cadastro: TCadastro
           TabOrder = 0
           OnClick = btnListarClick
         end
+      end
+      object edtCodigoEscola: TLabeledEdit
+        Left = 72
+        Top = 16
+        Width = 121
+        Height = 21
+        EditLabel.Width = 30
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Escola'
+        TabOrder = 6
       end
     end
   end
