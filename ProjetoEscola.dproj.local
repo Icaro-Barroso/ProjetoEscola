@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/08/11 10:56:12.571.pas,C:\Users\icarobarroso\Documents\RAD Studio\Projects\Unit2.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uFrmPrincipal.pas</Transaction>
+    <Transaction>2021/08/11 10:56:12.571.dfm,C:\Users\icarobarroso\Documents\RAD Studio\Projects\Unit2.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uFrmPrincipal.dfm</Transaction>
+    <Transaction>2021/08/11 10:56:39.983.dproj,C:\Users\icarobarroso\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\icarobarroso\Documents\ProjetoEscola\ProjetoEscola.dproj</Transaction>
+    <Transaction>2021/08/12 11:52:07.585.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.pas</Transaction>
+    <Transaction>2021/08/12 11:52:18.186.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas</Transaction>
+    <Transaction>2021/08/12 11:52:39.354.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas=</Transaction>
+    <Transaction>2021/08/12 11:52:56.256.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.pas</Transaction>
+    <Transaction>2021/08/12 11:52:56.256.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.dfm</Transaction>
+    <Transaction>2021/08/12 11:53:04.905.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas</Transaction>
+    <Transaction>2021/08/12 11:53:04.905.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\uCadastro.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.dfm</Transaction>
+    <Transaction>2021/08/13 08:46:38.280.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uPesquisar.pas</Transaction>
+    <Transaction>2021/08/13 08:46:38.280.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uPesquisar.dfm</Transaction>
+    <Transaction>2021/08/13 10:04:41.477.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit3.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.pas</Transaction>
+    <Transaction>2021/08/13 10:04:41.477.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit3.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.dfm</Transaction>
+    <Transaction>2021/08/13 10:45:16.404.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas=</Transaction>
+    <Transaction>2021/08/13 10:45:16.404.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.dfm=</Transaction>
+    <Transaction>2021/08/13 10:45:25.022.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas</Transaction>
+    <Transaction>2021/08/13 10:45:25.022.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.dfm</Transaction>
+    <Transaction>2021/08/13 10:45:25.047.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.pas</Transaction>
+    <Transaction>2021/08/13 10:45:25.047.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.dfm</Transaction>
+    <Transaction>2021/08/13 10:45:55.272.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.pas</Transaction>
+    <Transaction>2021/08/13 10:45:55.272.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\view\Unit3.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastro.dfm</Transaction>
+    <Transaction>2021/08/13 10:59:25.037.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\model\uClienteModel.pas</Transaction>
+    <Transaction>2021/08/16 09:31:46.311.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\controller\uClienteController.pas</Transaction>
+    <Transaction>2021/08/16 10:10:49.858.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmConexao.pas</Transaction>
+    <Transaction>2021/08/16 10:10:49.858.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmConexao.dfm</Transaction>
+    <Transaction>2021/08/16 11:50:14.992.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmCliente.pas</Transaction>
+    <Transaction>2021/08/16 11:50:14.992.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmCliente.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

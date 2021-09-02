@@ -1,0 +1,43 @@
+unit uClienteModel;
+
+interface
+
+Uses
+ SysUtils;
+
+
+type
+  TCliente = class
+  private
+    FDocumento: string;
+    FID: integer;
+    FNome: string;
+    FTipo: string;
+    FEndereco: string;
+    procedure SetNome(const Value: string);
+   Public
+    property ID: integer read FID write FID;
+    property Nome: string read FNome write SetNome;
+    property Tipo : string read FTipo write FTipo;
+    property Documento : string read FDocumento write FDocumento;
+    property Endereco : string read FEndereco write FEndereco;
+
+  end;
+
+implementation
+
+{ TCliente }
+
+
+
+{ TCliente }
+
+procedure TCliente.SetNome(const Value: string);
+begin
+  //if Value = EmptyStr then
+  //Raise Exception.Create('Erro');
+  FNome := Value;
+end;
+
+end.
+
