@@ -1,4 +1,4 @@
-object fmCadastro: TCadastro
+object Cadastro: TCadastro
   Left = 0
   Top = 0
   Caption = 'Cadastro'

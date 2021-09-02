@@ -64,7 +64,9 @@ type
   end;
 
 var
-  Cadastro : TCadastro;
+  //Cadastro : TCadastro;
+
+
 
 implementation
  
