@@ -22,7 +22,7 @@ type
     btnNovo: TButton;
     btnDetalhar: TButton;
     btnExcluir: TButton;
-    DBGrid1: TDBGrid;
+    DBGridPesquisa: TDBGrid;
     dsPesq: TDataSource;
     edtCodigo: TLabeledEdit;
     edtNome: TLabeledEdit;
@@ -47,7 +47,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure DBGrid1DblClick(Sender: TObject);
+    procedure DBGridPesquisaDblClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
   private
     FOperacao: TOperacao;
@@ -62,6 +62,7 @@ type
     procedure Inserir;
     procedure Gravar;
     procedure HabilitarControles(aOperacao: TOperacao);
+    procedure ResetarGrid;
   end;
 
 var
@@ -161,8 +162,8 @@ begin
   oClienteController := TClienteController.Create;
   try
     oClienteController.CarregarCliente(oCliente,
-      DBGrid1.SelectedField.AsInteger);
-    //DBGRID1.SELECTEDROWS.ITEMS <- UTILIZAR ISSO PRA PEGAR DE QLQR CAMPO
+      DBGridPesquisa.SelectedField.AsInteger);
+    //DBGridPesquisa.SELECTEDROWS.ITEMS <- UTILIZAR ISSO PRA PEGAR DE QLQR CAMPO
     with oCliente do
     begin
       edtCodigo.Text := IntToStr(ID);
@@ -192,7 +193,7 @@ begin
   dsPesq.DataSet.Active := True;
 end;
 
-procedure TCadastro.DBGrid1DblClick(Sender: TObject);
+procedure TCadastro.DBGridPesquisaDblClick(Sender: TObject);
 begin
   Detalhar;
 end;
@@ -345,10 +346,19 @@ begin
     dsPesq.DataSet.Filter := 'PESNOM = ' + QuotedStr(edtPesquisar.Text);
     dsPesq.DataSet.Filtered := True;
     oClienteController.Pesquisar(edtPesquisar.Text);
+     if edtPesquisar.Text = '' then
+        ResetarGrid;
   finally
     FreeAndNil(oClienteController);
   end;
 
+end;
+
+procedure TCadastro.ResetarGrid;
+begin
+dsPesq.DataSet.Filtered := False;
+  dsPesq.DataSet.Filter := 'PESCOD <> NULL';
+  dsPesq.DataSet.Filtered := True;
 end;
 
 end.

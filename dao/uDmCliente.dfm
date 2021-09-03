@@ -15,44 +15,39 @@ object DataModule1: TDataModule1
   object sqlInserir: TSQLDataSet
     SchemaName = 'sa'
     CommandText = 
-      'INSERT INTO PESSOA (PESCOD,ESCCOD,PESNOM,PESEND,PESIDD,PESDOC)'#13#10 +
-      'VALUES (:ID, :IDESCOLA, :NOME, :ENDERECO, :INDENTIFICACAO, :INDE' +
-      'TIFICACAO, :DOCUMENTO)'
+      'INSERT INTO PESSOA (PESCOD,ESCCOD,PESNOM,PESEND,PESIDT,PESDOC)'#13#10 +
+      'VALUES (:ID, :IDESCOLA, :NOME, :ENDERECO, :INDENTIFICACAO, :DOCU' +
+      'MENTO)'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <
       item
-        DataType = ftInteger
+        DataType = ftUnknown
         Name = 'ID'
         ParamType = ptInput
       end
       item
-        DataType = ftInteger
+        DataType = ftUnknown
         Name = 'IDESCOLA'
         ParamType = ptInput
       end
       item
-        DataType = ftString
+        DataType = ftUnknown
         Name = 'NOME'
         ParamType = ptInput
       end
       item
-        DataType = ftString
+        DataType = ftUnknown
         Name = 'ENDERECO'
         ParamType = ptInput
       end
       item
-        DataType = ftString
+        DataType = ftUnknown
         Name = 'INDENTIFICACAO'
         ParamType = ptInput
       end
       item
-        DataType = ftString
-        Name = 'INDETIFICACAO'
-        ParamType = ptInput
-      end
-      item
-        DataType = ftString
+        DataType = ftUnknown
         Name = 'DOCUMENTO'
         ParamType = ptInput
       end>

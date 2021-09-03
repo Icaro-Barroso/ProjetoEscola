@@ -24,7 +24,7 @@ type
   public
     function GerarId: Integer;
     procedure Pesquisar(sNome: string);
-    procedure CarregarCLiente(oCliente: TCliente; iCodigo: Integer);
+    procedure CarregarCliente(oCliente: TCliente; iCodigo: Integer);
     function Inserir(oCliente: TCliente; out sErro: string): boolean;
     function Alterar(oCliente: TCliente; out sErro: string): boolean;
     function Excluir(iCliente: Integer; out sErro: string): boolean;
@@ -78,6 +78,7 @@ begin
       with oCliente do
       begin
         ID := FieldByName('PESCOD').AsInteger;
+        CodigoEscola := FieldByName('ESCCOD').AsInteger;
         Nome := sqlCliente.FieldByName('PESNOM').AsString;
         Tipo := FieldByName('PESIDT').AsString;
         Documento := FieldByName('PESDOC').AsString;
@@ -128,9 +129,11 @@ begin
   with sqlInserir, oCLiente do
   begin
     Params[0].AsInteger := GerarId;
-    Params[1].AsString := Nome;
-    Params[2].AsString := Tipo;
-    Params[3].AsString := Documento;
+    Params[1].AsInteger := CodigoEscola;
+    Params[2].AsString := Nome;
+    Params[3].AsString := Endereco;
+    Params[4].AsString := Tipo;
+    Params[5].AsString := Documento;
     try
       ExecSQL();
       Result := True;

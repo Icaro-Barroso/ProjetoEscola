@@ -11,12 +11,14 @@ type
   private
     FDocumento: string;
     FID: integer;
+    FEscolaCodigo: integer;
     FNome: string;
     FTipo: string;
     FEndereco: string;
     procedure SetNome(const Value: string);
    Public
     property ID: integer read FID write FID;
+    property CodigoEscola: integer read FEscolaCodigo write FEscolaCodigo;
     property Nome: string read FNome write SetNome;
     property Tipo : string read FTipo write FTipo;
     property Documento : string read FDocumento write FDocumento;
@@ -27,8 +29,6 @@ type
 implementation
 
 { TCliente }
-
-
 
 { TCliente }
 

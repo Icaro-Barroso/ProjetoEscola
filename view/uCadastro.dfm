@@ -21,7 +21,7 @@ object Cadastro: TCadastro
     Top = 0
     Width = 678
     Height = 392
-    ActivePage = tbPesq
+    ActivePage = tbDados
     Align = alClient
     TabOrder = 0
     object tbPesq: TTabSheet
@@ -36,7 +36,6 @@ object Cadastro: TCadastro
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = -3
         object edtPesquisar: TLabeledEdit
           Left = 8
           Top = 24
@@ -95,7 +94,7 @@ object Cadastro: TCadastro
           OnClick = btnExcluirClick
         end
       end
-      object DBGrid1: TDBGrid
+      object DBGridPesquisa: TDBGrid
         AlignWithMargins = True
         Left = 3
         Top = 68
@@ -109,7 +108,7 @@ object Cadastro: TCadastro
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnDblClick = DBGrid1DblClick
+        OnDblClick = DBGridPesquisaDblClick
         Columns = <
           item
             Expanded = False
@@ -124,11 +123,13 @@ object Cadastro: TCadastro
           item
             Expanded = False
             FieldName = 'PESDOC'
+            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'PESEND'
+            Width = 64
             Visible = True
           end>
       end
@@ -136,8 +137,6 @@ object Cadastro: TCadastro
     object tbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
-      ExplicitLeft = 68
-      ExplicitTop = 28
       object Label1: TLabel
         Left = 5
         Top = 80
@@ -212,7 +211,7 @@ object Cadastro: TCadastro
         TabOrder = 5
         object btnGravar: TButton
           Left = 511
-          Top = 10
+          Top = 14
           Width = 75
           Height = 25
           Caption = 'Gravar'
