@@ -1,17 +1,17 @@
-unit uAlunoModel;
+unit uFuncionarioModel;
 
 interface
-
+                  
 uses
   SysUtils;
 
 type
-  TAluno = class
+  TFuncionario = class
+    FFNCCOD: integer;
     FPESCOD: integer;
-    FALNCOD: integer;
-    FALNTRM: string;
+    FFNCSLR: string;
+    FFNCESP: integer;
     FSRICOD: integer;
-    FESCCOD: integer;
     FPESNOM: string;
     FPESEND: string;
     FPESIDT: string;
@@ -31,4 +31,3 @@ type
 implementation
 
 end.
-

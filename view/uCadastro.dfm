@@ -211,7 +211,7 @@ object Cadastro: TCadastro
         TabOrder = 5
         object btnGravar: TButton
           Left = 511
-          Top = 14
+          Top = 10
           Width = 75
           Height = 25
           Caption = 'Gravar'

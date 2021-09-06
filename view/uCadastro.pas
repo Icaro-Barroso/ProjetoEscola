@@ -304,7 +304,7 @@ begin
   try
     with oCliente do
     begin
-      ID := 0;
+
       Nome := edtNome.Text;
       CodigoEscola := StrToInt(edtCodigoEscola.Text);
       if cbxTipo.ItemIndex = 0 then
