@@ -3,13 +3,32 @@ inherited CadastroAluno: TCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    inherited tbDados: TTabSheet
-      inherited pnlBtnsCad: TPanel
-        inherited btnGravar: TButton
-          Top = 10
-          ExplicitTop = 10
-        end
+    inherited tbPesq: TTabSheet
+      inherited DBGridPesquisa: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'PESCOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESNOM'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESDOC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESEND'
+            Visible = True
+          end>
       end
+    end
+    inherited tbDados: TTabSheet
       inherited edtCodigoEscola: TLabeledEdit
         Left = 152
         Width = 201

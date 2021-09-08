@@ -12,7 +12,6 @@ type
     LabeledEdit2: TLabeledEdit;
     LabeledEdit3: TLabeledEdit;
   private
-Procedure
 
   public
     { Public declarations }

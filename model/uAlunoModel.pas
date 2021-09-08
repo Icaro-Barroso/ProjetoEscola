@@ -24,7 +24,7 @@ type
     property ESCCOD: integer read FESCCOD write FESCCOD;
     property PESNOM: string read FPESNOM write FPESNOM;
     property PESEND: string read FPESEND write FPESEND;
-    property PESIDT : Integer read FPESIDT write FPESIDT;
+    property PESIDT : string read FPESIDT write FPESIDT;
     property PESDOC : string read FPESDOC write FPESDOC;
   end;
 
