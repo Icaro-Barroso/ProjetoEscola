@@ -3,7 +3,11 @@ inherited CadastroAluno: TCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ActivePage = tbDados
     inherited tbPesq: TTabSheet
+      inherited pnlFiltro: TPanel
+        ExplicitTop = -3
+      end
       inherited DBGridPesquisa: TDBGrid
         Columns = <
           item
@@ -27,8 +31,43 @@ inherited CadastroAluno: TCadastroAluno
             Visible = True
           end>
       end
+      inherited cxGrid1: TcxGrid
+        ExplicitLeft = 0
+        ExplicitTop = 67
+        ExplicitWidth = 670
+        ExplicitHeight = 258
+        object cxAlunos: TcxGridDBTableView [0]
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DataSource = dsPesq
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <>
+          DataController.Summary.SummaryGroups = <>
+          OptionsView.NoDataToDisplayInfoText = '<Nenhum aluno listado>'
+          object cxAlunosCodigo: TcxGridDBColumn
+            Caption = 'Codigo'
+            Width = 119
+          end
+          object cxAlunosNome: TcxGridDBColumn
+            Caption = 'Nome'
+          end
+          object cxAlunosDocumento: TcxGridDBColumn
+            Caption = 'Documento'
+          end
+        end
+        inherited cxGrid1Level1: TcxGridLevel
+          GridView = cxAlunos
+        end
+      end
     end
     inherited tbDados: TTabSheet
+      ExplicitLeft = 8
+      ExplicitTop = 28
+      inherited edtNome: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        ExplicitHeight = 19
+      end
       inherited edtCodigoEscola: TLabeledEdit
         Left = 152
         Width = 201
@@ -69,5 +108,15 @@ inherited CadastroAluno: TCadastroAluno
         TabOrder = 9
       end
     end
+  end
+  inherited dsPesq: TDataSource
+    DataSet = DataModule1.sqlPesquisarAluno
+    Left = 416
+    Top = 48
+  end
+  object teste: TDataSource
+    DataSet = DataModule1.sqlPesquisarAluno
+    Left = 464
+    Top = 48
   end
 end

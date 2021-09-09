@@ -133,6 +133,20 @@ object Cadastro: TCadastro
             Visible = True
           end>
       end
+      object cxGrid1: TcxGrid
+        Left = 0
+        Top = 65
+        Width = 670
+        Height = 258
+        Align = alClient
+        TabOrder = 3
+        ExplicitLeft = 64
+        ExplicitTop = 141
+        ExplicitWidth = 250
+        ExplicitHeight = 200
+        object cxGrid1Level1: TcxGridLevel
+        end
+      end
     end
     object tbDados: TTabSheet
       Caption = 'tbDados'
@@ -278,7 +292,7 @@ object Cadastro: TCadastro
   end
   object dsPesq: TDataSource
     DataSet = DataModule1.cdsPesquisar
-    Left = 440
+    Left = 360
     Top = 40
   end
 end

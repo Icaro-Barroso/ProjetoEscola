@@ -19,6 +19,7 @@ type
     cdsPesquisarPESIDT: TStringField;
     cdsPesquisarPESNOM: TStringField;
     cdsPesquisarPESEND: TStringField;
+    sqlPesquisarAluno: TSQLDataSet;
   private
     { Private declarations }
   public

@@ -10,7 +10,8 @@ uses
   uDmConexao in 'dao\uDmConexao.pas' {DmConexao: TDataModule},
   uDmCliente in 'dao\uDmCliente.pas' {DataModule1: TDataModule},
   uCadastroAluno in 'view\uCadastroAluno.pas' {CadastroAluno},
-  uAlunoModel in 'model\uAlunoModel.pas';
+  uAlunoModel in 'model\uAlunoModel.pas',
+  uAlunoController in 'controller\uAlunoController.pas';
 
 {$R *.res}
 
@@ -19,7 +20,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDmConexao, DmConexao);
-  Application.CreateForm(TCadastroAluno, CadastroAluno);
+ // Application.CreateForm(TCadastroAluno, CadastroAluno);
   //  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.

@@ -4,7 +4,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DB, Grids, DBGrids, StdCtrls, ExtCtrls, ComCtrls, uClienteController,
-  uClienteModel, uDmCliente;
+  uClienteModel, uDmCliente, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxStyles, cxClasses, cxGridLevel, cxGrid;
 
 type
   TOperacao = (opNovo, opAlterar, opNavegar);
@@ -36,6 +37,8 @@ type
     btnGravar: TButton;
     btnCancelar: TButton;
     edtCodigoEscola: TLabeledEdit;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
     procedure FormShow(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -56,22 +59,21 @@ type
     procedure Configuracao;
     procedure Pesquisar;
     procedure CarregarCliente;
-    procedure Listar;
-    procedure Alterar;
-    procedure Excluir;
-    procedure Inserir;
-    procedure Gravar;
     procedure HabilitarControles(aOperacao: TOperacao);
     procedure ResetarGrid;
+  protected
+    procedure Listar; virtual;
+    procedure Alterar; virtual;
+    procedure Excluir; virtual;
+    procedure Inserir; virtual;
+    procedure Gravar; virtual;
   end;
 
 var
-  Cadastro : TCadastro;
-
-
+  Cadastro: TCadastro;
 
 implementation
- 
+
 {$R *.dfm}
 
 procedure TCadastro.Alterar;
@@ -222,7 +224,7 @@ begin
         if oClienteController.Excluir(DataModule1.cdsPesquisarPESCOD.AsInteger,
           sErro) = False then
           raise Exception.Create(sErro);
-       oClienteController.Pesquisar(edtPesquisar.Text);
+        oClienteController.Pesquisar(edtPesquisar.Text);
       end;
     end
     else
@@ -313,7 +315,7 @@ begin
         Tipo := 'J'
       else
         Tipo := EmptyStr;
-        Endereco := edtEndereco.Text;
+      Endereco := edtEndereco.Text;
       Documento := edtDocumento.Text;
     end;
     if oCLienteController.Inserir(oCliente, sErro) = False then
@@ -346,8 +348,8 @@ begin
     dsPesq.DataSet.Filter := 'PESNOM = ' + QuotedStr(edtPesquisar.Text);
     dsPesq.DataSet.Filtered := True;
     oClienteController.Pesquisar(edtPesquisar.Text);
-     if edtPesquisar.Text = '' then
-        ResetarGrid;
+    if edtPesquisar.Text = '' then
+      ResetarGrid;
   finally
     FreeAndNil(oClienteController);
   end;
@@ -356,7 +358,7 @@ end;
 
 procedure TCadastro.ResetarGrid;
 begin
-dsPesq.DataSet.Filtered := False;
+  dsPesq.DataSet.Filtered := False;
   dsPesq.DataSet.Filter := 'PESCOD <> NULL';
   dsPesq.DataSet.Filtered := True;
 end;

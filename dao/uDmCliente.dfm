@@ -162,4 +162,13 @@ object DataModule1: TDataModule1
       Size = 40
     end
   end
+  object sqlPesquisarAluno: TSQLDataSet
+    SchemaName = 'sa'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmConexao.sqlConexao
+    Left = 328
+    Top = 88
+  end
 end
