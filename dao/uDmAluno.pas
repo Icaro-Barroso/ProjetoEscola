@@ -3,80 +3,69 @@ unit uDmAluno;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, uDmCliente, FMTBcd, DB, DBClient, Provider, SqlExpr, uDmconexao,
+  SysUtils, Classes, uDmConexao, FMTBcd, DBClient, Provider, DB, SqlExpr,
     uAlunoModel;
 
 type
-  TDataModule2 = class(TDataModule)
-    (* sqlPesquisarAluno: TSQLDataSet;
-       sqlInserir: TSQLDataSet;
-       sqlAlterar: TSQLDataSet;
-       sqlExcluir: TSQLDataSet;
-       dspPesquisar: TDataSetProvider;
-       cdsPesquisar: TClientDataSet;
-       cdsPesquisarPESCOD: TIntegerField;
-       cdsPesquisarPESDOC: TStringField;
-       cdsPesquisarESCCOD: TIntegerField;
-       cdsPesquisarPESIDT: TStringField;
-       cdsPesquisarPESNOM: TStringField;
-       cdsPesquisarPESEND: TStringField;
-   *)
-  private
-    { Private declarations }
-  public
-    function GerarIdAluno: Integer;
-    procedure PesquisarAluno(sNome: string);
-    procedure CarregarAluno(oAluno: TAluno; iCodigo: Integer);
-    function InserirAluno(oAluno: TAluno; out sErro: string): boolean;
-    function AlterarAluno(oAluno: TAluno; out sErro: string): boolean;
-    function ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
+  TDmAluno = class(TDataModule)
+    sqlPesquisarAluno: TSQLDataSet;
+    sqlInserirAluno: TSQLDataSet;
+    sqlAlterarAluno: TSQLDataSet;
+    sqlExcluirAluno: TSQLDataSet;
+    dspPesquisarAluno: TDataSetProvider;
+    cdsPesquisarAluno: TClientDataSet;
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure PesquisarAluno(sNome: string);
+    procedure CarregarAluno(Aluno: TAluno; iCodigo: integer);
   end;
 
 var
-  DataModuleAluno: TDataModule2;
+  DmAluno: TDmAluno;
 
 implementation
 
 {$R *.dfm}
 
-{ TDataModuleAluno }
+{ TDmAluno }
 
-function TDataModule2.AlterarAluno(oAluno: TAluno;
-  out sErro: string): boolean;
+procedure TDmAluno.CarregarAluno(Aluno: TAluno; iCodigo: integer);
+var
+  sqlAluno: TSQLDataSet;
 begin
+  sqlAluno := TSQLDataSet.create(nil);
+  try
+    begin
+      sqlAluno.SQLConnection := DmConexao.sqlConexao;
+      sqlAluno.CommandText := 'Select * from V_Aluno where ALNCOD = ' +
+        IntToStr(iCodigo);
+      sqlAluno.Open;
+      begin
+        Aluno.CodigoAluno := sqlAluno.FieldByName('ALNCOD').AsInteger;
+        Aluno.CodigoPessoa := sqlAluno.FieldByName('PESCOD').AsInteger;
+        Aluno.NomeAluno := sqlAluno.FieldByName('PESNOM').AsString;
+        Aluno.TipoAluno := sqlAluno.FieldByName('PESIDT').AsString;
+        Aluno.DocumentoAluno := sqlAluno.FieldByName('PESDOC').AsString;
+        Aluno.EnderecoAluno := sqlAluno.FieldByName('PESEND').AsString;
 
+      end;
+    end;
+  finally
+    FreeAndNil(sqlAluno);
+  end;
 end;
 
-procedure TDataModule2.CarregarAluno(oAluno: TAluno; iCodigo: Integer);
+procedure TDmAluno.PesquisarAluno(sNome: string);
 begin
-
-end;
-
-function TDataModule2.ExcluirAluno(iAluno: Integer;
-  out sErro: string): boolean;
-begin
-
-end;
-
-function TDataModule2.GerarIdAluno: Integer;
-begin
-
-end;
-
-function TDataModule2.InserirAluno(oAluno: TAluno;
-  out sErro: string): boolean;
-begin
-
-end;
-
-procedure TDataModule2.PesquisarAluno(sNome: string);
-begin
-
+  if cdsPesquisarAluno.Active then
+    cdsPesquisarAluno.close;
+  cdsPesquisarAluno.CommandText :=
+    Format('select * from V_Aluno where PESNOM like %s', ['%' + sNome + '%']);
+  //cdsPesquisar.Params[0].AsString := '%' + sNome + '%';
+  cdsPesquisarAluno.Open;
+  cdsPesquisarAluno.First;
 end;
 
 end.

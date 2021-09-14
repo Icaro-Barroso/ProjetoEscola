@@ -67,6 +67,9 @@ type
     procedure Excluir; virtual;
     procedure Inserir; virtual;
     procedure Gravar; virtual;
+  public
+    property Operacao: TOperacao read FOperacao;
+
   end;
 
 var
@@ -250,19 +253,7 @@ begin
 end;
 
 procedure TCadastro.Gravar;
-var
-  oCLienteController: TClienteController;
 begin
-  oCLienteController := TClienteController.Create;
-  try
-    case FOperacao of
-      opNovo: Inserir;
-      opAlterar: Alterar;
-    end;
-    oCLienteController.Pesquisar(edtNome.Text);
-  finally
-    FreeAndNil(oCLienteController);
-  end;
 end;
 
 procedure TCadastro.HabilitarControles(aOperacao: TOperacao);
@@ -296,35 +287,7 @@ begin
 end;
 
 procedure TCadastro.Inserir;
-var
-  oCliente: TCliente;
-  oCLienteController: TClienteController;
-  sErro: string;
 begin
-  oCliente := TCliente.Create;
-  oCLienteController := TClienteController.Create;
-  try
-    with oCliente do
-    begin
-
-      Nome := edtNome.Text;
-      CodigoEscola := StrToInt(edtCodigoEscola.Text);
-      if cbxTipo.ItemIndex = 0 then
-        Tipo := 'F'
-      else if cbxTipo.ItemIndex = 1 then
-        Tipo := 'J'
-      else
-        Tipo := EmptyStr;
-      Endereco := edtEndereco.Text;
-      Documento := edtDocumento.Text;
-    end;
-    if oCLienteController.Inserir(oCliente, sErro) = False then
-      raise Exception.Create(sErro);
-
-  finally
-    FreeAndNil(oCliente);
-    FreeAndNil(oCLienteController);
-  end;
 end;
 
 procedure TCadastro.Listar;

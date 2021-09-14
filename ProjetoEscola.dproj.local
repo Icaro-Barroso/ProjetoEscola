@@ -34,5 +34,7 @@
     <Transaction>2021/09/03 10:59:50.368.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastroAluno.pas</Transaction>
     <Transaction>2021/09/03 10:59:50.368.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastroAluno.dfm</Transaction>
     <Transaction>2021/09/03 12:26:33.751.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\model\uAlunoModel.pas</Transaction>
+    <Transaction>2021/09/13 12:31:06.183.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmAluno.pas</Transaction>
+    <Transaction>2021/09/13 12:31:06.183.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmAluno.dfm</Transaction>
   </Transactions>
 </BorlandProject>

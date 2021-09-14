@@ -42,13 +42,13 @@ end;
 
 procedure TfrmPrincipal.Aluno1Click(Sender: TObject);
 begin
-//  CadastroAluno := TCadastroAluno.Create(nil);
-//  //Cadastro := TCadastro.Create(nil);
-//  try
-//    CadastroAluno.ShowModal;
-//  finally
-//    FreeAndNil(CadastroAluno);
-//  end;
+  CadastroAluno := TCadastroAluno.Create(nil);
+  Cadastro := TCadastro.Create(nil);
+  try
+    CadastroAluno.ShowModal;
+  finally
+    FreeAndNil(CadastroAluno);
+  end;
 end;
 
 procedure TfrmPrincipal.btEntrarClick(Sender: TObject);

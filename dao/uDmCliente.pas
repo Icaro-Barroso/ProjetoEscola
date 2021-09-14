@@ -3,7 +3,7 @@ unit uDmCliente;
 interface
 
 uses
-  SysUtils, Classes, FMTBcd, DB, DBClient, Provider, SqlExpr, uClienteModel;
+  SysUtils, Classes, FMTBcd, DB, DBClient, Provider, SqlExpr, uClienteModel, uDmConexao;
 
 type
   TDataModule1 = class(TDataModule)
@@ -23,7 +23,7 @@ type
   private
     { Private declarations }
   public
-    function GerarId: Integer;
+    function GerarId(ANomeTabela: string): Integer;
     procedure Pesquisar(sNome: string);
     procedure CarregarCliente(oCliente: TCliente; iCodigo: Integer);
     function Inserir(oCliente: TCliente; out sErro: string): boolean;
@@ -36,7 +36,6 @@ var
 
 implementation
 
-uses uDmConexao;
 
 {$R *.dfm}
 
@@ -109,7 +108,7 @@ sqlExcluir.Params[0].AsInteger := iCliente;
   end;
 end;
 
-function TDataModule1.GerarId: Integer;
+function TDataModule1.GerarId(ANomeTabela: string): Integer;
 var
   sqlSequencia: TSQLDataSet;
 begin
@@ -117,9 +116,12 @@ begin
     sqlSequencia := TSQLDataSet.Create(nil);
     sqlSequencia.SQLConnection := DmConexao.sqlConexao;
     sqlSequencia.CommandText :=
-      'SELECT COALESCE(MAX(PESCOD),0) + 1 AS SEQ FROM PESSOA';
+      Format('SELECT COALESCE(ProximoCodigo,1) FROM CodigoAuxiliar WHERE TABELA = ''%s''',[ANomeTabela]);
     sqlSequencia.Open;
-    result := sqlSequencia.FieldByName('SEQ').AsInteger;
+    result := sqlSequencia.Fields[0].AsInteger;
+    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
+    'WHERE TABELA = ''%s''',[ANomeTabela]);
+    sqlSequencia.ExecSQL();
   finally
     FreeAndNil(sqlSequencia);
   end;
@@ -129,7 +131,7 @@ function TDataModule1.Inserir(oCliente: TCliente; out sErro: string): boolean;
 begin
   with sqlInserir, oCLiente do
   begin
-    Params[0].AsInteger := GerarId;
+    Params[0].AsInteger := GerarId('PESSOA');
     Params[1].AsInteger := CodigoEscola;
     Params[2].AsString := Nome;
     Params[3].AsString := Endereco;

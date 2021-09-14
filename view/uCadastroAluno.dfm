@@ -3,37 +3,15 @@ inherited CadastroAluno: TCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    ActivePage = tbDados
+    ActivePage = tbPesq
     inherited tbPesq: TTabSheet
-      inherited pnlFiltro: TPanel
-        ExplicitTop = -3
-      end
-      inherited DBGridPesquisa: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'PESCOD'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESNOM'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESDOC'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESEND'
-            Visible = True
-          end>
-      end
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 670
+      ExplicitHeight = 364
       inherited cxGrid1: TcxGrid
         ExplicitLeft = 0
-        ExplicitTop = 67
+        ExplicitTop = 65
         ExplicitWidth = 670
         ExplicitHeight = 258
         object cxAlunos: TcxGridDBTableView [0]
@@ -60,8 +38,8 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
-      ExplicitLeft = 8
-      ExplicitTop = 28
+      ExplicitLeft = 4
+      ExplicitTop = 24
       inherited edtNome: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -77,7 +55,7 @@ inherited CadastroAluno: TCadastroAluno
         ExplicitLeft = 152
         ExplicitWidth = 201
       end
-      object LabeledEdit1: TLabeledEdit
+      object edCodigoAluno: TLabeledEdit
         Left = 64
         Top = 16
         Width = 65
@@ -87,7 +65,7 @@ inherited CadastroAluno: TCadastroAluno
         EditLabel.Caption = 'Codigo Aluno'
         TabOrder = 7
       end
-      object LabeledEdit2: TLabeledEdit
+      object edSerie: TLabeledEdit
         Left = 3
         Top = 144
         Width = 46
@@ -96,16 +74,6 @@ inherited CadastroAluno: TCadastroAluno
         EditLabel.Height = 13
         EditLabel.Caption = 'Serie'
         TabOrder = 8
-      end
-      object LabeledEdit3: TLabeledEdit
-        Left = 64
-        Top = 144
-        Width = 49
-        Height = 21
-        EditLabel.Width = 30
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Turma'
-        TabOrder = 9
       end
     end
   end
