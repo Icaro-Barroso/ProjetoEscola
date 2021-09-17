@@ -36,5 +36,9 @@
     <Transaction>2021/09/03 12:26:33.751.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\model\uAlunoModel.pas</Transaction>
     <Transaction>2021/09/13 12:31:06.183.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmAluno.pas</Transaction>
     <Transaction>2021/09/13 12:31:06.183.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit2.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmAluno.dfm</Transaction>
+    <Transaction>2021/09/17 09:08:38.888.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmCliente.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmPessoa.pas</Transaction>
+    <Transaction>2021/09/17 09:08:38.888.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmCliente.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmPessoa.dfm</Transaction>
+    <Transaction>2021/09/17 09:14:34.296.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\controller\uClienteController.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\controller\uPessoaController.pas</Transaction>
+    <Transaction>2021/09/17 09:20:53.241.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\model\uClienteModel.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\model\uPessoaModel.pas</Transaction>
   </Transactions>
 </BorlandProject>

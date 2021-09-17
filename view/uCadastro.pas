@@ -3,8 +3,8 @@ unit uCadastro;
 interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, Grids, DBGrids, StdCtrls, ExtCtrls, ComCtrls, uClienteController,
-  uClienteModel, uDmCliente, cxGraphics, cxControls, cxLookAndFeels,
+  Dialogs, DB, Grids, DBGrids, StdCtrls, ExtCtrls, ComCtrls, uPessoaController,
+  uPessoaModel, uDmPessoa, cxGraphics, cxControls, cxLookAndFeels,
   cxLookAndFeelPainters, cxStyles, cxClasses, cxGridLevel, cxGrid;
 
 type
@@ -58,7 +58,7 @@ type
     procedure Detalhar;
     procedure Configuracao;
     procedure Pesquisar;
-    procedure CarregarCliente;
+    procedure CarregarPessoa;
     procedure HabilitarControles(aOperacao: TOperacao);
     procedure ResetarGrid;
   protected
@@ -81,14 +81,14 @@ implementation
 
 procedure TCadastro.Alterar;
 var
-  oCliente: TCliente;
-  oClienteController: TClienteController;
+  oPessoa: TPessoa;
+  oPessoaController: TPessoaController;
   sErro: string;
 begin
-  oCliente := TCliente.Create;
-  oClienteController := TClienteController.Create;
+  oPessoa := TPessoa.Create;
+  oPessoaController := TPessoaController.Create;
   try
-    with oCliente do
+    with oPessoa do
     begin
       ID := StrToIntDef(edtCodigo.Text, 0);
       Nome := edtNome.Text;
@@ -101,12 +101,12 @@ begin
       Documento := edtDocumento.Text;
       Endereco := edtEndereco.Text;
     end;
-    if oClienteController.Alterar(oCliente, sErro) = False then
+    if oPessoaController.Alterar(oPessoa, sErro) = False then
       raise Exception.Create(sErro);
 
   finally
-    FreeAndNil(oCliente);
-    FreeAndNil(oClienteController);
+    FreeAndNil(oPessoa);
+    FreeAndNil(oPessoaController);
   end;
 end;
 
@@ -158,18 +158,18 @@ begin
   Pesquisar;
 end;
 
-procedure TCadastro.CarregarCliente;
+procedure TCadastro.CarregarPessoa;
 var
-  oCliente: TCliente;
-  oClienteController: TClienteController;
+  oPessoa: TPessoa;
+  oPessoaController: TPessoaController;
 begin
-  oCliente := TCliente.Create;
-  oClienteController := TClienteController.Create;
+  oPessoa := TPessoa.Create;
+  oPessoaController := TPessoaController.Create;
   try
-    oClienteController.CarregarCliente(oCliente,
+    oPessoaController.CarregarPessoa(oPessoa,
       DBGridPesquisa.SelectedField.AsInteger);
     //DBGridPesquisa.SELECTEDROWS.ITEMS <- UTILIZAR ISSO PRA PEGAR DE QLQR CAMPO
-    with oCliente do
+    with oPessoa do
     begin
       edtCodigo.Text := IntToStr(ID);
       edtCodigoEscola.Text := IntToStr(CodigoEscola);
@@ -184,8 +184,8 @@ begin
       edtEndereco.Text := Endereco;
     end;
   finally
-    FreeAndNil(oCliente);
-    FreeAndNil(oClienteController);
+    FreeAndNil(oPessoa);
+    FreeAndNil(oPessoaController);
   end;
 end;
 
@@ -204,7 +204,7 @@ end;
 
 procedure TCadastro.Detalhar;
 begin
-  CarregarCliente;
+  CarregarPessoa;
   HabilitarControles(opNavegar);
   FOperacao := opNavegar;
   pgcPrincipal.ActivePage := tbDados;
@@ -212,37 +212,37 @@ end;
 
 procedure TCadastro.Excluir;
 var
-  oClienteController: TClienteController;
+  oPessoaController: TPessoaController;
   sErro: string;
 begin
-  oClienteController := TClienteController.Create;
+  oPessoaController := TPessoaController.Create;
   try
-    if (DataModule1.cdsPesquisar.Active) and (DataModule1.cdsPesquisar.RecordCount > 0) then
+    if (DataModulePessoa.cdsPesquisar.Active) and (DataModulePessoa.cdsPesquisar.RecordCount > 0) then
     begin
       if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then
       begin
-        if oClienteController.Excluir(DataModule1.cdsPesquisarPESCOD.AsInteger,
+        if oPessoaController.Excluir(DataModulePessoa.cdsPesquisarPESCOD.AsInteger,
           sErro) = False then
           raise Exception.Create(sErro);
-        oClienteController.Pesquisar(edtPesquisar.Text);
+        oPessoaController.Pesquisar(edtPesquisar.Text);
       end;
     end
     else
       raise Exception.Create('Não ha registro a ser excluido');
   finally
-    FreeAndNil(oClienteController);
+    FreeAndNil(oPessoaController);
   end;
 end;
 
 procedure TCadastro.FormCreate(Sender: TObject);
 begin
-  DataModule1 := TDataModule1.Create(nil);
+  DataModulePessoa := TDataModulePessoa.Create(nil);
 end;
 
 procedure TCadastro.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(DataModule1);
+  FreeAndNil(DataModulePessoa);
 end;
 
 procedure TCadastro.FormShow(Sender: TObject);
@@ -301,18 +301,18 @@ end;
 
 procedure TCadastro.Pesquisar;
 var
-  oClienteController: TClienteController;
+  oPessoaController: TPessoaController;
 begin
-  oClienteController := TClienteController.Create;
+  oPessoaController := TPessoaController.Create;
   try
     dsPesq.DataSet.Filtered := False;
     dsPesq.DataSet.Filter := 'PESNOM = ' + QuotedStr(edtPesquisar.Text);
     dsPesq.DataSet.Filtered := True;
-    oClienteController.Pesquisar(edtPesquisar.Text);
+    oPessoaController.Pesquisar(edtPesquisar.Text);
     if edtPesquisar.Text = '' then
       ResetarGrid;
   finally
-    FreeAndNil(oClienteController);
+    FreeAndNil(oPessoaController);
   end;
 
 end;

@@ -8,8 +8,8 @@ uses
   cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridCustomView,
-  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController, uClienteModel,
-  uClienteController;
+  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController, uPessoaModel,
+  uPessoaController;
 
 type
   TCadastroAluno = class(TCadastro)
@@ -42,7 +42,7 @@ implementation
 procedure TCadastroAluno.FormCreate(Sender: TObject);
 begin
   inherited;
-//  DmAluno := TDmAluno.Create(nil);
+  DmAluno := TDmAluno.Create(nil);
 end;
 
 procedure TCadastroAluno.FormDestroy(Sender: TObject);
@@ -76,42 +76,42 @@ end;
 
 procedure TCadastroAluno.Inserir;
 var
-  Cliente: TCliente;
-  CLienteController: TClienteController;
+  Pessoa: TPessoa;
+  PessoaController: TPessoaController;
   Aluno: TAluno;
   AlunoController: TAlunoController;
   Erro: string;
 begin
   inherited;
-  Cliente := TCliente.Create;
-  CLienteController := TClienteController.Create;
+  Pessoa := TPessoa.Create;
+  PessoaController := TPessoaController.Create;
   Aluno := TAluno.Create;
   AlunoController := TAlunoController.Create;
   try
-    Cliente.ID := CLienteController.GerarCodigo;
-    Cliente.Nome := edtNome.Text;
-    Cliente.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+    Pessoa.ID := PessoaController.GerarCodigo;
+    Pessoa.Nome := edtNome.Text;
+    Pessoa.CodigoEscola := StrToInt(edtCodigoEscola.Text);
     if cbxTipo.ItemIndex = 0 then
-      Cliente.Tipo := 'F'
+      Pessoa.Tipo := 'F'
     else if cbxTipo.ItemIndex = 1 then
-      Cliente.Tipo := 'J'
+      Pessoa.Tipo := 'J'
     else
-      Cliente.Tipo := EmptyStr;
-    Cliente.Endereco := edtEndereco.Text;
-    Cliente.Documento := edtDocumento.Text;
+      Pessoa.Tipo := EmptyStr;
+    Pessoa.Endereco := edtEndereco.Text;
+    Pessoa.Documento := edtDocumento.Text;
 
     Aluno.CodigoAluno := StrToInt(edCodigoAluno.Text);
-    Aluno.CodigoPessoa := Cliente.ID;
+    Aluno.CodigoPessoa := Pessoa.ID;
     Aluno.CodigoSerie := StrToInt(edSerie.Text);
 
-    if not CLienteController.Inserir(Cliente, Erro) then
+    if not PessoaController.Inserir(Pessoa, Erro) then
       raise Exception.Create(Erro);
     //    if not AlunoController.Inserir(Aluno, Erro) then
     //      Raise Exception.Create(Erro);
 
   finally
-    FreeAndNil(Cliente);
-    FreeAndNil(CLienteController);
+    FreeAndNil(Pessoa);
+    FreeAndNil(PessoaController);
     FreeAndNil(Aluno);
     FreeAndNil(AlunoController);
   end;

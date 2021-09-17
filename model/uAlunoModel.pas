@@ -3,7 +3,7 @@ unit uAlunoModel;
 interface
 
 uses
-  SysUtils, uClienteModel;
+  SysUtils, uPessoaModel;
 
 type
 

@@ -5,6 +5,8 @@ inherited CadastroAluno: TCadastroAluno
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
       inherited cxGrid1: TcxGrid
+        ExplicitLeft = 3
+        ExplicitTop = 59
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dsPesq
@@ -32,10 +34,6 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
       inherited edtNome: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -74,11 +72,10 @@ inherited CadastroAluno: TCadastroAluno
     end
   end
   inherited dsPesq: TDataSource
-    Left = 416
     Top = 48
   end
   object teste: TDataSource
-    DataSet = DataModule1.sqlPesquisarAluno
+    DataSet = DmAluno.sqlPesquisarAluno
     Left = 464
     Top = 48
   end

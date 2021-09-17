@@ -3,7 +3,7 @@ unit uAlunoController;
 interface
 
 uses
-  uAlunoModel, uDmAluno, uClienteController;
+  uAlunoModel, uDmAluno, uPessoaController;
 
 type
   TAlunoController = class

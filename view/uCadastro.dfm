@@ -287,8 +287,8 @@ object Cadastro: TCadastro
     end
   end
   object dsPesq: TDataSource
-    DataSet = DataModule1.cdsPesquisar
-    Left = 360
+    DataSet = DataModulePessoa.cdsPesquisar
+    Left = 416
     Top = 40
   end
 end
