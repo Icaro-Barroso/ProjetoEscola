@@ -3,17 +3,8 @@ inherited CadastroAluno: TCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    ActivePage = tbPesq
     inherited tbPesq: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
       inherited cxGrid1: TcxGrid
-        ExplicitLeft = 0
-        ExplicitTop = 65
-        ExplicitWidth = 670
-        ExplicitHeight = 258
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dsPesq
@@ -23,13 +14,16 @@ inherited CadastroAluno: TCadastroAluno
           OptionsView.NoDataToDisplayInfoText = '<Nenhum aluno listado>'
           object cxAlunosCodigo: TcxGridDBColumn
             Caption = 'Codigo'
+            DataBinding.FieldName = 'ALNCOD'
             Width = 119
           end
           object cxAlunosNome: TcxGridDBColumn
             Caption = 'Nome'
+            DataBinding.FieldName = 'PESNOM'
           end
           object cxAlunosDocumento: TcxGridDBColumn
             Caption = 'Documento'
+            DataBinding.FieldName = 'PESDOC'
           end
         end
         inherited cxGrid1Level1: TcxGridLevel
@@ -40,6 +34,8 @@ inherited CadastroAluno: TCadastroAluno
     inherited tbDados: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
+      ExplicitWidth = 670
+      ExplicitHeight = 364
       inherited edtNome: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -78,7 +74,6 @@ inherited CadastroAluno: TCadastroAluno
     end
   end
   inherited dsPesq: TDataSource
-    DataSet = DataModule1.sqlPesquisarAluno
     Left = 416
     Top = 48
   end

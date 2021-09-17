@@ -43,7 +43,7 @@ end;
 procedure TfrmPrincipal.Aluno1Click(Sender: TObject);
 begin
   CadastroAluno := TCadastroAluno.Create(nil);
-  Cadastro := TCadastro.Create(nil);
+  //Cadastro := TCadastro.Create(nil);
   try
     CadastroAluno.ShowModal;
   finally

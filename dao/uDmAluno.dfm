@@ -3,6 +3,8 @@ object DmAluno: TDmAluno
   Height = 353
   Width = 553
   object sqlPesquisarAluno: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 'SELECT * FROM V_ALUNO'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
@@ -15,7 +17,7 @@ object DmAluno: TDmAluno
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmConexao.sqlConexao
-    Left = 160
+    Left = 184
     Top = 80
   end
   object sqlAlterarAluno: TSQLDataSet
@@ -23,7 +25,7 @@ object DmAluno: TDmAluno
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmConexao.sqlConexao
-    Left = 240
+    Left = 272
     Top = 80
   end
   object sqlExcluirAluno: TSQLDataSet
@@ -31,7 +33,7 @@ object DmAluno: TDmAluno
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmConexao.sqlConexao
-    Left = 328
+    Left = 360
     Top = 80
   end
   object dspPesquisarAluno: TDataSetProvider

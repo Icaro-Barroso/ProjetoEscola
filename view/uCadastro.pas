@@ -39,7 +39,7 @@ type
     edtCodigoEscola: TLabeledEdit;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
-    procedure FormShow(Sender: TObject);
+    procedure FormShow(Sender: TObject); Virtual;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnDetalharClick(Sender: TObject);
@@ -182,7 +182,6 @@ begin
         cbxTipo.ItemIndex := -1;
       edtDocumento.Text := Documento;
       edtEndereco.Text := Endereco;
-
     end;
   finally
     FreeAndNil(oCliente);
@@ -218,8 +217,7 @@ var
 begin
   oClienteController := TClienteController.Create;
   try
-    if (DataModule1.cdsPesquisar.Active) and
-      (DataModule1.cdsPesquisar.RecordCount > 0) then
+    if (DataModule1.cdsPesquisar.Active) and (DataModule1.cdsPesquisar.RecordCount > 0) then
     begin
       if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then

@@ -21,7 +21,7 @@ object Cadastro: TCadastro
     Top = 0
     Width = 678
     Height = 392
-    ActivePage = tbDados
+    ActivePage = tbPesq
     Align = alClient
     TabOrder = 0
     object tbPesq: TTabSheet
@@ -140,10 +140,6 @@ object Cadastro: TCadastro
         Height = 258
         Align = alClient
         TabOrder = 3
-        ExplicitLeft = 64
-        ExplicitTop = 141
-        ExplicitWidth = 250
-        ExplicitHeight = 200
         object cxGrid1Level1: TcxGridLevel
         end
       end

@@ -3,8 +3,7 @@ unit uDmAluno;
 interface
 
 uses
-  SysUtils, Classes, uDmConexao, FMTBcd, DBClient, Provider, DB, SqlExpr,
-    uAlunoModel;
+  SysUtils, Classes, uDmConexao, FMTBcd, DBClient, Provider, DB, SqlExpr, uAlunoModel;
 
 type
   TDmAluno = class(TDataModule)
@@ -20,6 +19,7 @@ type
     { Public declarations }
     procedure PesquisarAluno(sNome: string);
     procedure CarregarAluno(Aluno: TAluno; iCodigo: integer);
+    procedure CarregarTodosAlunos;
   end;
 
 var
@@ -39,8 +39,7 @@ begin
   try
     begin
       sqlAluno.SQLConnection := DmConexao.sqlConexao;
-      sqlAluno.CommandText := 'Select * from V_Aluno where ALNCOD = ' +
-        IntToStr(iCodigo);
+      sqlAluno.CommandText := 'Select * from V_Aluno where ALNCOD = 1'  ;
       sqlAluno.Open;
       begin
         Aluno.CodigoAluno := sqlAluno.FieldByName('ALNCOD').AsInteger;
@@ -55,6 +54,11 @@ begin
   finally
     FreeAndNil(sqlAluno);
   end;
+end;
+
+procedure TDmAluno.CarregarTodosAlunos;
+begin
+  sqlPesquisarAluno.CommandText := 'SELECT * FROM V_ALUNO';
 end;
 
 procedure TDmAluno.PesquisarAluno(sNome: string);

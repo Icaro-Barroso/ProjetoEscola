@@ -22,7 +22,7 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDmConexao, DmConexao);
   Application.CreateForm(TDmAluno, DmAluno);
-  // Application.CreateForm(TCadastroAluno, CadastroAluno);
-  //  Application.CreateForm(TForm2, Form2);
+  //Application.CreateForm(TCadastroAluno, CadastroAluno);
+  //Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.

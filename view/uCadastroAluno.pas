@@ -8,9 +8,8 @@ uses
   cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridCustomView,
-  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmCliente, uClienteModel,
-    uClienteController,
-  uAlunoController;
+  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController, uClienteModel,
+  uClienteController;
 
 type
   TCadastroAluno = class(TCadastro)
@@ -21,19 +20,18 @@ type
     cxAlunosNome: TcxGridDBColumn;
     cxAlunosDocumento: TcxGridDBColumn;
     teste: TDataSource;
-  private
-    //FOperacao : TOperacao;
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormShow(Sender: TObject); override;
   protected
     procedure Gravar; override;
     procedure Inserir; override;
-
-    //procedure CarregarAluno;
   public
     { Public declarations }
   end;
 var
   CadastroAluno: TCadastroAluno;
-  implementation
+implementation
 
 {$R *.dfm}
 
@@ -41,12 +39,29 @@ var
 
 { TCadastroAluno }
 
+procedure TCadastroAluno.FormCreate(Sender: TObject);
+begin
+  inherited;
+//  DmAluno := TDmAluno.Create(nil);
+end;
+
+procedure TCadastroAluno.FormDestroy(Sender: TObject);
+begin
+  inherited;
+//  FreeAndNil(DmAluno);
+end;
+
+procedure TCadastroAluno.FormShow(Sender: TObject);
+begin
+  //dsPesq.DataSet := DmAluno.cdsPesquisarAluno;
+  inherited;
+end;
+
 procedure TCadastroAluno.Gravar;
 var
   oAlunoController: TAlunoController;
 begin
   inherited;
-
   oAlunoController := TAlunoController.Create;
   try
     case Operacao of

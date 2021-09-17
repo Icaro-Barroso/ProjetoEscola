@@ -57,10 +57,9 @@ begin
   Result := DataModule1.GerarId('PESSOA');
 end;
 
-function TClienteController.Inserir(oCliente: TCliente; var sErro: string):
-  boolean;
+function TClienteController.Inserir(oCliente: TCliente; var sErro: string): boolean;
 begin
-
+  Result := Datamodule1.Inserir(oCliente, sErro)
 end;
 
 procedure TClienteController.Pesquisar(sNome: string);
