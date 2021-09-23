@@ -171,4 +171,85 @@ object DataModulePessoa: TDataModulePessoa
     Left = 328
     Top = 88
   end
+  object SQLDataSet1: TSQLDataSet
+    SchemaName = 'sa'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmConexao.sqlConexao
+    Left = 128
+    Top = 152
+  end
+  object DataSetProvider1: TDataSetProvider
+    DataSet = SQLDataSet1
+    Options = [poCascadeDeletes, poCascadeUpdates, poAllowCommandText, poUseQuoteChar]
+    Left = 144
+    Top = 200
+  end
+  object ClientDataSet1: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'PESCOD'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'ESCCOD'
+        Attributes = [faRequired]
+        DataType = ftInteger
+      end
+      item
+        Name = 'PESNOM'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'PESEND'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'PESIDT'
+        DataType = ftString
+        Size = 1
+      end
+      item
+        Name = 'PESDOC'
+        Attributes = [faRequired]
+        DataType = ftString
+        Size = 40
+      end>
+    IndexDefs = <>
+    Params = <>
+    ProviderName = 'DataSetProvider1'
+    StoreDefs = True
+    Left = 144
+    Top = 256
+    object IntegerField1: TIntegerField
+      FieldName = 'PESCOD'
+      Required = True
+    end
+    object StringField1: TStringField
+      FieldName = 'PESDOC'
+      Required = True
+      Size = 40
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'ESCCOD'
+      Required = True
+    end
+    object StringField2: TStringField
+      FieldName = 'PESIDT'
+      Size = 1
+    end
+    object StringField3: TStringField
+      FieldName = 'PESNOM'
+      Size = 40
+    end
+    object StringField4: TStringField
+      FieldName = 'PESEND'
+      Size = 40
+    end
+  end
 end

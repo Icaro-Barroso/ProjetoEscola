@@ -39,7 +39,7 @@ type
     edtCodigoEscola: TLabeledEdit;
     cxGrid1Level1: TcxGridLevel;
     cxGrid1: TcxGrid;
-    procedure FormShow(Sender: TObject); Virtual;
+    procedure FormShow(Sender: TObject); virtual;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnDetalharClick(Sender: TObject);
@@ -58,10 +58,10 @@ type
     procedure Detalhar;
     procedure Configuracao;
     procedure Pesquisar;
-    procedure CarregarPessoa;
     procedure HabilitarControles(aOperacao: TOperacao);
     procedure ResetarGrid;
   protected
+    procedure CarregarPessoa; virtual;
     procedure Listar; virtual;
     procedure Alterar; virtual;
     procedure Excluir; virtual;
@@ -91,6 +91,7 @@ begin
     with oPessoa do
     begin
       ID := StrToIntDef(edtCodigo.Text, 0);
+      CodigoEscola := StrToInt(edtCodigoEscola.Text);
       Nome := edtNome.Text;
       if cbxTipo.ItemIndex = 0 then
         Tipo := 'F'
@@ -217,12 +218,14 @@ var
 begin
   oPessoaController := TPessoaController.Create;
   try
-    if (DataModulePessoa.cdsPesquisar.Active) and (DataModulePessoa.cdsPesquisar.RecordCount > 0) then
+    if (DataModulePessoa.cdsPesquisar.Active) and
+      (DataModulePessoa.cdsPesquisar.RecordCount > 0) then
     begin
       if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then
       begin
-        if oPessoaController.Excluir(DataModulePessoa.cdsPesquisarPESCOD.AsInteger,
+        if
+          oPessoaController.Excluir(DataModulePessoa.cdsPesquisarPESCOD.AsInteger,
           sErro) = False then
           raise Exception.Create(sErro);
         oPessoaController.Pesquisar(edtPesquisar.Text);

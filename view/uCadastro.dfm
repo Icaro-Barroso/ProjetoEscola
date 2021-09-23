@@ -140,6 +140,7 @@ object Cadastro: TCadastro
         Height = 258
         Align = alClient
         TabOrder = 3
+        ExplicitTop = 67
         object cxGrid1Level1: TcxGridLevel
         end
       end

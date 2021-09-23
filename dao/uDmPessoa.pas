@@ -20,6 +20,15 @@ type
     cdsPesquisarPESNOM: TStringField;
     cdsPesquisarPESEND: TStringField;
     sqlPesquisarAluno: TSQLDataSet;
+    SQLDataSet1: TSQLDataSet;
+    DataSetProvider1: TDataSetProvider;
+    ClientDataSet1: TClientDataSet;
+    IntegerField1: TIntegerField;
+    StringField1: TStringField;
+    IntegerField2: TIntegerField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    StringField4: TStringField;
   private
     { Private declarations }
   public
@@ -43,25 +52,38 @@ implementation
 
 function TDataModulePessoa.Alterar(Opessoa: TPessoa; out sErro: string): boolean;
 begin
-  with sqlAlterar, Opessoa do
-  begin
-    Params[0].AsString := NOME;
-    Params[1].AsInteger := ID;
-//    Params[2].AsString := Tipo;
-//    Params[3].AsString := Documento;
-//    Params[4].AsString := Endereco;
-    try
-      ExecSQL();
-      Result := True;
+  SQLDataSet1.CommandText := format('select * from pessoa where pescod = %d', [Opessoa.ID]);
+  ClientDataSet1.Open;
+  ClientDataSet1.Edit;
+  ClientDataSet1.FieldByName('ESCCOD').AsInteger := oPessoa.CodigoEscola;
+  ClientDataSet1.FieldByName('PESNOM').AsString := oPessoa.Nome;
+  ClientDataSet1.FieldByName('PESEND').AsString := oPessoa.Endereco;
+  ClientDataSet1.FieldByName('PESIDT').AsString := oPessoa.Tipo;
+  ClientDataSet1.FieldByName('PESDOC').AsString := oPessoa.Tipo;
+  ClientDataSet1.Post;
+  Result := ClientDataSet1.ApplyUpdates(0) <> 0;
 
-    except on E: Exception do
-      begin
-        sErro := 'Ocorreu um erro ao alterar: ' + sLineBreak + E.Message;
-        Result := False;
 
-      end;
-    end;
-  end;
+
+//  with sqlAlterar, Opessoa do
+//  begin
+//    Params[0].AsString := NOME;
+//    Params[1].AsInteger := ID;
+////    Params[2].AsString := Tipo;
+////    Params[3].AsString := Documento;
+////    Params[4].AsString := Endereco;
+//    try
+//      ExecSQL();
+//      Result := True;
+//
+//    except on E: Exception do
+//      begin
+//        sErro := 'Ocorreu um erro ao alterar: ' + sLineBreak + E.Message;
+//        Result := False;
+//
+//      end;
+//    end;
+//  end;
 end;
 
 procedure TDataModulePessoa.CarregarPessoa(oPessoa: TPessoa; iCodigo: Integer);
@@ -83,7 +105,6 @@ begin
         Tipo := FieldByName('PESIDT').AsString;
         Documento := FieldByName('PESDOC').AsString;
         Endereco := sqlPessoa.FieldByName('PESEND').AsString;
-
       end;
     end;
   finally
@@ -93,60 +114,83 @@ end;
 
 function TDataModulePessoa.Excluir(iPessoa: Integer; out sErro: string): boolean;
 begin
-sqlExcluir.Params[0].AsInteger := iPessoa;
-  with sqlExcluir do
-  begin
-    try
-      sqlExcluir.ExecSQL();
-      Result := true;
-    except on E: Exception do
-      begin
-        sErro := 'Ocorreu um erro ao excluir: ' + sLineBreak + E.Message;
-        Result := False;
-      end;
-    end;
-  end;
+  SQLDataSet1.CommandText := format('select * from pessoa where pescod = %d', [iPessoa]);
+  ClientDataSet1.Open;
+  ClientDataSet1.delete;
+
+  Result := ClientDataSet1.ApplyUpdates(0) <> 0;
+
+//sqlExcluir.Params[0].AsInteger := iPessoa;
+//  with sqlExcluir do
+//  begin
+//    try
+//      sqlExcluir.ExecSQL();
+//      Result := true;
+//    except on E: Exception do
+//      begin
+//        sErro := 'Ocorreu um erro ao excluir: ' + sLineBreak + E.Message;
+//        Result := False;
+//      end;
+//    end;
+//  end;
 end;
 
 function TDataModulePessoa.GerarId(ANomeTabela: string): Integer;
-var
-  sqlSequencia: TSQLDataSet;
+//var
+//  sqlSequencia: TSQLDataSet;
 begin
-  try
-    sqlSequencia := TSQLDataSet.Create(nil);
-    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
-    sqlSequencia.CommandText :=
-      Format('SELECT COALESCE(ProximoCodigo,1) FROM CodigoAuxiliar WHERE TABELA = ''%s''',[ANomeTabela]);
-    sqlSequencia.Open;
-    result := sqlSequencia.Fields[0].AsInteger;
-    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
-    'WHERE TABELA = ''%s''',[ANomeTabela]);
-    sqlSequencia.ExecSQL();
-  finally
-    FreeAndNil(sqlSequencia);
-  end;
+//  try
+//    sqlSequencia := TSQLDataSet.Create(nil);
+//    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
+//    sqlSequencia.CommandText :=
+//      Format('SELECT COALESCE(ProximoCodigo,1) FROM CodigoAuxiliar WHERE TABELA = ''%s''',[ANomeTabela]);
+//    sqlSequencia.Open;
+//    result := sqlSequencia.Fields[0].AsInteger;
+//    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
+//    'WHERE TABELA = ''%s''',[ANomeTabela]);
+//    //sqlSequencia.ExecSQL();                                                                                                       1
+//
+//  finally
+//
+//    FreeAndNil(sqlSequencia);
+//  end;
+Result := 6;
 end;
 
 function TDataModulePessoa.Inserir(oPessoa: TPessoa; out sErro: string): boolean;
 begin
-  with sqlInserir, oPessoa do
-  begin
-    Params[0].AsInteger := GerarId('PESSOA');
-    Params[1].AsInteger := CodigoEscola;
-    Params[2].AsString := Nome;
-    Params[3].AsString := Endereco;
-    Params[4].AsString := Tipo;
-    Params[5].AsString := Documento;
-    try
-      ExecSQL();
-      Result := True;
-    except on E: Exception do
-      begin
-        sErro := 'Ocorreu um erro ao inserir: ' + sLineBreak + E.Message;
-        Result := False;
-      end;
-    end;
-  end;
+  SQLDataSet1.CommandText := format('select * from pessoa p where 1=0', [Opessoa.ID]);
+  ClientDataSet1.Open;
+  ClientDataSet1.Append;
+  ClientDataSet1.FieldByName('PESCOD').AsInteger := GerarId('PESSOA');
+  ClientDataSet1.FieldByName('ESCCOD').AsInteger := oPessoa.CodigoEscola;
+  ClientDataSet1.FieldByName('PESNOM').AsString := oPessoa.Nome;
+  ClientDataSet1.FieldByName('PESEND').AsString := oPessoa.Endereco;
+  ClientDataSet1.FieldByName('PESIDT').AsString := oPessoa.Tipo;
+  ClientDataSet1.FieldByName('PESDOC').AsString := oPessoa.Documento;
+  ClientDataSet1.Post;
+
+  Result := ClientDataSet1.ApplyUpdates(0) <> 0;
+
+
+//  with sqlInserir, oPessoa do
+//  begin
+//    Params[0].AsInteger := GerarId('PESSOA');
+//    Params[1].AsInteger := CodigoEscola;
+//    Params[2].AsString := Nome;
+//    Params[3].AsString := Endereco;
+//    Params[4].AsString := Tipo;
+//    Params[5].AsString := Tipo;
+//    try
+//      ExecSQL();
+//      Result := True;
+//    except on E: Exception do
+//      begin
+//        sErro := 'Ocorreu um erro ao inserir: ' + sLineBreak + E.Message;
+//        Result := False;
+//      end;
+//    end;
+//  end;
 end;
 
 procedure TDataModulePessoa.Pesquisar(sNome: string);
