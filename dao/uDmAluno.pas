@@ -27,7 +27,7 @@ type
     function Alterar(oAluno: TAluno; out sErro: string): boolean;
     function Inserir(oAluno: TAluno; out sErro: string): boolean;
     function GerarIdAluno(ANomeTabela: string): Integer;
-    function GerarId(ANomeTabela: string): Integer;
+    function GerarId: Integer;
   end;
 
 var
@@ -86,14 +86,40 @@ begin
   sqlPesquisarAluno.CommandText := 'SELECT * FROM V_ALUNO';
 end;
 
-function TDmAluno.GerarId(ANomeTabela: string): Integer;
+function TDmAluno.GerarId: Integer;
+var
+  sqlSequencia: TSQLDataSet;
 begin
-  result := 10;
+  try
+    sqlSequencia := TSQLDataSet.Create(nil);
+    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
+    sqlSequencia.CommandText := 'select coalesce(max(PESCOD),0)+1 as seq from PESSOA' ;
+   sqlSequencia.Open;
+    //sqlSequencia.ExecSQL();
+    Result := sqlSequencia.FieldByName('seq').AsInteger;
+//    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
+//    'WHERE TABELA = ''%s''',[ANomeTabela]);
+//                                                                                                      1
+
+  finally
+    FreeAndNil(sqlSequencia);
+  end;
+//Result := 6;
 end;
 
 function TDmAluno.GerarIdAluno(ANomeTabela: string): Integer;
+  var
+  sqlSequencia: TSQLDataSet;
 begin
-  result := 2;
+  try
+    sqlSequencia := TSQLDataSet.Create(nil);
+    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
+    sqlSequencia.CommandText := 'select coalesce(max(ALNCOD),0)+1 as seq from ALUNO' ;
+   sqlSequencia.Open;
+    Result := sqlSequencia.FieldByName('seq').AsInteger;
+  finally
+    FreeAndNil(sqlSequencia);
+  end;
 end;
 
 
@@ -102,7 +128,7 @@ function TDmAluno.Inserir(oAluno: TAluno; out sErro: string): boolean;
 VAR
  IDPESSOA: INTEGER;
 begin
-  IDPESSOA := GerarId('PESSOA');
+  IDPESSOA := GerarId;
   SQLDataSet2.CommandText := ('select p.* from pessoa p  where 1=0');
   ClientDataSet2.Open;
   ClientDataSet2.Append;

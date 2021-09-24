@@ -58,9 +58,9 @@ type
     procedure Detalhar;
     procedure Configuracao;
     procedure Pesquisar;
-    procedure HabilitarControles(aOperacao: TOperacao);
     procedure ResetarGrid;
   protected
+    procedure HabilitarControles(aOperacao: TOperacao); Virtual;
     procedure CarregarPessoa; virtual;
     procedure Listar; virtual;
     procedure Alterar; virtual;

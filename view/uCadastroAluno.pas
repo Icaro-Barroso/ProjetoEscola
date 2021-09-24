@@ -8,7 +8,8 @@ uses
   cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridCustomView,
-  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController, uPessoaModel,
+  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController,
+  uPessoaModel,
   uPessoaController, Mask, DBCtrls;
 
 type
@@ -29,7 +30,8 @@ type
     procedure Gravar; override;
     procedure Inserir; override;
     procedure Alterar; override;
-     procedure CarregarPessoa; override;
+    procedure CarregarPessoa; override;
+    procedure HabilitarControles(aOperacao: TOperacao); override;
   public
     { Public declarations }
   end;
@@ -55,7 +57,7 @@ begin
     with oAluno do
     begin
       CodigoPessoa := StrToIntDef(edtCodigo.Text, 0);
-//      CodigoAluno := StrToInt(edCodigoAluno.Text);
+      //      CodigoAluno := StrToInt(edCodigoAluno.Text);
       CodigoEscola := StrToInt(edtCodigoEscola.Text);
       NomeAluno := edtNome.Text;
       DocumentoAluno := edtDocumento.Text;
@@ -77,11 +79,12 @@ var
   oAlunoController: TAlunoController;
 begin
   inherited;
- oAluno := TAluno.Create;
+  oAluno := TAluno.Create;
   oAlunoController := TAlunoController.Create;
   try
 
-   oAlunoController.CarregarAluno(oAluno, DBGridPesquisa.SelectedField.AsInteger);
+    oAlunoController.CarregarAluno(oAluno,
+      DBGridPesquisa.SelectedField.AsInteger);
     begin
       edCodigoAluno.Text := IntToStr(oAluno.CodigoAluno);
       edSerie.Text := IntToStr(oAluno.CodigoSerie);
@@ -101,7 +104,7 @@ end;
 procedure TCadastroAluno.FormDestroy(Sender: TObject);
 begin
   inherited;
-//  FreeAndNil(DmAluno);
+  //  FreeAndNil(DmAluno);
 end;
 
 procedure TCadastroAluno.FormShow(Sender: TObject);
@@ -124,6 +127,26 @@ begin
     // oAlunoController.Pesquisar(edtNome.Text);
   finally
     FreeAndNil(oAlunoController);
+  end;
+end;
+
+procedure TCadastroAluno.HabilitarControles(aOperacao: TOperacao);
+begin
+  inherited;
+  case aOperacao of
+    opNovo, opAlterar:
+      begin
+        edCodigoAluno.Enabled := False;
+        edtCodigoEscola.Enabled := True;
+        edSerie.Enabled := True;
+
+      end;
+    opNavegar:
+      begin
+        edCodigoAluno.Enabled := False;
+        edtCodigoEscola.Enabled := False;
+        edSerie.Enabled := False;
+      end;
   end;
 end;
 
@@ -188,8 +211,8 @@ begin
     //TIPO
     if not AlunoController.Inserir(Aluno, Erro) then
       raise Exception.Create(Erro);
-        //if not AlunoController.Inserir(Aluno, Erro) then
-    //      Raise Exception.Create(Erro);
+    //if not AlunoController.Inserir(Aluno, Erro) then
+//      Raise Exception.Create(Erro);
 
   finally
     FreeAndNil(Aluno);

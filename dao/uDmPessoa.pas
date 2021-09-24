@@ -32,7 +32,7 @@ type
   private
     { Private declarations }
   public
-    function GerarId(ANomeTabela: string): Integer;
+    function GerarId(ANomeTabela: string): Integer; virtual;
     procedure Pesquisar(sNome: string);
     procedure CarregarPessoa(oPessoa: TPessoa; iCodigo: Integer);
     function Inserir(oPessoa: TPessoa; out sErro: string): boolean;
@@ -136,25 +136,25 @@ begin
 end;
 
 function TDataModulePessoa.GerarId(ANomeTabela: string): Integer;
-//var
-//  sqlSequencia: TSQLDataSet;
+var
+  sqlSequencia: TSQLDataSet;
 begin
-//  try
-//    sqlSequencia := TSQLDataSet.Create(nil);
-//    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
-//    sqlSequencia.CommandText :=
-//      Format('SELECT COALESCE(ProximoCodigo,1) FROM CodigoAuxiliar WHERE TABELA = ''%s''',[ANomeTabela]);
-//    sqlSequencia.Open;
-//    result := sqlSequencia.Fields[0].AsInteger;
+  try
+    sqlSequencia := TSQLDataSet.Create(nil);
+    sqlSequencia.SQLConnection := DmConexao.sqlConexao;
+    sqlSequencia.CommandText := Format('select coalesce(max(PESCOD),0)+1 from ''%s''', [ANomeTabela]) ;
+    sqlSequencia.Open;
+    sqlSequencia.ExecSQL();
+    result := sqlSequencia.Fields[0].AsInteger;
 //    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
 //    'WHERE TABELA = ''%s''',[ANomeTabela]);
-//    //sqlSequencia.ExecSQL();                                                                                                       1
-//
-//  finally
-//
-//    FreeAndNil(sqlSequencia);
-//  end;
-Result := 6;
+//                                                                                                      1
+
+  finally
+
+    FreeAndNil(sqlSequencia);
+  end;
+//Result := 6;
 end;
 
 function TDataModulePessoa.Inserir(oPessoa: TPessoa; out sErro: string): boolean;

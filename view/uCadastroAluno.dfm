@@ -4,31 +4,7 @@ inherited CadastroAluno: TCadastroAluno
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
-      inherited DBGridPesquisa: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'PESCOD'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESNOM'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESDOC'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESEND'
-            Visible = True
-          end>
-      end
       inherited cxGrid1: TcxGrid
-        ExplicitTop = 65
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dsPesq
