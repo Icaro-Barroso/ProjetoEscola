@@ -64,7 +64,7 @@ begin
       EnderecoAluno := edtEndereco.Text;
       CodigoSerie := StrToInt(edSerie.Text);
     end;
-    if oAlunoController.Alterar(oAluno, sErro) = False then
+    if oAlunoController.Alterar(oAluno, sErro) = true then
       raise Exception.Create(sErro);
 
   finally

@@ -84,20 +84,6 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
     </Excluded_Packages></Delphi.Personality><ModelSupport>False</ModelSupport></BorlandProject></BorlandProject>
@@ -117,17 +103,25 @@
       <Form>DmConexao</Form>
       <DesignClass>TDataModule</DesignClass>
     </DCCReference>
+    <DCCReference Include="dao\uDmFuncionario.pas">
+      <Form>DataModule1</Form>
+      <DesignClass>TDataModule</DesignClass>
+    </DCCReference>
     <DCCReference Include="dao\uDmPessoa.pas">
       <Form>DataModulePessoa</Form>
       <DesignClass>TDataModule</DesignClass>
     </DCCReference>
     <DCCReference Include="model\uAlunoModel.pas" />
+    <DCCReference Include="model\uFuncionarioModel.pas" />
     <DCCReference Include="model\uPessoaModel.pas" />
     <DCCReference Include="view\uCadastro.pas">
       <Form>Cadastro</Form>
     </DCCReference>
     <DCCReference Include="view\uCadastroAluno.pas">
       <Form>CadastroAluno</Form>
+    </DCCReference>
+    <DCCReference Include="view\uCadastroFuncionario.pas">
+      <Form>Cadastro1</Form>
     </DCCReference>
     <DCCReference Include="view\uFrmPrincipal.pas">
       <Form>frmPrincipal</Form>

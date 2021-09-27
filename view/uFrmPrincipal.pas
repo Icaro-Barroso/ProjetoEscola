@@ -19,6 +19,7 @@ type
     Aluno1: TMenuItem;
     procedure btEntrarClick(Sender: TObject);
     procedure Aluno1Click(Sender: TObject);
+    procedure Pessoa1Click(Sender: TObject);
   private
     procedure AbrirCliente;
   end;
@@ -55,6 +56,7 @@ procedure TfrmPrincipal.btEntrarClick(Sender: TObject);
 begin
   AbrirCliente;
 end;
+
 
 end.
 
