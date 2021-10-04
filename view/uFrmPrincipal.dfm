@@ -47,9 +47,9 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Inicio'
       object Cadastrar2: TMenuItem
         Caption = 'Cadastrar'
-        object Pessoa1: TMenuItem
+        object Funcionario: TMenuItem
           Caption = 'Funcionario'
-          OnClick = Pessoa1Click
+          OnClick = FuncionarioClick
         end
         object Escola1: TMenuItem
           Caption = 'Escola'

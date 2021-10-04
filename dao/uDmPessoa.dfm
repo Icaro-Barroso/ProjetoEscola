@@ -4,7 +4,7 @@ object DataModulePessoa: TDataModulePessoa
   Width = 409
   object sqlPesquisar: TSQLDataSet
     SchemaName = 'sa'
-    CommandText = 'select * from PESSOA'
+    CommandText = 'SELECT * FROM PESSOA where 1=0'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
@@ -131,7 +131,12 @@ object DataModulePessoa: TDataModulePessoa
         Size = 40
       end>
     IndexDefs = <>
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'ID'
+        ParamType = ptInput
+      end>
     ProviderName = 'dspPesquisar'
     StoreDefs = True
     Left = 32
@@ -168,8 +173,8 @@ object DataModulePessoa: TDataModulePessoa
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmConexao.sqlConexao
-    Left = 328
-    Top = 88
+    Left = 360
+    Top = 8
   end
   object SQLDataSet1: TSQLDataSet
     SchemaName = 'sa'
@@ -177,14 +182,14 @@ object DataModulePessoa: TDataModulePessoa
     MaxBlobSize = -1
     Params = <>
     SQLConnection = DmConexao.sqlConexao
-    Left = 128
-    Top = 152
+    Left = 288
+    Top = 168
   end
   object DataSetProvider1: TDataSetProvider
     DataSet = SQLDataSet1
     Options = [poCascadeDeletes, poCascadeUpdates, poAllowCommandText, poUseQuoteChar]
-    Left = 144
-    Top = 200
+    Left = 304
+    Top = 216
   end
   object ClientDataSet1: TClientDataSet
     Aggregates = <>
@@ -224,8 +229,8 @@ object DataModulePessoa: TDataModulePessoa
     Params = <>
     ProviderName = 'DataSetProvider1'
     StoreDefs = True
-    Left = 144
-    Top = 256
+    Left = 304
+    Top = 272
     object IntegerField1: TIntegerField
       FieldName = 'PESCOD'
       Required = True

@@ -17,6 +17,12 @@ type
     SQLDataSet2: TSQLDataSet;
     DataSetProvider2: TDataSetProvider;
     ClientDataSet2: TClientDataSet;
+    cdsPesquisarAlunoPESCOD: TIntegerField;
+    cdsPesquisarAlunoALNCOD: TIntegerField;
+    cdsPesquisarAlunoPESNOM: TStringField;
+    cdsPesquisarAlunoPESDOC: TStringField;
+    cdsPesquisarAlunoSRICOD: TIntegerField;
+    cdsPesquisarAlunoESCNOM: TWideStringField;
   private
     { Private declarations }
   public
@@ -28,6 +34,8 @@ type
     function Inserir(oAluno: TAluno; out sErro: string): boolean;
     function GerarIdAluno(ANomeTabela: string): Integer;
     function GerarId: Integer;
+    function ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
+
   end;
 
 var
@@ -84,6 +92,15 @@ end;
 procedure TDmAluno.CarregarTodosAlunos;
 begin
   sqlPesquisarAluno.CommandText := 'SELECT * FROM V_ALUNO';
+end;
+
+function TDmAluno.ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
+begin
+SQLDataSet2.CommandText := format('select * from pessoa where pescod = %d', [iAluno]);
+  ClientDataSet2.Open;
+  ClientDataSet2.delete;
+
+  Result := ClientDataSet2.ApplyUpdates(0) <> 0;
 end;
 
 function TDmAluno.GerarId: Integer;

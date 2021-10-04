@@ -44,5 +44,15 @@
     <Transaction>2021/09/27 09:31:13.641.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmFuncionario.dfm</Transaction>
     <Transaction>2021/09/27 12:22:39.490.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastroFuncionario.pas</Transaction>
     <Transaction>2021/09/27 12:22:39.490.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uCadastroFuncionario.dfm</Transaction>
+    <Transaction>2021/09/28 12:15:27.817.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\controller\uFuncionarioController.pas</Transaction>
+    <Transaction>2021/10/04 02:21:53.770.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\Relatorio\RelatorioAluno.pas</Transaction>
+    <Transaction>2021/10/04 02:21:53.770.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\Relatorio\RelatorioAluno.dfm</Transaction>
+    <Transaction>2021/10/04 02:22:08.692.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit3.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\Relatorio\ConexaoRelatorios.pas</Transaction>
+    <Transaction>2021/10/04 02:22:08.692.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit3.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\Relatorio\ConexaoRelatorios.dfm</Transaction>
+    <Transaction>2021/10/04 08:33:49.662.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit4.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uEscola.pas</Transaction>
+    <Transaction>2021/10/04 08:33:49.662.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit4.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\view\uEscola.dfm</Transaction>
+    <Transaction>2021/10/04 09:08:17.960.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmEscola.pas</Transaction>
+    <Transaction>2021/10/04 09:08:17.960.dfm,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.dfm=C:\Users\icarobarroso\Documents\ProjetoEscola\dao\uDmEscola.dfm</Transaction>
+    <Transaction>2021/10/04 09:48:41.333.pas,C:\Users\icarobarroso\Documents\ProjetoEscola\Unit1.pas=C:\Users\icarobarroso\Documents\ProjetoEscola\controller\uEscolaController.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -57,7 +57,7 @@ type
     procedure Novo;
     procedure Detalhar;
     procedure Configuracao;
-    procedure Pesquisar;
+    procedure Pesquisar; 
     procedure ResetarGrid;
   protected
     procedure HabilitarControles(aOperacao: TOperacao); Virtual;
@@ -67,6 +67,7 @@ type
     procedure Excluir; virtual;
     procedure Inserir; virtual;
     procedure Gravar; virtual;
+    procedure LimparCampos; Virtual;
   public
     property Operacao: TOperacao read FOperacao;
 
@@ -217,9 +218,10 @@ var
   sErro: string;
 begin
   oPessoaController := TPessoaController.Create;
+  DataModulePessoa.cdsPesquisar.Active := True;
   try
-    if (DataModulePessoa.cdsPesquisar.Active) and
-      (DataModulePessoa.cdsPesquisar.RecordCount > 0) then
+
+    if (DataModulePessoa.cdsPesquisar.Active) then
     begin
       if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then
@@ -228,7 +230,7 @@ begin
           oPessoaController.Excluir(DataModulePessoa.cdsPesquisarPESCOD.AsInteger,
           sErro) = False then
           raise Exception.Create(sErro);
-        oPessoaController.Pesquisar(edtPesquisar.Text);
+       // oPessoaController.Pesquisar(edtPesquisar.Text);
       end;
     end
     else
@@ -291,6 +293,15 @@ procedure TCadastro.Inserir;
 begin
 end;
 
+procedure TCadastro.LimparCampos;
+begin
+    edtCodigo.Clear;
+    edtNome.Clear;
+    edtDocumento.Clear;
+    edtEndereco.Clear;
+    edtCodigoEscola.clear;
+end;
+
 procedure TCadastro.Listar;
 begin
   pgcPrincipal.ActivePage := tbPesq;
@@ -298,6 +309,7 @@ end;
 
 procedure TCadastro.Novo;
 begin
+  LimparCampos;
   FOperacao := opNovo;
   pgcPrincipal.ActivePage := tbDados;
 end;

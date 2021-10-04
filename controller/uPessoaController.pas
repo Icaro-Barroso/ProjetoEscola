@@ -10,7 +10,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    procedure Pesquisar(sNome: string);
+    procedure Pesquisar(sNome: string); Virtual;
     procedure CarregarPessoa(oPessoa: TPessoa; iCodigo: Integer);
     function Inserir(oPessoa: TPessoa; var sErro: string): boolean; Virtual;
     function Alterar(oPessoa: TPessoa; var sErro: string): boolean;

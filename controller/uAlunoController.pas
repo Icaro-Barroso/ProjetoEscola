@@ -10,9 +10,11 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-     function Alterar(oAluno: TAluno; var sErro: string): boolean;
+    function Alterar(oAluno: TAluno; var sErro: string): boolean;
     function Inserir(Aluno: TAluno; var sErro: string): boolean;
     procedure CarregarAluno(oAluno: TAluno; iCodigo: Integer);
+    function ExcluirAluno(iCodigo: Integer; var sErro: string): boolean;
+    procedure PesquisarAluno(sNome: string);
 
     //    constructor Create;
     //    destructor Destroy; override;
@@ -41,18 +43,26 @@ end;
 
 constructor TAlunoController.Create;
 begin
-// DmAluno := TDmAluno.Create(nil);
 end;
 
 destructor TAlunoController.Destroy;
 begin
 inherited;
-
 end;
-//FUNCAO CARREGAR PESSOA (DMALUNO.CARREGAR(ALUNO, CODIGODELE)
+
+function TAlunoController.ExcluirAluno(iCodigo: Integer; var sErro: string): boolean;
+begin
+Result := DmAluno.ExcluirAluno(iCodigo, sErro);
+end;
+
 function TAlunoController.Inserir(Aluno: TAluno; var sErro: string): boolean;
 begin
  Result := DmAluno.Inserir(Aluno, sErro);
+end;
+
+procedure TAlunoController.PesquisarAluno(sNome: string);
+begin
+DmAluno.PesquisarAluno(sNome);
 end;
 
 end.

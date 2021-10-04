@@ -14,8 +14,15 @@ uses
   uAlunoController in 'controller\uAlunoController.pas',
   uDmAluno in 'dao\uDmAluno.pas' {DmAluno: TDataModule},
   uFuncionarioModel in 'model\uFuncionarioModel.pas',
-  uDmFuncionario in 'dao\uDmFuncionario.pas' {DataModule1: TDataModule},
-  uCadastroFuncionario in 'view\uCadastroFuncionario.pas' {Cadastro1};
+  uDmFuncionario in 'dao\uDmFuncionario.pas' {DmFuncionario: TDataModule},
+  uCadastroFuncionario in 'view\uCadastroFuncionario.pas' {CadastroFuncionario},
+  uFuncionarioController in 'controller\uFuncionarioController.pas',
+  RelatorioAluno in 'Relatorio\RelatorioAluno.pas' {Form1},
+  ConexaoRelatorios in 'Relatorio\ConexaoRelatorios.pas' {Form3},
+  uEscola in 'view\uEscola.pas' {Escola},
+  uEscolaModel in 'model\uEscolaModel.pas',
+  uDmEscola in 'dao\uDmEscola.pas' {DmEscola: TDataModule},
+  uEscolaController in 'controller\uEscolaController.pas';
 
 {$R *.res}
 
@@ -25,8 +32,12 @@ begin
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TDmConexao, DmConexao);
   Application.CreateForm(TDmAluno, DmAluno);
-  Application.CreateForm(TDataModule1, DataModule1);
-  Application.CreateForm(TCadastro1, Cadastro1);
+  Application.CreateForm(TDmFuncionario, DmFuncionario);
+  Application.CreateForm(TCadastroFuncionario, CadastroFuncionario);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm3, Form3);
+ // Application.CreateForm(TEscola, Escola);
+  Application.CreateForm(TDmEscola, DmEscola);
   //Application.CreateForm(TCadastroAluno, CadastroAluno);
   //Application.CreateForm(TForm2, Form2);
   Application.Run;

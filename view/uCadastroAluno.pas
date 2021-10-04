@@ -9,29 +9,31 @@ uses
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridCustomView,
   cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController,
-  uPessoaModel,
-  uPessoaController, Mask, DBCtrls;
+  uPessoaModel, uPessoaController, Mask, DBCtrls;
 
 type
   TCadastroAluno = class(TCadastro)
     edCodigoAluno: TLabeledEdit;
     edSerie: TLabeledEdit;
     cxAlunos: TcxGridDBTableView;
-    cxAlunosCodigo: TcxGridDBColumn;
-    cxAlunosNome: TcxGridDBColumn;
-    cxAlunosDocumento: TcxGridDBColumn;
     teste: TDataSource;
-    DataSource1: TDataSource;
     DataSource2: TDataSource;
+    cxAlunosColumn1: TcxGridDBColumn;
+    cxAlunosColumn2: TcxGridDBColumn;
+    cxAlunosColumn3: TcxGridDBColumn;
+    DataSource1: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject); override;
+    procedure btnExcluirClick(Sender: TObject);
   protected
     procedure Gravar; override;
     procedure Inserir; override;
     procedure Alterar; override;
     procedure CarregarPessoa; override;
     procedure HabilitarControles(aOperacao: TOperacao); override;
+    procedure ExcluirAluno;
+    procedure LimparCampos; override;
   public
     { Public declarations }
   end;
@@ -54,15 +56,15 @@ begin
   oAluno := TAluno.Create;
   oAlunoController := TAlunoController.Create;
   try
-    with oAluno do
     begin
-      CodigoPessoa := StrToIntDef(edtCodigo.Text, 0);
-      //      CodigoAluno := StrToInt(edCodigoAluno.Text);
-      CodigoEscola := StrToInt(edtCodigoEscola.Text);
-      NomeAluno := edtNome.Text;
-      DocumentoAluno := edtDocumento.Text;
-      EnderecoAluno := edtEndereco.Text;
-      CodigoSerie := StrToInt(edSerie.Text);
+      oAluno.CodigoPessoa := StrToIntDef(edtCodigo.Text, 0);
+      oAluno.CodigoAluno := StrToInt(edCodigoAluno.Text);
+      oAluno.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+      oAluno.NomeAluno := edtNome.Text;
+      oAluno.DocumentoAluno := edtDocumento.Text;
+      oAluno.EnderecoAluno := edtEndereco.Text;
+      oAluno.CodigoSerie := StrToInt(edSerie.Text);
+      oAlunoController.Alterar(oAluno, sErro);
     end;
     if oAlunoController.Alterar(oAluno, sErro) = true then
       raise Exception.Create(sErro);
@@ -71,6 +73,12 @@ begin
     FreeAndNil(oAluno);
     FreeAndNil(oAlunoController);
   end;
+end;
+
+procedure TCadastroAluno.btnExcluirClick(Sender: TObject);
+begin
+ ExcluirAluno;
+
 end;
 
 procedure TCadastroAluno.CarregarPessoa;
@@ -91,6 +99,34 @@ begin
     end;
   finally
     FreeAndNil(oAluno);
+    FreeAndNil(oAlunoController);
+  end;
+end;
+
+procedure TCadastroAluno.ExcluirAluno;
+var
+oAlunoController: TAlunoController;
+  sErro: string;
+begin
+  oAlunoController := TAlunoController.Create;
+  DmAluno.cdsPesquisarAluno.Active := True;
+  try
+
+    if (DmAluno.cdsPesquisarAluno.Active) then
+    begin
+      if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
+        mbNo], 0) = IDYES then
+      begin
+        if
+          oAlunoController.ExcluirAluno(DmAluno.cdsPesquisarAlunoPESCOD.AsInteger,
+          sErro) = False then
+          raise Exception.Create(sErro);
+       oAlunoController.PesquisarAluno(edtPesquisar.Text);
+      end;
+    end
+    else
+      raise Exception.Create('Não ha registro a ser excluido');
+  finally
     FreeAndNil(oAlunoController);
   end;
 end;
@@ -220,5 +256,14 @@ begin
   end;
 
 end;
+
+procedure TCadastroAluno.LimparCampos;
+begin
+  inherited;
+   edSerie.clear;
+   edCodigoAluno.clear;
+
+end;
+
 end.
 

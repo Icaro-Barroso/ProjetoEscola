@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{d7c3c470-1669-4fdf-a450-608d43ae20ba}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="ProjetoEscola.dproj" />
+    <Projects Include="Test\ProjetoEscolaTests.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="ProjetoEscola">
+    <MSBuild Projects="ProjetoEscola.dproj" Targets="" />
+  </Target>
+  <Target Name="ProjetoEscola:Clean">
+    <MSBuild Projects="ProjetoEscola.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="ProjetoEscola:Make">
+    <MSBuild Projects="ProjetoEscola.dproj" Targets="Make" />
+  </Target>
+  <Target Name="ProjetoEscolaTests">
+    <MSBuild Projects="Test\ProjetoEscolaTests.dproj" Targets="" />
+  </Target>
+  <Target Name="ProjetoEscolaTests:Clean">
+    <MSBuild Projects="Test\ProjetoEscolaTests.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="ProjetoEscolaTests:Make">
+    <MSBuild Projects="Test\ProjetoEscolaTests.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="ProjetoEscola;ProjetoEscolaTests" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="ProjetoEscola:Clean;ProjetoEscolaTests:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="ProjetoEscola:Make;ProjetoEscolaTests:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>

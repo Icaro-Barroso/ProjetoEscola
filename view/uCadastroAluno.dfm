@@ -4,6 +4,29 @@ inherited CadastroAluno: TCadastroAluno
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
+      inherited DBGridPesquisa: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'PESCOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESNOM'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESDOC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESEND'
+            Visible = True
+          end>
+      end
       inherited cxGrid1: TcxGrid
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
@@ -12,16 +35,15 @@ inherited CadastroAluno: TCadastroAluno
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
           OptionsView.NoDataToDisplayInfoText = '<Nenhum aluno listado>'
-          object cxAlunosCodigo: TcxGridDBColumn
-            Caption = 'Codigo'
+          object cxAlunosColumn1: TcxGridDBColumn
+            Caption = 'Codigo Aluno'
             DataBinding.FieldName = 'ALNCOD'
-            Width = 119
           end
-          object cxAlunosNome: TcxGridDBColumn
+          object cxAlunosColumn2: TcxGridDBColumn
             Caption = 'Nome'
             DataBinding.FieldName = 'PESNOM'
           end
-          object cxAlunosDocumento: TcxGridDBColumn
+          object cxAlunosColumn3: TcxGridDBColumn
             Caption = 'Documento'
             DataBinding.FieldName = 'PESDOC'
           end
@@ -70,6 +92,7 @@ inherited CadastroAluno: TCadastroAluno
     end
   end
   inherited dsPesq: TDataSource
+    DataSet = DmAluno.cdsPesquisarAluno
     Top = 48
   end
   object teste: TDataSource
@@ -77,13 +100,14 @@ inherited CadastroAluno: TCadastroAluno
     Left = 464
     Top = 48
   end
-  object DataSource1: TDataSource
-    Left = 416
-    Top = 104
-  end
   object DataSource2: TDataSource
     DataSet = DmAluno.ClientDataSet2
     Left = 464
     Top = 104
+  end
+  object DataSource1: TDataSource
+    DataSet = DataModulePessoa.cdsPesquisar
+    Left = 520
+    Top = 48
   end
 end

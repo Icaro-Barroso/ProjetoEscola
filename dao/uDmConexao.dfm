@@ -36,7 +36,7 @@ object DmConexao: TDmConexao
       'Prepare SQL=False')
     VendorLib = 'oledb'
     Connected = True
-    Left = 48
-    Top = 72
+    Left = 80
+    Top = 48
   end
 end

@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus, StdCtrls,
-  cxButtons, RLReport, uCadastro, uCadastroAluno;
+  cxButtons, RLReport, uCadastro, uCadastroAluno, uCadastroFuncionario, RelatorioAluno;
 
 type
   TfrmPrincipal = class(TForm)
@@ -14,12 +14,12 @@ type
     MainMenu1: TMainMenu;
     Cadastrar1: TMenuItem;
     Cadastrar2: TMenuItem;
-    Pessoa1: TMenuItem;
+    Funcionario: TMenuItem;
     Escola1: TMenuItem;
     Aluno1: TMenuItem;
     procedure btEntrarClick(Sender: TObject);
     procedure Aluno1Click(Sender: TObject);
-    procedure Pessoa1Click(Sender: TObject);
+    procedure FuncionarioClick(Sender: TObject);
   private
     procedure AbrirCliente;
   end;
@@ -33,11 +33,11 @@ implementation
 
 procedure TfrmPrincipal.AbrirCliente;
 begin
-  Cadastro := TCadastro.Create(nil);
+  Form1 := TForm1.Create(nil);
   try
-    Cadastro.ShowModal;
+    Form1.RLReport1.Preview;
   finally
-    FreeAndNil(Cadastro);
+    FreeAndNil(Form1);
   end;
 end;
 
@@ -57,6 +57,16 @@ begin
   AbrirCliente;
 end;
 
+
+procedure TfrmPrincipal.FuncionarioClick(Sender: TObject);
+begin
+  CadastroFuncionario := TCadastroFuncionario.Create(nil);
+  try
+    CadastroFuncionario.ShowModal;
+  finally
+    FreeAndNil(CadastroAluno);
+  end;
+end;
 
 end.
 
