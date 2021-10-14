@@ -1,9 +1,15 @@
 inherited CadastroAluno: TCadastroAluno
   Caption = 'Cadastro Aluno'
+  ExplicitWidth = 694
+  ExplicitHeight = 472
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 670
+      ExplicitHeight = 364
       inherited DBGridPesquisa: TDBGrid
         Columns = <
           item
@@ -30,22 +36,23 @@ inherited CadastroAluno: TCadastroAluno
       inherited cxGrid1: TcxGrid
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
-          DataController.DataSource = dsPesq
+          DataController.DataModeController.SmartRefresh = True
+          DataController.DataSource = dsCxgridAluno
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
           OptionsView.NoDataToDisplayInfoText = '<Nenhum aluno listado>'
-          object cxAlunosColumn1: TcxGridDBColumn
-            Caption = 'Codigo Aluno'
+          object cxAlunosALNCOD: TcxGridDBColumn
             DataBinding.FieldName = 'ALNCOD'
           end
-          object cxAlunosColumn2: TcxGridDBColumn
-            Caption = 'Nome'
+          object cxAlunosPESNOM: TcxGridDBColumn
             DataBinding.FieldName = 'PESNOM'
           end
-          object cxAlunosColumn3: TcxGridDBColumn
-            Caption = 'Documento'
+          object cxAlunosPESDOC: TcxGridDBColumn
             DataBinding.FieldName = 'PESDOC'
+          end
+          object cxAlunosPESEND: TcxGridDBColumn
+            DataBinding.FieldName = 'PESEND'
           end
         end
         inherited cxGrid1Level1: TcxGridLevel
@@ -54,6 +61,10 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 670
+      ExplicitHeight = 364
       inherited edtNome: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -92,16 +103,15 @@ inherited CadastroAluno: TCadastroAluno
     end
   end
   inherited dsPesq: TDataSource
-    DataSet = DmAluno.cdsPesquisarAluno
     Top = 48
   end
-  object teste: TDataSource
-    DataSet = DmAluno.sqlPesquisarAluno
+  object dsCxgridAluno: TDataSource
+    DataSet = DmAluno.cdsAluno
     Left = 464
     Top = 48
   end
   object DataSource2: TDataSource
-    DataSet = DmAluno.ClientDataSet2
+    DataSet = DmAluno.cdsAluno
     Left = 464
     Top = 104
   end

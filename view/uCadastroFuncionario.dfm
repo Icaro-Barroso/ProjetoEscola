@@ -4,6 +4,29 @@ inherited CadastroFuncionario: TCadastroFuncionario
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
+      inherited DBGridPesquisa: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'PESCOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESNOM'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESDOC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESEND'
+            Visible = True
+          end>
+      end
       inherited cxGrid1: TcxGrid
         object cxGrid1DBTableView2: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
@@ -12,48 +35,48 @@ inherited CadastroFuncionario: TCadastroFuncionario
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
         end
-        object cxGrid1DBTableView1: TcxGridDBTableView [1]
+        object cxGridFuncionario: TcxGridDBTableView [1]
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dsPesqFuncionario
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
-          object cxGrid1DBTableView1FNCCOD: TcxGridDBColumn
+          object cxGridFuncionarioFNCCOD: TcxGridDBColumn
             DataBinding.FieldName = 'FNCCOD'
           end
-          object cxGrid1DBTableView1PESNOM: TcxGridDBColumn
+          object cxGridFuncionarioPESNOM: TcxGridDBColumn
             DataBinding.FieldName = 'PESNOM'
           end
-          object cxGrid1DBTableView1PESCOD: TcxGridDBColumn
+          object cxGridFuncionarioPESCOD: TcxGridDBColumn
             DataBinding.FieldName = 'PESCOD'
           end
-          object cxGrid1DBTableView1FNCSLR: TcxGridDBColumn
+          object cxGridFuncionarioFNCSLR: TcxGridDBColumn
             DataBinding.FieldName = 'FNCSLR'
           end
-          object cxGrid1DBTableView1FNCCRG: TcxGridDBColumn
+          object cxGridFuncionarioFNCCRG: TcxGridDBColumn
             DataBinding.FieldName = 'FNCCRG'
           end
-          object cxGrid1DBTableView1PESEND: TcxGridDBColumn
+          object cxGridFuncionarioPESEND: TcxGridDBColumn
             DataBinding.FieldName = 'PESEND'
           end
-          object cxGrid1DBTableView1PESDOC: TcxGridDBColumn
+          object cxGridFuncionarioPESDOC: TcxGridDBColumn
             DataBinding.FieldName = 'PESDOC'
           end
-          object cxGrid1DBTableView1ESCNOM: TcxGridDBColumn
+          object cxGridFuncionarioESCNOM: TcxGridDBColumn
             DataBinding.FieldName = 'ESCNOM'
           end
-          object cxGrid1DBTableView1PESIDT: TcxGridDBColumn
+          object cxGridFuncionarioPESIDT: TcxGridDBColumn
             DataBinding.FieldName = 'PESIDT'
           end
-          object cxGrid1DBTableView1ESPTIP: TcxGridDBColumn
+          object cxGridFuncionarioESPTIP: TcxGridDBColumn
             DataBinding.FieldName = 'ESPTIP'
           end
-          object cxGrid1DBTableView1ESCCOD: TcxGridDBColumn
+          object cxGridFuncionarioESCCOD: TcxGridDBColumn
             DataBinding.FieldName = 'ESCCOD'
           end
         end
         inherited cxGrid1Level1: TcxGridLevel
-          GridView = cxGrid1DBTableView1
+          GridView = cxGridFuncionario
         end
       end
     end

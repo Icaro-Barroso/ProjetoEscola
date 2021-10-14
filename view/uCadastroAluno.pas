@@ -16,16 +16,18 @@ type
     edCodigoAluno: TLabeledEdit;
     edSerie: TLabeledEdit;
     cxAlunos: TcxGridDBTableView;
-    teste: TDataSource;
+    dsCxgridAluno: TDataSource;
     DataSource2: TDataSource;
-    cxAlunosColumn1: TcxGridDBColumn;
-    cxAlunosColumn2: TcxGridDBColumn;
-    cxAlunosColumn3: TcxGridDBColumn;
     DataSource1: TDataSource;
+    cxAlunosALNCOD: TcxGridDBColumn;
+    cxAlunosPESNOM: TcxGridDBColumn;
+    cxAlunosPESEND: TcxGridDBColumn;
+    cxAlunosPESDOC: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject); override;
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnListarClick(Sender: TObject);
   protected
     procedure Gravar; override;
     procedure Inserir; override;
@@ -81,19 +83,31 @@ begin
 
 end;
 
+procedure TCadastroAluno.btnListarClick(Sender: TObject);
+begin
+  inherited;
+  dsCxgridAluno.DataSet.Refresh;
+end;
+
 procedure TCadastroAluno.CarregarPessoa;
 var
   oAluno: TAluno;
   oAlunoController: TAlunoController;
 begin
-  inherited;
+  //inherited;
   oAluno := TAluno.Create;
   oAlunoController := TAlunoController.Create;
   try
 
     oAlunoController.CarregarAluno(oAluno,
-      DBGridPesquisa.SelectedField.AsInteger);
+    dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger);
     begin
+      edtCodigo.Text := IntToStr(oAluno.CodigoPessoa);
+      edtCodigoEscola.Text := IntToStr(oAluno.CodigoEscola);
+      edtNome.Text := oAluno.NomeAluno;
+      cbxTipo.ItemIndex := 0;
+      edtDocumento.Text := oAluno.DocumentoAluno;
+      edtEndereco.Text := oAluno.EnderecoAluno;
       edCodigoAluno.Text := IntToStr(oAluno.CodigoAluno);
       edSerie.Text := IntToStr(oAluno.CodigoSerie);
     end;
@@ -105,23 +119,22 @@ end;
 
 procedure TCadastroAluno.ExcluirAluno;
 var
+//codigopessoa: Integer;
 oAlunoController: TAlunoController;
   sErro: string;
 begin
   oAlunoController := TAlunoController.Create;
-  DmAluno.cdsPesquisarAluno.Active := True;
   try
-
-    if (DmAluno.cdsPesquisarAluno.Active) then
+//   dsPesq.DataSet.IsEmpty
+    if (dsCxgridAluno.DataSet.Active) then
     begin
-      if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
+      if MessageDlg(format('Voce realmente deseja exluir o cadastro de %s?', [dsCxgridAluno.DataSet.FieldByName('PESNOM').AsString]), mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then
       begin
-        if
-          oAlunoController.ExcluirAluno(DmAluno.cdsPesquisarAlunoPESCOD.AsInteger,
-          sErro) = False then
+        if oAlunoController.ExcluirAluno(dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger, sErro) = True then
           raise Exception.Create(sErro);
-       oAlunoController.PesquisarAluno(edtPesquisar.Text);
+          dsCxgridAluno.DataSet.Refresh;
+//       oAlunoController.PesquisarAluno(edtPesquisar.Text);
       end;
     end
     else
@@ -244,12 +257,8 @@ begin
     Aluno.EnderecoAluno := edtEndereco.Text;
     Aluno.DocumentoAluno := edtDocumento.Text;
     Aluno.CodigoSerie := StrToInt(edSerie.Text);
-    //TIPO
-    if not AlunoController.Inserir(Aluno, Erro) then
+    if AlunoController.Inserir(Aluno, Erro) = true then
       raise Exception.Create(Erro);
-    //if not AlunoController.Inserir(Aluno, Erro) then
-//      Raise Exception.Create(Erro);
-
   finally
     FreeAndNil(Aluno);
     FreeAndNil(AlunoController);

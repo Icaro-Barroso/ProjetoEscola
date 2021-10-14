@@ -168,8 +168,7 @@ begin
   oPessoa := TPessoa.Create;
   oPessoaController := TPessoaController.Create;
   try
-    oPessoaController.CarregarPessoa(oPessoa,
-      DBGridPesquisa.SelectedField.AsInteger);
+    oPessoaController.CarregarPessoa(oPessoa, DBGridPesquisa.SelectedField.AsInteger);
     //DBGridPesquisa.SELECTEDROWS.ITEMS <- UTILIZAR ISSO PRA PEGAR DE QLQR CAMPO
     with oPessoa do
     begin
@@ -211,6 +210,7 @@ begin
   FOperacao := opNavegar;
   pgcPrincipal.ActivePage := tbDados;
 end;
+
 
 procedure TCadastro.Excluir;
 var

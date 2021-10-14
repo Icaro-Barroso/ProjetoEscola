@@ -18,22 +18,23 @@ type
     edEspecialidade: TLabeledEdit;
     dsPesqFuncionario: TDataSource;
     cxGrid1DBTableView2: TcxGridDBTableView;
-    cxGrid1DBTableView1: TcxGridDBTableView;
-    cxGrid1DBTableView1FNCCOD: TcxGridDBColumn;
-    cxGrid1DBTableView1PESCOD: TcxGridDBColumn;
-    cxGrid1DBTableView1FNCSLR: TcxGridDBColumn;
-    cxGrid1DBTableView1FNCCRG: TcxGridDBColumn;
-    cxGrid1DBTableView1PESEND: TcxGridDBColumn;
-    cxGrid1DBTableView1PESDOC: TcxGridDBColumn;
-    cxGrid1DBTableView1ESCNOM: TcxGridDBColumn;
-    cxGrid1DBTableView1PESIDT: TcxGridDBColumn;
-    cxGrid1DBTableView1ESPTIP: TcxGridDBColumn;
-    cxGrid1DBTableView1ESCCOD: TcxGridDBColumn;
-    cxGrid1DBTableView1PESNOM: TcxGridDBColumn;
+    cxGridFuncionario: TcxGridDBTableView;
+    cxGridFuncionarioFNCCOD: TcxGridDBColumn;
+    cxGridFuncionarioPESCOD: TcxGridDBColumn;
+    cxGridFuncionarioFNCSLR: TcxGridDBColumn;
+    cxGridFuncionarioFNCCRG: TcxGridDBColumn;
+    cxGridFuncionarioPESEND: TcxGridDBColumn;
+    cxGridFuncionarioPESDOC: TcxGridDBColumn;
+    cxGridFuncionarioESCNOM: TcxGridDBColumn;
+    cxGridFuncionarioPESIDT: TcxGridDBColumn;
+    cxGridFuncionarioESPTIP: TcxGridDBColumn;
+    cxGridFuncionarioESCCOD: TcxGridDBColumn;
+    cxGridFuncionarioPESNOM: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject); override;
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnListarClick(Sender: TObject);
   protected
     procedure Gravar; override;
     procedure Inserir; override;
@@ -41,6 +42,7 @@ type
     procedure CarregarPessoa; override;
     procedure HabilitarControles(aOperacao: TOperacao); override;
     procedure ExcluirFuncionario;
+    procedure LimparCampos; override;
   public
     { Public declarations }
   end;
@@ -113,6 +115,12 @@ begin
 
 end;
 
+procedure TCadastroFuncionario.btnListarClick(Sender: TObject);
+begin
+  inherited;
+  dsPesqFuncionario.DataSet.Refresh;
+end;
+
 procedure TCadastroFuncionario.CarregarPessoa;
 var
   oFuncionario: TFuncionario;
@@ -122,7 +130,6 @@ begin
   oFuncionario := TFuncionario.Create;
   oFuncioanrioController := TFuncionarioController.Create;
   try
-
     oFuncioanrioController.CarregarFuncionario(oFuncionario,
       DBGridPesquisa.SelectedField.AsInteger);
     begin
@@ -145,19 +152,18 @@ oFuncionarioController: TFuncionarioController;
   sErro: string;
 begin
   oFuncionarioController := TFuncionarioController.Create;
-  DmFuncionario.cdsFuncionario.Active := True;
   try
-
-    if (DmFuncionario.cdsFuncionario.Active) then
+    if (dsPesqFuncionario.DataSet.Active) then
     begin
-      if MessageDlg('Voce realmente deseja exluir?', mtConfirmation, [mbYes,
+      if MessageDlg(Format('Voce realmente deseja exluir o cadastro de %s?', [dsPesqFuncionario.DataSet.FieldByName('PESNOM').AsString]), mtConfirmation, [mbYes,
         mbNo], 0) = IDYES then
       begin
         if
-          oFuncionarioController.ExcluirFuncionario(DmFuncionario.cdsFuncionarioPESCOD.AsInteger,
-          sErro) = False then
+          oFuncionarioController.ExcluirFuncionario(dsPesqFuncionario.DataSet.FieldByName('PESCOD').AsInteger,
+          sErro) = True then
           raise Exception.Create(sErro);
-       oFuncionarioController.PesquisarFuncionario(edtPesquisar.Text);
+          dsPesqFuncionario.DataSet.Refresh;
+//       oFuncionarioController.PesquisarFuncionario(edtPesquisar.Text);
       end;
     end
     else
@@ -217,14 +223,21 @@ begin
     Funcionario.FuncionarioSalario := edSalario.Text;
     Funcionario.FuncionarioCargo := edCargo.Text;
     Funcionario.CodigoEspecialidade := StrToInt(edEspecialidade.Text);
-
-    //TIPO
     if FuncionarioController.Inserir(Funcionario, Erro) then
       raise Exception.Create(Erro);
   finally
     FreeAndNil(Funcionario);
     FreeAndNil(FuncionarioController);
 end;
+end;
+
+procedure TCadastroFuncionario.LimparCampos;
+begin
+  inherited;
+  edCodigoFuncionario.Clear;
+  edSalario.Clear;
+  edCargo.Clear;
+  edEspecialidade.Clear;
 end;
 
 end.

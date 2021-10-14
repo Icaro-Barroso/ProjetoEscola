@@ -159,6 +159,7 @@ object Form1: TForm1
     Connection = Form3.ADOConnection1
     CursorType = ctStatic
     Parameters = <>
+    Prepared = True
     SQL.Strings = (
       'SELECT * FROM V_Aluno'
       '')

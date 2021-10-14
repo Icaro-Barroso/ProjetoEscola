@@ -14,7 +14,6 @@ object Form3: TForm3
   PixelsPerInch = 96
   TextHeight = 13
   object ADOConnection1: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Init' +
       'ial Catalog=ProjetoEscola;Data Source=PSDEVD83;Use Procedure for' +

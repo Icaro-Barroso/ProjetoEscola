@@ -14,15 +14,17 @@ type
     sqlExcluirAluno: TSQLDataSet;
     dspPesquisarAluno: TDataSetProvider;
     cdsPesquisarAluno: TClientDataSet;
-    SQLDataSet2: TSQLDataSet;
-    DataSetProvider2: TDataSetProvider;
-    ClientDataSet2: TClientDataSet;
-    cdsPesquisarAlunoPESCOD: TIntegerField;
-    cdsPesquisarAlunoALNCOD: TIntegerField;
-    cdsPesquisarAlunoPESNOM: TStringField;
-    cdsPesquisarAlunoPESDOC: TStringField;
-    cdsPesquisarAlunoSRICOD: TIntegerField;
-    cdsPesquisarAlunoESCNOM: TWideStringField;
+    sqlAluno: TSQLDataSet;
+    dsAluno: TDataSetProvider;
+    cdsAluno: TClientDataSet;
+    cdsAlunoALNCOD: TIntegerField;
+    cdsAlunoPESCOD: TIntegerField;
+    cdsAlunoSRICOD: TIntegerField;
+    cdsAlunoESCCOD: TIntegerField;
+    cdsAlunoPESNOM: TStringField;
+    cdsAlunoPESEND: TStringField;
+    cdsAlunoPESIDT: TStringField;
+    cdsAlunoPESDOC: TStringField;
   private
     { Private declarations }
   public
@@ -49,17 +51,17 @@ implementation
 
 function TDmAluno.Alterar(oAluno: TAluno; out sErro: string): boolean;
 begin
-  SQLDataSet2.CommandText := format('select * from pessoa where pescod = %d',
+  sqlAluno.CommandText := format('select * from pessoa where pescod = %d',
     [oAluno.CodigoPessoa]);
-  ClientDataSet2.Open;
-  ClientDataSet2.Edit;
-  ClientDataSet2.FieldByName('ESCCOD').AsInteger := oAluno.CodigoEscola;
-  ClientDataSet2.FieldByName('PESNOM').AsString := oAluno.NomeAluno;
-  ClientDataSet2.FieldByName('PESEND').AsString := oAluno.EnderecoAluno;
-  //  ClientDataSet2.FieldByName('PESIDT').AsString := oAluno.DocumentoAluno;
-  ClientDataSet2.FieldByName('PESDOC').AsString := oAluno.DocumentoAluno;
-  ClientDataSet2.Post;
-  Result := ClientDataSet2.ApplyUpdates(0) <> 0;
+  cdsAluno.Open;
+  cdsAluno.Edit;
+  cdsAluno.FieldByName('ESCCOD').AsInteger := oAluno.CodigoEscola;
+  cdsAluno.FieldByName('PESNOM').AsString := oAluno.NomeAluno;
+  cdsAluno.FieldByName('PESEND').AsString := oAluno.EnderecoAluno;
+  //  cdsAluno.FieldByName('PESIDT').AsString := oAluno.DocumentoAluno;
+  cdsAluno.FieldByName('PESDOC').AsString := oAluno.DocumentoAluno;
+  cdsAluno.Post;
+  Result := cdsAluno.ApplyUpdates(0) <> 0;
 end;
 
 procedure TDmAluno.CarregarAluno(Aluno: TAluno; iCodigo: integer);
@@ -78,9 +80,9 @@ begin
         Aluno.CodigoAluno := sqlAluno.FieldByName('ALNCOD').AsInteger;
         Aluno.CodigoPessoa := sqlAluno.FieldByName('PESCOD').AsInteger;
         Aluno.NomeAluno := sqlAluno.FieldByName('PESNOM').AsString;
-         Aluno.CodigoSerie := sqlAluno.FieldByName('SRICOD').AsInteger;
+        Aluno.CodigoSerie := sqlAluno.FieldByName('SRICOD').AsInteger;
         Aluno.DocumentoAluno := sqlAluno.FieldByName('PESDOC').AsString;
-        //Aluno.EnderecoAluno := sqlAluno.FieldByName('PESEND').AsString;
+        Aluno.EnderecoAluno := sqlAluno.FieldByName('PESEND').AsString;
        //funcao carregaaluno (oaluno, codigodele ) select * from aluno wherre pescod = CODIGODELE
       end;
     end;
@@ -96,11 +98,11 @@ end;
 
 function TDmAluno.ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
 begin
-SQLDataSet2.CommandText := format('select * from pessoa where pescod = %d', [iAluno]);
-  ClientDataSet2.Open;
-  ClientDataSet2.delete;
+  sqlPesquisarAluno.CommandText := format('select * from pessoa where pescod = %d', [iAluno]);
+  cdsPesquisarAluno.Open;
+  cdsPesquisarAluno.Delete;
 
-  Result := ClientDataSet2.ApplyUpdates(0) <> 0;
+  Result := cdsPesquisarAluno.ApplyUpdates(0) <> 0;
 end;
 
 function TDmAluno.GerarId: Integer;
@@ -146,27 +148,27 @@ VAR
  IDPESSOA: INTEGER;
 begin
   IDPESSOA := GerarId;
-  SQLDataSet2.CommandText := ('select p.* from pessoa p  where 1=0');
-  ClientDataSet2.Open;
-  ClientDataSet2.Append;
-  ClientDataSet2.FieldByName('PESCOD').AsInteger := IDPESSOA;
-  ClientDataSet2.FieldByName('ESCCOD').AsInteger := oAluno.CodigoEscola;
-  ClientDataSet2.FieldByName('PESNOM').AsString := oAluno.NomeAluno;
-  ClientDataSet2.FieldByName('PESEND').AsString := oAluno.EnderecoAluno;
-  ClientDataSet2.FieldByName('PESIDT').AsString := 'F';
-  ClientDataSet2.FieldByName('PESDOC').AsString := oAluno.DocumentoAluno;
+  sqlPesquisarAluno.CommandText := ('select p.* from pessoa p  where 1=0');
+  cdsPesquisarAluno.Open;
+  cdsPesquisarAluno.Append;
+  cdsPesquisarAluno.FieldByName('PESCOD').AsInteger := IDPESSOA;
+  cdsPesquisarAluno.FieldByName('ESCCOD').AsInteger := oAluno.CodigoEscola;
+  cdsPesquisarAluno.FieldByName('PESNOM').AsString := oAluno.NomeAluno;
+  cdsPesquisarAluno.FieldByName('PESEND').AsString := oAluno.EnderecoAluno;
+  cdsPesquisarAluno.FieldByName('PESIDT').AsString := 'F';
+  cdsPesquisarAluno.FieldByName('PESDOC').AsString := oAluno.DocumentoAluno;
 
-  ClientDataSet2.Post;
-  ClientDataSet2.ApplyUpdates(0);
-  ClientDataSet2.Close;
-    SQLDataSet2.CommandText := 'select * from Aluno where 1=0';
-  ClientDataSet2.Open;
-  ClientDataSet2.Append;
-  ClientDataSet2.FieldByName('PESCOD').AsInteger := IDPESSOA;
-  ClientDataSet2.FieldByName('ALNCOD').AsInteger := GerarIdAluno('ALUNO');
-  ClientDataSet2.FieldByName('SRICOD').AsInteger := oAluno.CodigoSerie;
-  ClientDataSet2.Post;
-  Result := ClientDataSet2.ApplyUpdates(0) <> 0;
+  cdsPesquisarAluno.Post;
+  cdsPesquisarAluno.ApplyUpdates(0);
+  cdsPesquisarAluno.Close;
+    sqlPesquisarAluno.CommandText := 'select * from Aluno where 1=0';
+  cdsPesquisarAluno.Open;
+  cdsPesquisarAluno.Append;
+  cdsPesquisarAluno.FieldByName('PESCOD').AsInteger := IDPESSOA;
+  cdsPesquisarAluno.FieldByName('ALNCOD').AsInteger := GerarIdAluno('ALUNO');
+  cdsPesquisarAluno.FieldByName('SRICOD').AsInteger := oAluno.CodigoSerie;
+  cdsPesquisarAluno.Post;
+  Result := cdsPesquisarAluno.ApplyUpdates(0) <> 0;
 end;
 
 procedure TDmAluno.PesquisarAluno(sNome: string);
@@ -174,7 +176,7 @@ begin
   if cdsPesquisarAluno.Active then
     cdsPesquisarAluno.close;
   cdsPesquisarAluno.CommandText :=
-    Format('select * from V_Aluno where PESNOM like %s', ['%' + sNome + '%']);
+    format('select * from V_aluno where PESNOM = ''%s''', [sNome]);
   //cdsPesquisar.Params[0].AsString := '%' + sNome + '%';
   cdsPesquisarAluno.Open;
   cdsPesquisarAluno.First;
