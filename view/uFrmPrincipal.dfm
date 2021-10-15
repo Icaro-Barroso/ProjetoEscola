@@ -53,6 +53,7 @@ object frmPrincipal: TfrmPrincipal
         end
         object Escola1: TMenuItem
           Caption = 'Escola'
+          OnClick = Escola1Click
         end
         object Aluno1: TMenuItem
           Caption = 'Aluno'

@@ -20,15 +20,10 @@ type
     cxGrid1DBTableView2: TcxGridDBTableView;
     cxGridFuncionario: TcxGridDBTableView;
     cxGridFuncionarioFNCCOD: TcxGridDBColumn;
-    cxGridFuncionarioPESCOD: TcxGridDBColumn;
     cxGridFuncionarioFNCSLR: TcxGridDBColumn;
     cxGridFuncionarioFNCCRG: TcxGridDBColumn;
     cxGridFuncionarioPESEND: TcxGridDBColumn;
     cxGridFuncionarioPESDOC: TcxGridDBColumn;
-    cxGridFuncionarioESCNOM: TcxGridDBColumn;
-    cxGridFuncionarioPESIDT: TcxGridDBColumn;
-    cxGridFuncionarioESPTIP: TcxGridDBColumn;
-    cxGridFuncionarioESCCOD: TcxGridDBColumn;
     cxGridFuncionarioPESNOM: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);

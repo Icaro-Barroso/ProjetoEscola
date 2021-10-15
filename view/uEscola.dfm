@@ -21,16 +21,8 @@ object Escola: TEscola
     ActivePage = TbDados
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 160
-    ExplicitTop = 216
-    ExplicitWidth = 678
-    ExplicitHeight = 321
     object TbPesquisar: TTabSheet
       Caption = 'tbPesquisar'
-      ExplicitLeft = 8
-      ExplicitTop = 22
-      ExplicitWidth = 670
-      ExplicitHeight = 252
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -40,7 +32,6 @@ object Escola: TEscola
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 670
         object LabeledEdit1: TLabeledEdit
           Left = 8
           Top = 24
@@ -69,9 +60,6 @@ object Escola: TEscola
         Color = clSilver
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 336
-        ExplicitTop = 184
-        ExplicitWidth = 185
         object btnNovo: TButton
           Left = 495
           Top = 9
@@ -104,10 +92,6 @@ object Escola: TEscola
         Height = 265
         Align = alClient
         TabOrder = 2
-        ExplicitLeft = 216
-        ExplicitTop = 240
-        ExplicitWidth = 250
-        ExplicitHeight = 200
         object cxGrid1DBTableView1: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           DataController.Summary.DefaultGroupSummaryItems = <>
@@ -122,8 +106,6 @@ object Escola: TEscola
     object TbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
-      ExplicitWidth = 670
-      ExplicitHeight = 293
       object Panel3: TPanel
         Left = 0
         Top = 325
@@ -133,9 +115,6 @@ object Escola: TEscola
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 256
-        ExplicitTop = 224
-        ExplicitWidth = 185
         object Button2: TButton
           Left = 494
           Top = 11
@@ -219,9 +198,6 @@ object Escola: TEscola
     Align = alBottom
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 184
-    ExplicitTop = 232
-    ExplicitWidth = 185
     object btnFechar: TButton
       Left = 664
       Top = 6

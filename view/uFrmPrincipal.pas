@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus, StdCtrls,
-  cxButtons, RLReport, uCadastro, uCadastroAluno, uCadastroFuncionario, RelatorioAluno;
+  cxButtons, RLReport, uCadastro, uCadastroAluno, uCadastroFuncionario, RelatorioAluno, uEscola;
 
 type
   TfrmPrincipal = class(TForm)
@@ -20,6 +20,7 @@ type
     procedure btEntrarClick(Sender: TObject);
     procedure Aluno1Click(Sender: TObject);
     procedure FuncionarioClick(Sender: TObject);
+    procedure Escola1Click(Sender: TObject);
   private
     procedure AbrirCliente;
   end;
@@ -57,6 +58,16 @@ begin
   AbrirCliente;
 end;
 
+
+procedure TfrmPrincipal.Escola1Click(Sender: TObject);
+begin
+  Escola := TEscola.Create(nil);
+  try
+    Escola.ShowModal;
+  finally
+    FreeAndNil(CadastroAluno);
+  end;
+end;
 
 procedure TfrmPrincipal.FuncionarioClick(Sender: TObject);
 begin

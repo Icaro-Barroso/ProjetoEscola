@@ -10,29 +10,6 @@ inherited CadastroAluno: TCadastroAluno
       ExplicitTop = 24
       ExplicitWidth = 670
       ExplicitHeight = 364
-      inherited DBGridPesquisa: TDBGrid
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'PESCOD'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESNOM'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESDOC'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'PESEND'
-            Visible = True
-          end>
-      end
       inherited cxGrid1: TcxGrid
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
@@ -41,18 +18,95 @@ inherited CadastroAluno: TCadastroAluno
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          OptionsData.Deleting = False
+          OptionsData.DeletingConfirmation = False
+          OptionsData.Editing = False
           OptionsView.NoDataToDisplayInfoText = '<Nenhum aluno listado>'
+          OptionsView.GroupByBox = False
           object cxAlunosALNCOD: TcxGridDBColumn
+            Caption = 'Codigo'
             DataBinding.FieldName = 'ALNCOD'
+            MinWidth = 57
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
+            Width = 57
           end
           object cxAlunosPESNOM: TcxGridDBColumn
+            Caption = 'Nome'
             DataBinding.FieldName = 'PESNOM'
+            MinWidth = 244
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
           end
           object cxAlunosPESDOC: TcxGridDBColumn
+            Caption = 'Documento'
             DataBinding.FieldName = 'PESDOC'
+            MinWidth = 244
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
           end
           object cxAlunosPESEND: TcxGridDBColumn
+            Caption = 'Endere'#231'o'
             DataBinding.FieldName = 'PESEND'
+            MinWidth = 244
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
           end
         end
         inherited cxGrid1Level1: TcxGridLevel
@@ -103,6 +157,7 @@ inherited CadastroAluno: TCadastroAluno
     end
   end
   inherited dsPesq: TDataSource
+    DataSet = DmAluno.cdsAluno
     Top = 48
   end
   object dsCxgridAluno: TDataSource
