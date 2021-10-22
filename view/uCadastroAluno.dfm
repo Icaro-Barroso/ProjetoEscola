@@ -1,15 +1,32 @@
 inherited CadastroAluno: TCadastroAluno
   Caption = 'Cadastro Aluno'
-  ExplicitWidth = 694
-  ExplicitHeight = 472
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     inherited tbPesq: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
+      inherited DBGridPesquisa: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'PESCOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESNOM'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESDOC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESEND'
+            Visible = True
+          end>
+      end
       inherited cxGrid1: TcxGrid
         object cxAlunos: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
@@ -115,49 +132,82 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
-      inherited edtNome: TLabeledEdit
+      inherited edtCodigo: TLabeledEdit
         Height = 19
         Ctl3D = False
         ParentCtl3D = False
         ExplicitHeight = 19
       end
+      inherited edtNome: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 3
+        ExplicitHeight = 19
+      end
+      inherited edtDocumento: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 5
+        ExplicitHeight = 19
+      end
+      inherited cbxTipo: TComboBox
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 4
+      end
+      inherited edtEndereco: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 6
+        ExplicitHeight = 19
+      end
+      inherited pnlBtnsCad: TPanel
+        TabOrder = 8
+      end
       inherited edtCodigoEscola: TLabeledEdit
         Left = 152
         Width = 201
+        Height = 19
+        Ctl3D = False
         EditLabel.ExplicitLeft = 152
         EditLabel.ExplicitTop = 0
         EditLabel.ExplicitWidth = 30
+        ParentCtl3D = False
+        TabOrder = 2
         ExplicitLeft = 152
         ExplicitWidth = 201
+        ExplicitHeight = 19
       end
       object edCodigoAluno: TLabeledEdit
         Left = 64
         Top = 16
         Width = 65
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 63
         EditLabel.Height = 13
         EditLabel.Caption = 'Codigo Aluno'
-        TabOrder = 7
+        ParentCtl3D = False
+        TabOrder = 1
       end
       object edSerie: TLabeledEdit
         Left = 3
         Top = 144
         Width = 46
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 24
         EditLabel.Height = 13
         EditLabel.Caption = 'Serie'
-        TabOrder = 8
+        ParentCtl3D = False
+        TabOrder = 7
       end
     end
   end
   inherited dsPesq: TDataSource
-    DataSet = DmAluno.cdsAluno
     Top = 48
   end
   object dsCxgridAluno: TDataSource

@@ -10,13 +10,13 @@ type
     sqlEscola: TSQLDataSet;
     dspEscola: TDataSetProvider;
     cdsEscola: TClientDataSet;
+    sqlPesquisarEscola: TSQLDataSet;
+    dspPesquisarEscola: TDataSetProvider;
+    cdsPesquisarEscola: TClientDataSet;
     cdsEscolaESCCOD: TIntegerField;
     cdsEscolaESCNOM: TWideStringField;
     cdsEscolaESCEND: TWideStringField;
     cdsEscolaESCCNJ: TWideStringField;
-    sqlPesquisarEscola: TSQLDataSet;
-    dspPesquisarEscola: TDataSetProvider;
-    cdsPesquisarEscola: TClientDataSet;
   private
     { Private declarations }
   public

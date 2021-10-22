@@ -3,7 +3,8 @@ object DmEscola: TDmEscola
   Height = 298
   Width = 351
   object sqlEscola: TSQLDataSet
-    CommandText = 'SELECT * FROM ESCOLA WHERE 1=0'
+    SchemaName = 'sa'
+    CommandText = 'SELECT * FROM ESCOLA'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <>
@@ -17,6 +18,7 @@ object DmEscola: TDmEscola
     Top = 96
   end
   object cdsEscola: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspEscola'
@@ -24,6 +26,7 @@ object DmEscola: TDmEscola
     Top = 152
     object cdsEscolaESCCOD: TIntegerField
       FieldName = 'ESCCOD'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
     object cdsEscolaESCNOM: TWideStringField

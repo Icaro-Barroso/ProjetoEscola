@@ -5,11 +5,20 @@ inherited CadastroFuncionario: TCadastroFuncionario
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ActivePage = tbDados
     inherited tbPesq: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 24
       ExplicitWidth = 670
       ExplicitHeight = 364
+      inherited pnlFiltro: TPanel
+        inherited edtPesquisar: TLabeledEdit
+          Height = 19
+          Ctl3D = False
+          ParentCtl3D = False
+          ExplicitHeight = 19
+        end
+      end
       inherited cxGrid1: TcxGrid
         object cxGrid1DBTableView2: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
@@ -163,6 +172,41 @@ inherited CadastroFuncionario: TCadastroFuncionario
       ExplicitTop = 24
       ExplicitWidth = 670
       ExplicitHeight = 364
+      inherited edtCodigo: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        ExplicitHeight = 19
+      end
+      inherited edtNome: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 2
+        ExplicitHeight = 19
+      end
+      inherited edtDocumento: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 4
+        ExplicitHeight = 19
+      end
+      inherited cbxTipo: TComboBox
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 3
+      end
+      inherited edtEndereco: TLabeledEdit
+        Height = 19
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 5
+        ExplicitHeight = 19
+      end
+      inherited pnlBtnsCad: TPanel
+        TabOrder = 9
+      end
       inherited edtCodigoEscola: TLabeledEdit
         Left = 676
         Top = 128
@@ -170,6 +214,7 @@ inherited CadastroFuncionario: TCadastroFuncionario
         EditLabel.ExplicitLeft = 676
         EditLabel.ExplicitTop = 112
         EditLabel.ExplicitWidth = 30
+        TabOrder = 10
         ExplicitLeft = 676
         ExplicitTop = 128
         ExplicitWidth = 92
@@ -178,41 +223,49 @@ inherited CadastroFuncionario: TCadastroFuncionario
         Left = 55
         Top = 16
         Width = 98
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 91
         EditLabel.Height = 13
         EditLabel.Caption = 'Codigo Funcionario'
-        TabOrder = 7
+        ParentCtl3D = False
+        TabOrder = 1
       end
       object edSalario: TLabeledEdit
         Left = 0
         Top = 136
         Width = 76
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 32
         EditLabel.Height = 13
         EditLabel.Caption = 'Salario'
-        TabOrder = 8
+        ParentCtl3D = False
+        TabOrder = 6
       end
       object edCargo: TLabeledEdit
         Left = 96
         Top = 136
         Width = 81
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 29
         EditLabel.Height = 13
         EditLabel.Caption = 'Cargo'
-        TabOrder = 9
+        ParentCtl3D = False
+        TabOrder = 7
       end
       object edEspecialidade: TLabeledEdit
         Left = 200
         Top = 136
         Width = 153
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 64
         EditLabel.Height = 13
         EditLabel.Caption = 'Especialidade'
-        TabOrder = 10
+        ParentCtl3D = False
+        TabOrder = 8
       end
     end
   end

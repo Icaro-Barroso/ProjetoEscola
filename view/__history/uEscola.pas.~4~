@@ -1,0 +1,215 @@
+unit uCadastroEscola;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, ComCtrls, cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles,
+  cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, DB, cxDBData, cxGridLevel, cxClasses,
+  cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid, uDmEscola, uEscolaController, uEscolaModel;
+
+type
+ TOperacao = (opNovo, opAlterar, opNavegar);
+
+  TCadastroEscola = class(TForm)
+    PgcPrincipal: TPageControl;
+    TbPesquisar: TTabSheet;
+    TbDados: TTabSheet;
+    Panel1: TPanel;
+    btnPesquisar: TButton;
+    LabeledEdit1: TLabeledEdit;
+    pnlRodape: TPanel;
+    btnFechar: TButton;
+    Panel2: TPanel;
+    btnNovo: TButton;
+    btnDetalhar: TButton;
+    btnExcluir: TButton;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    Panel3: TPanel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    edtCodigoEscola: TLabeledEdit;
+    edtNomeEscola: TLabeledEdit;
+    LabeledEdit4: TLabeledEdit;
+    LabeledEdit5: TLabeledEdit;
+  Private
+    FOperacao: TOperacao;
+   procedure FormCreate(Sender: TObject);
+   procedure FormDestroy(Sender: TObject);
+   procedure Gravar;
+   procedure Inserir;
+   procedure Alterar;
+   procedure CarregarEscola;
+   procedure ExcluirEscola;
+   procedure HabilitarControles(aOperacao: TOperacao);
+
+//    procedure Novo;
+//    procedure Detalhar;
+//    procedure Configuracao;
+//    procedure Pesquisar;
+  public
+    { Public declarations }
+  property Operacao: TOperacao read FOperacao;
+  end;
+
+var
+  CadastroEscola: TCadastroEscola;
+
+implementation
+
+{$R *.dfm}
+
+
+
+{ TCadastroEscola }
+
+procedure TCadastroEscola.Alterar;
+var
+  oEscola: TCadastroEscola;
+  oEscolaController: TEscolaController;
+  sErro: string;
+begin
+  oEscola := TCadastroEscola.Create;
+  oEscolaController := TEscolaController.Create;
+  try
+    begin
+//      oEscola.CodigoPessoa := StrToIntDef(edtCodigo.Text, 0);
+//      oEscola.CodigoAluno := StrToInt(edCodigoAluno.Text);
+//      oEscola.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+//      oEscola.NomeAluno := edtNome.Text;
+//      oEscola.DocumentoAluno := edtDocumento.Text;
+//      oEscola.EnderecoAluno := edtEndereco.Text;
+//      oEscola.CodigoSerie := StrToInt(edSerie.Text);
+//      oEscolaController.Alterar(oEscola, sErro);
+    end;
+    if oEscolaController.Alterar(oEscola, sErro) = true then
+      raise Exception.Create(sErro);
+
+  finally
+    FreeAndNil(oEscola);
+    FreeAndNil(oEscolaController);
+  end;
+end;
+
+procedure TCadastroEscola.CarregarEscola;
+var
+  oEscola: TCadastroEscola;
+  oEscolaController: TEscolaController;
+begin
+  oEscola := TCadastroEscola.Create;
+  oEscolaController := TEscolaController.Create;
+  try
+
+    oEscolaController.CarregarEscola(oEscola,
+    dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger);
+    begin
+//      edtCodigo.Text := IntToStr(oEscola.CodigoPessoa);
+//      edtCodigoEscola.Text := IntToStr(oEscola.CodigoEscola);
+//      edtNome.Text := oEscola.NomeAluno;
+//      cbxTipo.ItemIndex := 0;
+//      edtDocumento.Text := oEscola.DocumentoAluno;
+//      edtEndereco.Text := oEscola.EnderecoAluno;
+//      edCodigoAluno.Text := IntToStr(oEscola.CodigoAluno);
+//      edSerie.Text := IntToStr(oEscola.CodigoSerie);
+    end;
+  finally
+    FreeAndNil(oEscola);
+    FreeAndNil(oEscolaController);
+  end;
+end;
+
+procedure TCadastroEscola.ExcluirEscola;
+var
+oEscolaController: TEscolaController;
+  sErro: string;
+begin
+  oEscolaController := TEscolaController.Create;
+  try
+    if (dsCxgridAluno.DataSet.Active) then
+    begin
+      if MessageDlg(format('Voce realmente deseja exluir o cadastro de %s?', [dsCxgridAluno.DataSet.FieldByName('PESNOM').AsString]), mtConfirmation, [mbYes,
+        mbNo], 0) = IDYES then
+      begin
+        if oEscolaController.ExcluirEscola(dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger, sErro) = True then
+          raise Exception.Create(sErro);
+          dsCxgridAluno.DataSet.Refresh;
+      end;
+    end
+    else
+      raise Exception.Create('Não ha registro a ser excluido');
+  finally
+    FreeAndNil(oEscolaController);
+  end;
+end;
+
+procedure TCadastroEscola.FormCreate(Sender: TObject);
+begin
+DmEscola := TDmEscola.Create(nil);
+end;
+
+procedure TCadastroEscola.FormDestroy(Sender: TObject);
+begin
+FreeAndNil(DmEscola);
+end;
+
+procedure TCadastroEscola.Gravar;
+var
+  oEscolaController: TEscolaController;
+begin
+  inherited;
+  oEscolaController := TEscolaController.Create;
+  try
+    case Operacao of
+      opNovo: Inserir;
+      opAlterar: Alterar;
+    end;
+  finally
+    FreeAndNil(oEscolaController);
+  end;
+end;
+
+procedure TCadastroEscola.HabilitarControles(aOperacao: TOperacao);
+begin
+  case aOperacao of
+    opNovo, opAlterar:
+      begin
+//        edCodigoAluno.Enabled := False;
+//        edtCodigoEscola.Enabled := True;
+//        edSerie.Enabled := True;
+
+      end;
+    opNavegar:
+      begin
+//        edCodigoAluno.Enabled := False;
+//        edtCodigoEscola.Enabled := False;
+//        edSerie.Enabled := False;
+      end;
+  end;
+end;
+
+procedure TCadastroEscola.Inserir;
+var
+  Escola: TEscola;
+  EscolaController: TEscolaController;
+  Erro: string;
+begin
+  Escola := TEscola.Create;
+  EscolaController := TEscolaController.Create;
+  try
+    Escola.EscolaNome := ed.Text;
+    Escola.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+    Escola.EnderecoAluno := edtEndereco.Text;
+    Escola.DocumentoAluno := edtDocumento.Text;
+    if EscolaController.Inserir(Escola, Erro) = true then
+      raise Exception.Create(Erro);
+  finally
+    FreeAndNil(Escola);
+    FreeAndNil(EscolaController);
+  end;
+end;
+
+end.

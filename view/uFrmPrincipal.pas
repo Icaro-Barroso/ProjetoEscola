@@ -61,9 +61,9 @@ end;
 
 procedure TfrmPrincipal.Escola1Click(Sender: TObject);
 begin
-  Escola := TEscola.Create(nil);
+  CadastroEscola := TCadastroEscola.Create(nil);
   try
-    Escola.ShowModal;
+    CadastroEscola.ShowModal;
   finally
     FreeAndNil(CadastroAluno);
   end;

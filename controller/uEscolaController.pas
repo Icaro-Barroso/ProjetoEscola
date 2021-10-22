@@ -6,7 +6,7 @@ uses
 uEscolaModel, uDmEscola;
 
 type
-  TAlunoController = class
+  TEscolaController = class
   public
     constructor Create;
     destructor Destroy; override;
@@ -20,44 +20,44 @@ type
 
 implementation
 
-{ TAlunoController }
+{ TEscolaController }
 
 
 
-{ TAlunoController }
+{ TEscolaController }
 
-function TAlunoController.Alterar(oEscola: TEscola; var sErro: string): boolean;
+function TEscolaController.Alterar(oEscola: TEscola; var sErro: string): boolean;
 begin
 Result := DmEscola.Alterar(oEscola, sErro);
 end;
 
-procedure TAlunoController.CarregarEscola(oEscola: TEscola; iCodigo: Integer);
+procedure TEscolaController.CarregarEscola(oEscola: TEscola; iCodigo: Integer);
 begin
 DmEscola.CarregarEscola(oEscola, iCodigo);
 end;
 
-constructor TAlunoController.Create;
+constructor TEscolaController.Create;
 begin
 
 end;
 
-destructor TAlunoController.Destroy;
+destructor TEscolaController.Destroy;
 begin
 
   inherited;
 end;
 
-function TAlunoController.ExcluirEscola(iCodigo: Integer; var sErro: string): boolean;
+function TEscolaController.ExcluirEscola(iCodigo: Integer; var sErro: string): boolean;
 begin
 Result := DmEscola.ExcluirEscola(iCodigo, sErro);
 end;
 
-function TAlunoController.Inserir(Escola: TEscola; var sErro: string): boolean;
+function TEscolaController.Inserir(Escola: TEscola; var sErro: string): boolean;
 begin
  Result := DmEscola.Inserir(Escola, sErro);
 end;
 
-procedure TAlunoController.PesquisarEscola(sNome: string);
+procedure TEscolaController.PesquisarEscola(sNome: string);
 begin
 DmEscola.PesquisarEscola(sNome);
 end;

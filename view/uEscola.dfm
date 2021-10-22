@@ -1,7 +1,7 @@
-object Escola: TEscola
+object CadastroEscola: TCadastroEscola
   Left = 0
   Top = 0
-  Caption = 'Escola'
+  Caption = 'CadastroEscola'
   ClientHeight = 435
   ClientWidth = 748
   Color = clBtnFace
@@ -18,7 +18,7 @@ object Escola: TEscola
     Top = 0
     Width = 748
     Height = 394
-    ActivePage = TbDados
+    ActivePage = TbPesquisar
     Align = alClient
     TabOrder = 0
     object TbPesquisar: TTabSheet
@@ -34,7 +34,7 @@ object Escola: TEscola
         TabOrder = 0
         object LabeledEdit1: TLabeledEdit
           Left = 8
-          Top = 24
+          Top = 33
           Width = 281
           Height = 21
           EditLabel.Width = 101
@@ -60,6 +60,8 @@ object Escola: TEscola
         Color = clSilver
         ParentBackground = False
         TabOrder = 1
+        ExplicitLeft = 96
+        ExplicitTop = 329
         object btnNovo: TButton
           Left = 495
           Top = 9
@@ -67,6 +69,7 @@ object Escola: TEscola
           Height = 25
           Caption = 'Novo'
           TabOrder = 0
+          OnClick = btnNovoClick
         end
         object btnExcluir: TButton
           Left = 657
@@ -75,6 +78,7 @@ object Escola: TEscola
           Height = 25
           Caption = 'Excluir'
           TabOrder = 1
+          OnClick = btnExcluirClick
         end
         object btnDetalhar: TButton
           Left = 576
@@ -83,6 +87,7 @@ object Escola: TEscola
           Height = 25
           Caption = 'Detalhar'
           TabOrder = 2
+          OnClick = btnDetalharClick
         end
       end
       object cxGrid1: TcxGrid
@@ -92,14 +97,97 @@ object Escola: TEscola
         Height = 265
         Align = alClient
         TabOrder = 2
-        object cxGrid1DBTableView1: TcxGridDBTableView
+        object cxEscola: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
+          DataController.DataSource = DsCxgridEscola
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          object cxEscolaESCCOD: TcxGridDBColumn
+            DataBinding.FieldName = 'ESCCOD'
+            MinWidth = 64
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
+          end
+          object cxEscolaESCNOM: TcxGridDBColumn
+            DataBinding.FieldName = 'ESCNOM'
+            MinWidth = 205
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
+            Width = 205
+          end
+          object cxEscolaESCEND: TcxGridDBColumn
+            DataBinding.FieldName = 'ESCEND'
+            MinWidth = 257
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
+            Width = 257
+          end
+          object cxEscolaESCCNJ: TcxGridDBColumn
+            DataBinding.FieldName = 'ESCCNJ'
+            MinWidth = 168
+            Options.Editing = False
+            Options.Filtering = False
+            Options.FilteringAddValueItems = False
+            Options.FilteringFilteredItemsList = False
+            Options.FilteringMRUItemsList = False
+            Options.FilteringPopup = False
+            Options.FilteringPopupMultiSelect = False
+            Options.FilteringWithFindPanel = False
+            Options.Focusing = False
+            Options.IgnoreTimeForFiltering = False
+            Options.IncSearch = False
+            Options.GroupFooters = False
+            Options.Grouping = False
+            Options.HorzSizing = False
+            Options.Moving = False
+            Options.Sorting = False
+            Width = 168
+          end
         end
         object cxGrid1Level1: TcxGridLevel
-          GridView = cxGrid1DBTableView1
+          GridView = cxEscola
         end
       end
     end
@@ -115,7 +203,8 @@ object Escola: TEscola
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        object Button2: TButton
+        ExplicitTop = 323
+        object btnAlterar: TButton
           Left = 494
           Top = 11
           Width = 77
@@ -123,7 +212,7 @@ object Escola: TEscola
           Caption = 'Alterar'
           TabOrder = 0
         end
-        object Button4: TButton
+        object btnCancelar: TButton
           Left = 656
           Top = 11
           Width = 77
@@ -131,7 +220,7 @@ object Escola: TEscola
           Caption = 'Cancelar'
           TabOrder = 1
         end
-        object Button3: TButton
+        object btnGravar: TButton
           Left = 575
           Top = 11
           Width = 77
@@ -139,7 +228,7 @@ object Escola: TEscola
           Caption = 'Gravar'
           TabOrder = 2
         end
-        object Button1: TButton
+        object btnListar: TButton
           Left = 413
           Top = 11
           Width = 77
@@ -148,44 +237,52 @@ object Escola: TEscola
           TabOrder = 3
         end
       end
-      object LabeledEdit2: TLabeledEdit
+      object edtCodigoEscola: TLabeledEdit
         Left = 3
         Top = 32
         Width = 62
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 33
         EditLabel.Height = 13
         EditLabel.Caption = 'Codigo'
+        ParentCtl3D = False
         TabOrder = 1
       end
-      object LabeledEdit3: TLabeledEdit
+      object edtNomeEscola: TLabeledEdit
         Left = 71
         Top = 32
         Width = 180
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 60
         EditLabel.Height = 13
         EditLabel.Caption = 'Nome Escola'
+        ParentCtl3D = False
         TabOrder = 2
       end
-      object LabeledEdit4: TLabeledEdit
+      object edtEndereco: TLabeledEdit
         Left = 3
         Top = 80
         Width = 121
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 45
         EditLabel.Height = 13
         EditLabel.Caption = 'Endereco'
+        ParentCtl3D = False
         TabOrder = 3
       end
-      object LabeledEdit5: TLabeledEdit
+      object edtCnpj: TLabeledEdit
         Left = 130
         Top = 80
         Width = 121
-        Height = 21
+        Height = 19
+        Ctl3D = False
         EditLabel.Width = 22
         EditLabel.Height = 13
         EditLabel.Caption = 'Cnpj'
+        ParentCtl3D = False
         TabOrder = 4
       end
     end
@@ -199,12 +296,18 @@ object Escola: TEscola
     ParentBackground = False
     TabOrder = 1
     object btnFechar: TButton
-      Left = 664
+      Left = 663
       Top = 6
       Width = 73
       Height = 25
       Caption = 'Fechar'
       TabOrder = 0
+      OnClick = btnFecharClick
     end
+  end
+  object DsCxgridEscola: TDataSource
+    DataSet = DmEscola.cdsEscola
+    Left = 456
+    Top = 48
   end
 end

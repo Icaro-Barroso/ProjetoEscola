@@ -19,7 +19,7 @@ uses
   uFuncionarioController in 'controller\uFuncionarioController.pas',
   RelatorioAluno in 'Relatorio\RelatorioAluno.pas' {Form1},
   ConexaoRelatorios in 'Relatorio\ConexaoRelatorios.pas' {Form3},
-  uEscola in 'view\uEscola.pas' {Escola},
+  uEscola in 'view\uEscola.pas' {CadastroEscola},
   uEscolaModel in 'model\uEscolaModel.pas',
   uDmEscola in 'dao\uDmEscola.pas' {DmEscola: TDataModule},
   uEscolaController in 'controller\uEscolaController.pas';
@@ -36,7 +36,7 @@ begin
   Application.CreateForm(TCadastroFuncionario, CadastroFuncionario);
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm3, Form3);
- // Application.CreateForm(TEscola, Escola);
+  // Application.CreateForm(TEscola, Escola);
   Application.CreateForm(TDmEscola, DmEscola);
   //Application.CreateForm(TCadastroAluno, CadastroAluno);
   //Application.CreateForm(TForm2, Form2);
