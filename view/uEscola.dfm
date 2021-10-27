@@ -2,7 +2,7 @@ object CadastroEscola: TCadastroEscola
   Left = 0
   Top = 0
   Caption = 'CadastroEscola'
-  ClientHeight = 435
+  ClientHeight = 441
   ClientWidth = 748
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,12 +17,14 @@ object CadastroEscola: TCadastroEscola
     Left = 0
     Top = 0
     Width = 748
-    Height = 394
+    Height = 400
     ActivePage = TbPesquisar
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 394
     object TbPesquisar: TTabSheet
       Caption = 'tbPesquisar'
+      ExplicitHeight = 366
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -53,7 +55,7 @@ object CadastroEscola: TCadastroEscola
       end
       object Panel2: TPanel
         Left = 0
-        Top = 325
+        Top = 331
         Width = 740
         Height = 41
         Align = alBottom
@@ -94,9 +96,10 @@ object CadastroEscola: TCadastroEscola
         Left = 0
         Top = 60
         Width = 740
-        Height = 265
+        Height = 271
         Align = alClient
         TabOrder = 2
+        ExplicitHeight = 265
         object cxEscola: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = DsCxgridEscola
@@ -194,9 +197,10 @@ object CadastroEscola: TCadastroEscola
     object TbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
+      ExplicitHeight = 366
       object Panel3: TPanel
         Left = 0
-        Top = 325
+        Top = 331
         Width = 740
         Height = 41
         Align = alBottom
@@ -211,14 +215,16 @@ object CadastroEscola: TCadastroEscola
           Height = 25
           Caption = 'Alterar'
           TabOrder = 0
+          OnClick = btnAlterarClick
         end
         object btnCancelar: TButton
-          Left = 656
+          Left = 658
           Top = 11
           Width = 77
           Height = 25
           Caption = 'Cancelar'
           TabOrder = 1
+          OnClick = btnCancelarClick
         end
         object btnGravar: TButton
           Left = 575
@@ -227,6 +233,7 @@ object CadastroEscola: TCadastroEscola
           Height = 25
           Caption = 'Gravar'
           TabOrder = 2
+          OnClick = btnGravarClick
         end
         object btnListar: TButton
           Left = 413
@@ -235,6 +242,7 @@ object CadastroEscola: TCadastroEscola
           Height = 25
           Caption = 'Listar'
           TabOrder = 3
+          OnClick = btnListarClick
         end
       end
       object edtCodigoEscola: TLabeledEdit
@@ -289,12 +297,13 @@ object CadastroEscola: TCadastroEscola
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 394
+    Top = 400
     Width = 748
     Height = 41
     Align = alBottom
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = 394
     object btnFechar: TButton
       Left = 663
       Top = 6

@@ -22,7 +22,8 @@ uses
   uEscola in 'view\uEscola.pas' {CadastroEscola},
   uEscolaModel in 'model\uEscolaModel.pas',
   uDmEscola in 'dao\uDmEscola.pas' {DmEscola: TDataModule},
-  uEscolaController in 'controller\uEscolaController.pas';
+  uEscolaController in 'controller\uEscolaController.pas',
+  uNotaAluno in 'view\uNotaAluno.pas' {NotaAluno};
 
 {$R *.res}
 
@@ -36,6 +37,7 @@ begin
   Application.CreateForm(TCadastroFuncionario, CadastroFuncionario);
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TNotaAluno, NotaAluno);
   // Application.CreateForm(TEscola, Escola);
   Application.CreateForm(TDmEscola, DmEscola);
   //Application.CreateForm(TCadastroAluno, CadastroAluno);

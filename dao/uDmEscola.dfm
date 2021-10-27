@@ -47,17 +47,21 @@ object DmEscola: TDmEscola
   end
   object sqlPesquisarEscola: TSQLDataSet
     DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
     Params = <>
+    SQLConnection = DmConexao.sqlConexao
     Left = 216
     Top = 32
   end
   object dspPesquisarEscola: TDataSetProvider
+    DataSet = sqlPesquisarEscola
     Left = 216
     Top = 88
   end
   object cdsPesquisarEscola: TClientDataSet
     Aggregates = <>
     Params = <>
+    ProviderName = 'dspPesquisarEscola'
     Left = 216
     Top = 144
   end

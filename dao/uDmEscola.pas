@@ -41,7 +41,7 @@ implementation
 
 function TDmEscola.Alterar(oEscola: TEscola; out sErro: string): boolean;
 begin
-sqlPesquisarEscola.CommandText := format('select * from escola where pescod = %d',
+sqlPesquisarEscola.CommandText := format('select * from escola where esccod = %d',
     [oEscola.EscolaCodigo]);
   cdsPesquisarEscola.Open;
   cdsPesquisarEscola.Edit;
@@ -62,7 +62,7 @@ begin
   try
     begin
       sqlEscola.SQLConnection := DmConexao.sqlConexao;
-      sqlEscola.CommandText := format('select * from Escola where pescod = %d',
+      sqlEscola.CommandText := format('select * from Escola where ESCCOD = %d',
     [iCodigo]);
       sqlEscola.Open;
       begin
@@ -84,7 +84,7 @@ end;
 
 function TDmEscola.ExcluirEscola(iEscola: Integer; out sErro: string): boolean;
 begin
-sqlPesquisarEscola.CommandText := format('select * from pessoa where pescod = %d', [iEscola]);
+  sqlPesquisarEscola.CommandText := format('select * from ESCOLA where ESCCOD = %d', [iEscola]);
   cdsPesquisarEscola.Open;
   cdsPesquisarEscola.delete;
 
@@ -111,7 +111,7 @@ VAR
  IDEscola: INTEGER;
 begin
   IDEscola := GerarIdEscola;
-  sqlPesquisarEscola.CommandText := ('select * from pessoa where 1=0');
+  sqlPesquisarEscola.CommandText := ('select * from ESCOLA where 1=0');
   cdsPesquisarEscola.Open;
   cdsPesquisarEscola.Append;
   cdsPesquisarEscola.FieldByName('ESCCOD').AsInteger := IDEscola;
