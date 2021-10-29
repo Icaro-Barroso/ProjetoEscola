@@ -18,6 +18,7 @@ object DmFuncionario: TDmFuncionario
     Top = 120
   end
   object cdsFuncionario: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dsFuncionario'

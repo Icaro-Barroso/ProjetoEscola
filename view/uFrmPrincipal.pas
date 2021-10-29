@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus, StdCtrls,
-  cxButtons, RLReport, uCadastro, uCadastroAluno, uCadastroFuncionario, RelatorioAluno, uEscola;
+  cxButtons, RLReport, uCadastro, uCadastroAluno, uCadastroFuncionario, RelatorioAluno, uEscola, uNotaAluno;
 
 type
   TfrmPrincipal = class(TForm)
@@ -17,10 +17,12 @@ type
     Funcionario: TMenuItem;
     Escola1: TMenuItem;
     Aluno1: TMenuItem;
+    AdicionarNotas1: TMenuItem;
     procedure btEntrarClick(Sender: TObject);
     procedure Aluno1Click(Sender: TObject);
     procedure FuncionarioClick(Sender: TObject);
     procedure Escola1Click(Sender: TObject);
+    procedure AdicionarNotas1Click(Sender: TObject);
   private
     procedure AbrirCliente;
   end;
@@ -39,6 +41,16 @@ begin
     Form1.RLReport1.Preview;
   finally
     FreeAndNil(Form1);
+  end;
+end;
+
+procedure TfrmPrincipal.AdicionarNotas1Click(Sender: TObject);
+begin
+    NotaAluno := TNotaAluno.Create(nil);
+  try
+     NotaAluno.ShowModal;
+  finally
+    FreeAndNil(NotaAluno);
   end;
 end;
 

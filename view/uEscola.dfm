@@ -106,6 +106,9 @@ object CadastroEscola: TCadastroEscola
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
+          OptionsCustomize.ColumnGrouping = False
+          OptionsCustomize.ColumnMoving = False
+          OptionsView.GroupByBox = False
           object cxEscolaESCCOD: TcxGridDBColumn
             DataBinding.FieldName = 'ESCCOD'
             MinWidth = 64

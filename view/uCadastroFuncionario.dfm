@@ -1,16 +1,9 @@
 inherited CadastroFuncionario: TCadastroFuncionario
   Caption = 'Cadastro Funcionario'
-  ExplicitWidth = 694
-  ExplicitHeight = 472
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    ActivePage = tbDados
     inherited tbPesq: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
       inherited pnlFiltro: TPanel
         inherited edtPesquisar: TLabeledEdit
           Height = 19
@@ -18,6 +11,29 @@ inherited CadastroFuncionario: TCadastroFuncionario
           ParentCtl3D = False
           ExplicitHeight = 19
         end
+      end
+      inherited DBGridPesquisa: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'PESCOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESNOM'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESDOC'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'PESEND'
+            Visible = True
+          end>
       end
       inherited cxGrid1: TcxGrid
         object cxGrid1DBTableView2: TcxGridDBTableView [0]
@@ -36,6 +52,7 @@ inherited CadastroFuncionario: TCadastroFuncionario
           OptionsData.Deleting = False
           OptionsData.DeletingConfirmation = False
           OptionsData.Editing = False
+          OptionsView.GroupByBox = False
           object cxGridFuncionarioFNCCOD: TcxGridDBColumn
             Caption = 'Codigo'
             DataBinding.FieldName = 'FNCCOD'
@@ -168,10 +185,6 @@ inherited CadastroFuncionario: TCadastroFuncionario
       end
     end
     inherited tbDados: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
-      ExplicitWidth = 670
-      ExplicitHeight = 364
       inherited edtCodigo: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -268,9 +281,6 @@ inherited CadastroFuncionario: TCadastroFuncionario
         TabOrder = 8
       end
     end
-  end
-  inherited dsPesq: TDataSource
-    DataSet = DmFuncionario.cdsFuncionario
   end
   object dsPesqFuncionario: TDataSource
     DataSet = DmFuncionario.cdsFuncionario

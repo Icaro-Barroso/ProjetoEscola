@@ -23,7 +23,8 @@ uses
   uEscolaModel in 'model\uEscolaModel.pas',
   uDmEscola in 'dao\uDmEscola.pas' {DmEscola: TDataModule},
   uEscolaController in 'controller\uEscolaController.pas',
-  uNotaAluno in 'view\uNotaAluno.pas' {NotaAluno};
+  uNotaAluno in 'view\uNotaAluno.pas' {NotaAluno},
+  uNotaController in 'controller\uNotaController.pas';
 
 {$R *.res}
 

@@ -41,7 +41,7 @@ implementation
 
 function TDmEscola.Alterar(oEscola: TEscola; out sErro: string): boolean;
 begin
-sqlPesquisarEscola.CommandText := format('select * from escola where esccod = %d',
+   sqlPesquisarEscola.CommandText := format('select * from escola where esccod = %d',
     [oEscola.EscolaCodigo]);
   cdsPesquisarEscola.Open;
   cdsPesquisarEscola.Edit;

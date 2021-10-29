@@ -25,6 +25,13 @@ type
     cdsAlunoPESEND: TStringField;
     cdsAlunoPESIDT: TStringField;
     cdsAlunoPESDOC: TStringField;
+    sqlNota: TSQLDataSet;
+    dsNota: TDataSetProvider;
+    cdsNota: TClientDataSet;
+    cdsAlunoALNNOTBI1: TFloatField;
+    cdsAlunoALNNOTBI2: TFloatField;
+    cdsAlunoALNNOTBI3: TFloatField;
+    cdsAlunoALNNOTBI4: TFloatField;
   private
     { Private declarations }
   public
@@ -34,6 +41,7 @@ type
     procedure CarregarTodosAlunos;
     function Alterar(oAluno: TAluno; out sErro: string): boolean;
     function Inserir(oAluno: TAluno; out sErro: string): boolean;
+    function InserirNota(oAluno: TAluno; out sErro: string): boolean;
     function GerarIdAluno(ANomeTabela: string): Integer;
     function GerarId: Integer;
     function ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
@@ -83,6 +91,11 @@ begin
         Aluno.CodigoSerie := sqlAluno.FieldByName('SRICOD').AsInteger;
         Aluno.DocumentoAluno := sqlAluno.FieldByName('PESDOC').AsString;
         Aluno.EnderecoAluno := sqlAluno.FieldByName('PESEND').AsString;
+        Aluno.Notabi1 := sqlAluno.FieldByName('ALNNOTBI1').AsString;
+        Aluno.NotaBi2 := sqlAluno.FieldByName('ALNNOTBI2').AsString;
+        Aluno.Notabi3 := sqlAluno.FieldByName('ALNNOTBI3').AsString;
+        Aluno.Notabi4 := sqlAluno.FieldByName('ALNNOTBI4').AsString;
+
        //funcao carregaaluno (oaluno, codigodele ) select * from aluno wherre pescod = CODIGODELE
       end;
     end;
@@ -95,6 +108,7 @@ procedure TDmAluno.CarregarTodosAlunos;
 begin
   sqlPesquisarAluno.CommandText := 'SELECT * FROM V_ALUNO';
 end;
+
 
 function TDmAluno.ExcluirAluno(iAluno: Integer; out sErro: string): boolean;
 begin
@@ -113,7 +127,7 @@ begin
     sqlSequencia := TSQLDataSet.Create(nil);
     sqlSequencia.SQLConnection := DmConexao.sqlConexao;
     sqlSequencia.CommandText := 'select coalesce(max(PESCOD),0)+1 as seq from PESSOA' ;
-   sqlSequencia.Open;
+    sqlSequencia.Open;
     //sqlSequencia.ExecSQL();
     Result := sqlSequencia.FieldByName('seq').AsInteger;
 //    sqlSequencia.CommandText := Format('UPDATE CODIGOAUXILIAR SET PROXIMOCODIGO = COALESCE(ProximoCodigo,1) + 1' +
@@ -161,7 +175,7 @@ begin
   cdsPesquisarAluno.Post;
   cdsPesquisarAluno.ApplyUpdates(0);
   cdsPesquisarAluno.Close;
-    sqlPesquisarAluno.CommandText := 'select * from Aluno where 1=0';
+  sqlPesquisarAluno.CommandText := 'select * from Aluno where 1=0';
   cdsPesquisarAluno.Open;
   cdsPesquisarAluno.Append;
   cdsPesquisarAluno.FieldByName('PESCOD').AsInteger := IDPESSOA;
@@ -169,6 +183,20 @@ begin
   cdsPesquisarAluno.FieldByName('SRICOD').AsInteger := oAluno.CodigoSerie;
   cdsPesquisarAluno.Post;
   Result := cdsPesquisarAluno.ApplyUpdates(0) <> 0;
+end;
+
+function TDmAluno.InserirNota(oAluno: TAluno; out sErro: string): boolean;
+begin
+ sqlNota.CommandText := format('select * from Aluno where ALNCOD = %d',
+    [oAluno.CodigoAluno]);
+  cdsNota.Open;
+  cdsNota.Edit;
+  cdsNota.FieldByName('ALNNOTBI1').AsString := oAluno.Notabi1;
+  cdsNota.FieldByName('ALNNOTBI2').AsString := oAluno.NotaBi2;
+  cdsNota.FieldByName('ALNNOTBI3').AsString := oAluno.NotaBi3;
+  cdsNota.FieldByName('ALNNOTBI4').AsString := oAluno.NotaBi4;
+  cdsNota.Post;
+  Result := cdsNota.ApplyUpdates(0) <> 0;
 end;
 
 procedure TDmAluno.PesquisarAluno(sNome: string);

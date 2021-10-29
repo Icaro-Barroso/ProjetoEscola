@@ -60,6 +60,10 @@ object frmPrincipal: TfrmPrincipal
           OnClick = Aluno1Click
         end
       end
+      object AdicionarNotas1: TMenuItem
+        Caption = 'Adicionar Notas'
+        OnClick = AdicionarNotas1Click
+      end
     end
   end
 end

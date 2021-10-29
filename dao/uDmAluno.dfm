@@ -205,5 +205,40 @@ object DmAluno: TDmAluno
       Required = True
       Size = 40
     end
+    object cdsAlunoALNNOTBI1: TFloatField
+      FieldName = 'ALNNOTBI1'
+    end
+    object cdsAlunoALNNOTBI2: TFloatField
+      FieldName = 'ALNNOTBI2'
+    end
+    object cdsAlunoALNNOTBI3: TFloatField
+      FieldName = 'ALNNOTBI3'
+    end
+    object cdsAlunoALNNOTBI4: TFloatField
+      FieldName = 'ALNNOTBI4'
+    end
+  end
+  object sqlNota: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 'SELECT * from aluno'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmConexao.sqlConexao
+    Left = 260
+    Top = 80
+  end
+  object dsNota: TDataSetProvider
+    DataSet = sqlNota
+    Left = 264
+    Top = 168
+  end
+  object cdsNota: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsNota'
+    Left = 264
+    Top = 240
   end
 end
