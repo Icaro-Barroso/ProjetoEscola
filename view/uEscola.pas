@@ -225,7 +225,7 @@ procedure TCadastroEscola.Gravar;
 var
   oEscolaController: TEscolaController;
 begin
-  oEscolaController := TEscolaController.Create;
+////////////////////////  oEscolaController := TEscolaController.Create;
   try
     case Operacao of
       opNovo: Inserir;

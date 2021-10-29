@@ -241,4 +241,37 @@ object DmAluno: TDmAluno
     Left = 264
     Top = 240
   end
+  object sqlEscola: TSQLDataSet
+    SchemaName = 'sa'
+    CommandText = 'select esccod, escnom from escola'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = DmConexao.sqlConexao
+    Left = 348
+    Top = 80
+  end
+  object dsEscola: TDataSetProvider
+    DataSet = sqlEscola
+    Left = 352
+    Top = 168
+  end
+  object cdsEscola: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dsEscola'
+    Left = 352
+    Top = 240
+    object cdsEscolaesccod: TIntegerField
+      FieldName = 'esccod'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsEscolaescnom: TWideStringField
+      FieldName = 'escnom'
+      Required = True
+      Size = 200
+    end
+  end
 end

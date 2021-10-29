@@ -8,8 +8,9 @@ uses
   cxGraphics, cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxStyles,
   cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator, cxDBData,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGridCustomView,
-  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController,
-  uPessoaModel, uPessoaController, Mask, DBCtrls;
+  cxClasses, cxGridLevel, cxGrid, uAlunoModel, uDmAluno, uAlunoController, DBCLient, uDMConexao,
+  uPessoaModel, uPessoaController, Mask, DBCtrls, cxContainer, cxTextEdit, cxMaskEdit, cxDropDownEdit, cxLookupEdit,
+  cxDBLookupEdit, cxDBLookupComboBox;
 
 type
   TCadastroAluno = class(TCadastro)
@@ -18,14 +19,14 @@ type
     cxAlunos: TcxGridDBTableView;
     dsCxgridAluno: TDataSource;
     DataSource2: TDataSource;
-    DataSource1: TDataSource;
+    dsEscola: TDataSource;
     cxAlunosALNCOD: TcxGridDBColumn;
     cxAlunosPESNOM: TcxGridDBColumn;
     cxAlunosPESEND: TcxGridDBColumn;
     cxAlunosPESDOC: TcxGridDBColumn;
+    Label2: TLabel;
+    lcbEscola: TcxLookupComboBox;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-    procedure FormShow(Sender: TObject); override;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnListarClick(Sender: TObject);
   protected
@@ -44,8 +45,6 @@ var
 implementation
 
 {$R *.dfm}
-
-{ TCadastroAluno }
 
 { TCadastroAluno }
 
@@ -94,11 +93,9 @@ var
   oAluno: TAluno;
   oAlunoController: TAlunoController;
 begin
-  //inherited;
   oAluno := TAluno.Create;
   oAlunoController := TAlunoController.Create;
   try
-
     oAlunoController.CarregarAluno(oAluno,
     dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger);
     begin
@@ -119,13 +116,11 @@ end;
 
 procedure TCadastroAluno.ExcluirAluno;
 var
-//codigopessoa: Integer;
-oAlunoController: TAlunoController;
+  oAlunoController: TAlunoController;
   sErro: string;
 begin
   oAlunoController := TAlunoController.Create;
   try
-//   dsPesq.DataSet.IsEmpty
     if (dsCxgridAluno.DataSet.Active) then
     begin
       if MessageDlg(format('Voce realmente deseja exluir o cadastro de %s?', [dsCxgridAluno.DataSet.FieldByName('PESNOM').AsString]), mtConfirmation, [mbYes,
@@ -134,7 +129,6 @@ begin
         if oAlunoController.ExcluirAluno(dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger, sErro) = True then
           raise Exception.Create(sErro);
           dsCxgridAluno.DataSet.Refresh;
-//       oAlunoController.PesquisarAluno(edtPesquisar.Text);
       end;
     end
     else
@@ -150,18 +144,6 @@ begin
   DmAluno := TDmAluno.Create(nil);
 end;
 
-procedure TCadastroAluno.FormDestroy(Sender: TObject);
-begin
-  inherited;
-  //  FreeAndNil(DmAluno);
-end;
-
-procedure TCadastroAluno.FormShow(Sender: TObject);
-begin
-  //dsPesq.DataSet := DmAluno.cdsPesquisarAluno;
-  inherited;
-end;
-
 procedure TCadastroAluno.Gravar;
 var
   oAlunoController: TAlunoController;
@@ -173,7 +155,6 @@ begin
       opNovo: Inserir;
       opAlterar: Alterar;
     end;
-    // oAlunoController.Pesquisar(edtNome.Text);
   finally
     FreeAndNil(oAlunoController);
   end;
@@ -186,61 +167,18 @@ begin
     opNovo, opAlterar:
       begin
         edCodigoAluno.Enabled := False;
-        edtCodigoEscola.Enabled := True;
+        lcbEscola.Enabled := True;
         edSerie.Enabled := True;
 
       end;
     opNavegar:
       begin
         edCodigoAluno.Enabled := False;
-        edtCodigoEscola.Enabled := False;
+        lcbEscola.Enabled := False;
         edSerie.Enabled := False;
       end;
   end;
 end;
-
-//procedure TCadastroAluno.Inserir;
-//var
-//  Pessoa: TPessoa;
-//  PessoaController: TPessoaController;
-//  Aluno: TAluno;
-//  AlunoController: TAlunoController;
-//  Erro: string;
-//begin
-//  inherited;
-//  Pessoa := TPessoa.Create;
-//  //PessoaController := TPessoaController.Create;
-//  Aluno := TAluno.Create;
-//  AlunoController := TAlunoController.Create;
-//  try
-//    Pessoa.ID := PessoaController.GerarCodigo;
-//    Pessoa.Nome := edtNome.Text;
-//    Pessoa.CodigoEscola := StrToInt(edtCodigoEscola.Text);
-//    if cbxTipo.ItemIndex = 0 then
-//      Pessoa.Tipo := 'F'
-//    else if cbxTipo.ItemIndex = 1 then
-//      Pessoa.Tipo := 'J'
-//    else
-//      Pessoa.Tipo := EmptyStr;
-//    Pessoa.Endereco := edtEndereco.Text;
-//    Pessoa.Documento := edtDocumento.Text;
-//
-//    //Aluno.CodigoAluno := StrToInt(edCodigoAluno.Text);
-//    //Aluno.CodigoPessoa := Pessoa.ID;
-//    Aluno.CodigoSerie := StrToInt(edSerie.Text);
-//
-//    if not AlunoController.Inserir(Pessoa, Erro) then
-//      raise Exception.Create(Erro);
-//        //if not AlunoController.Inserir(Aluno, Erro) then
-//    //      Raise Exception.Create(Erro);
-//
-//  finally
-//    FreeAndNil(Pessoa);
-//    //FreeAndNil(PessoaController);
-//    FreeAndNil(Aluno);
-//    FreeAndNil(AlunoController);
-//  end;
-//end;
 
 procedure TCadastroAluno.Inserir;
 var
@@ -253,7 +191,7 @@ begin
   AlunoController := TAlunoController.Create;
   try
     Aluno.NomeAluno := edtNome.Text;
-    Aluno.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+    Aluno.CodigoEscola := lcbEscola.EditValue;
     Aluno.EnderecoAluno := edtEndereco.Text;
     Aluno.DocumentoAluno := edtDocumento.Text;
     Aluno.CodigoSerie := StrToInt(edSerie.Text);

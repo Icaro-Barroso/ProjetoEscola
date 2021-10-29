@@ -116,6 +116,7 @@ object Form1: TForm1
         DataField = 'PESDOC'
         DataSource = DataSource1
         Holder = lbDocumento
+        BeforePrint = RLDBText3BeforePrint
       end
     end
     object RLBand4: TRLBand
@@ -155,8 +156,11 @@ object Form1: TForm1
     end
   end
   object ADOQuery1: TADOQuery
+    Active = True
     AutoCalcFields = False
-    Connection = Form3.ADOConnection1
+    ConnectionString = 
+      'Provider=SQLOLEDB;Password=Paracuru123;Persist Security Info=Tru' +
+      'e;User ID=sa;Initial Catalog=ProjetoEscola;Data Source=PSDEVD83'
     CursorType = ctStatic
     Parameters = <>
     Prepared = True

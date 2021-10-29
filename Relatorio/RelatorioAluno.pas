@@ -37,6 +37,7 @@ type
     ADOQuery1ALNNOTBI2: TFloatField;
     ADOQuery1ALNNOTBI3: TFloatField;
     ADOQuery1ALNNOTBI4: TFloatField;
+    procedure RLDBText3BeforePrint(Sender: TObject; var Text: string; var PrintIt: Boolean);
   private
     { Private declarations }
   public
@@ -52,5 +53,14 @@ implementation
 
 
 
+
+procedure TForm1.RLDBText3BeforePrint(Sender: TObject; var Text: string; var PrintIt: Boolean);
+begin
+//  if adoquery1.FieldByName('ALUNONOTA1') <> '' AND  then
+//    CalculaMedia,
+//    if Media  > 5 Aprovad then
+
+
+end;
 
 end.

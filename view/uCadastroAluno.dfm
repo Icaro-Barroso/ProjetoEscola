@@ -3,6 +3,9 @@ inherited CadastroAluno: TCadastroAluno
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ActivePage = tbDados
+    ExplicitLeft = 24
+    ExplicitTop = -64
     inherited tbPesq: TTabSheet
       inherited DBGridPesquisa: TDBGrid
         Columns = <
@@ -132,6 +135,21 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
+      ExplicitLeft = 8
+      ExplicitTop = 22
+      object Label2: TLabel [1]
+        Left = 150
+        Top = 0
+        Width = 33
+        Height = 14
+        Caption = 'Escola'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       inherited edtCodigo: TLabeledEdit
         Height = 19
         Ctl3D = False
@@ -154,8 +172,10 @@ inherited CadastroAluno: TCadastroAluno
       end
       inherited cbxTipo: TComboBox
         Ctl3D = False
+        ItemIndex = 0
         ParentCtl3D = False
         TabOrder = 4
+        Text = 'Fisico'
       end
       inherited edtEndereco: TLabeledEdit
         Height = 19
@@ -168,16 +188,18 @@ inherited CadastroAluno: TCadastroAluno
         TabOrder = 8
       end
       inherited edtCodigoEscola: TLabeledEdit
-        Left = 152
+        Left = 414
+        Top = 256
         Width = 201
         Height = 19
         Ctl3D = False
-        EditLabel.ExplicitLeft = 152
-        EditLabel.ExplicitTop = 0
+        EditLabel.ExplicitLeft = 414
+        EditLabel.ExplicitTop = 240
         EditLabel.ExplicitWidth = 30
         ParentCtl3D = False
-        TabOrder = 2
-        ExplicitLeft = 152
+        TabOrder = 9
+        ExplicitLeft = 414
+        ExplicitTop = 256
         ExplicitWidth = 201
         ExplicitHeight = 19
       end
@@ -205,6 +227,19 @@ inherited CadastroAluno: TCadastroAluno
         ParentCtl3D = False
         TabOrder = 7
       end
+      object lcbEscola: TcxLookupComboBox
+        Left = 150
+        Top = 15
+        Properties.KeyFieldNames = 'esccod'
+        Properties.ListColumns = <
+          item
+            FieldName = 'escnom'
+          end>
+        Properties.ListSource = dsEscola
+        Properties.MaxLength = 50
+        TabOrder = 2
+        Width = 145
+      end
     end
   end
   inherited dsPesq: TDataSource
@@ -220,8 +255,8 @@ inherited CadastroAluno: TCadastroAluno
     Left = 464
     Top = 104
   end
-  object DataSource1: TDataSource
-    DataSet = DataModulePessoa.cdsPesquisar
+  object dsEscola: TDataSource
+    DataSet = DmAluno.cdsEscola
     Left = 520
     Top = 48
   end

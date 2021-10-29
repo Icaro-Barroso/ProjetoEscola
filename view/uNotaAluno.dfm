@@ -18,23 +18,25 @@ object NotaAluno: TNotaAluno
     Top = 0
     Width = 614
     Height = 375
-    ActivePage = tbPesq
+    ActivePage = tbDados
     Align = alClient
     TabOrder = 0
-    ExplicitTop = -8
     object tbPesq: TTabSheet
       Caption = 'tbPesq'
+      TabVisible = False
+      ExplicitTop = 24
       ExplicitWidth = 284
       ExplicitHeight = 210
       object Panel2: TPanel
         Left = 0
-        Top = 296
+        Top = 314
         Width = 606
         Height = 51
         Align = alBottom
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = 296
         object btnSelecionar: TButton
           Left = 464
           Top = 12
@@ -77,7 +79,7 @@ object NotaAluno: TNotaAluno
         Left = 0
         Top = 73
         Width = 606
-        Height = 223
+        Height = 241
         Align = alClient
         TabOrder = 2
         ExplicitLeft = 128
@@ -94,6 +96,7 @@ object NotaAluno: TNotaAluno
           OptionsCustomize.ColumnMoving = False
           OptionsView.GroupByBox = False
           object cxNotasALNCOD: TcxGridDBColumn
+            Caption = 'Codigo'
             DataBinding.FieldName = 'ALNCOD'
             MinWidth = 64
             Options.Editing = False
@@ -114,6 +117,7 @@ object NotaAluno: TNotaAluno
             Options.Sorting = False
           end
           object cxNotasPESNOM: TcxGridDBColumn
+            Caption = 'Nome'
             DataBinding.FieldName = 'PESNOM'
             MinWidth = 244
             Options.Editing = False
@@ -134,6 +138,7 @@ object NotaAluno: TNotaAluno
             Options.Sorting = False
           end
           object cxNotasALNNOTBI1: TcxGridDBColumn
+            Caption = 'Nota bimestre 1'
             DataBinding.FieldName = 'ALNNOTBI1'
             MinWidth = 64
             Options.Editing = False
@@ -154,6 +159,7 @@ object NotaAluno: TNotaAluno
             Options.Sorting = False
           end
           object cxNotasALNNOTBI2: TcxGridDBColumn
+            Caption = 'Nota bimestre 2'
             DataBinding.FieldName = 'ALNNOTBI2'
             MinWidth = 64
             Options.Editing = False
@@ -174,6 +180,7 @@ object NotaAluno: TNotaAluno
             Options.Sorting = False
           end
           object cxNotasALNNOTBI3: TcxGridDBColumn
+            Caption = 'Nota bimestre 3'
             DataBinding.FieldName = 'ALNNOTBI3'
             MinWidth = 64
             Options.Editing = False
@@ -193,6 +200,7 @@ object NotaAluno: TNotaAluno
             Options.Sorting = False
           end
           object cxNotasALNNOTBI4: TcxGridDBColumn
+            Caption = 'Nota bimestre 4'
             DataBinding.FieldName = 'ALNNOTBI4'
             MinWidth = 64
             Options.Editing = False
@@ -221,6 +229,7 @@ object NotaAluno: TNotaAluno
     object tbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
+      TabVisible = False
       ExplicitLeft = 0
       ExplicitTop = 28
       ExplicitWidth = 475
@@ -287,7 +296,7 @@ object NotaAluno: TNotaAluno
       end
       object Panel3: TPanel
         Left = 0
-        Top = 296
+        Top = 314
         Width = 606
         Height = 51
         Align = alBottom
@@ -303,15 +312,15 @@ object NotaAluno: TNotaAluno
           TabOrder = 0
           OnClick = btnGravarClick
         end
-      end
-      object btnListar: TButton
-        Left = 416
-        Top = 312
-        Width = 75
-        Height = 25
-        Caption = 'Listar'
-        TabOrder = 7
-        OnClick = btnListarClick
+        object btnListar: TButton
+          Left = 424
+          Top = 16
+          Width = 75
+          Height = 25
+          Caption = 'Listar'
+          TabOrder = 1
+          OnClick = btnListarClick
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 object CadastroEscola: TCadastroEscola
   Left = 0
   Top = 0
-  Caption = 'CadastroEscola'
+  Caption = 'Cadastro Escola'
   ClientHeight = 441
   ClientWidth = 748
   Color = clBtnFace
@@ -21,9 +21,10 @@ object CadastroEscola: TCadastroEscola
     ActivePage = TbPesquisar
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 394
     object TbPesquisar: TTabSheet
       Caption = 'tbPesquisar'
+      TabVisible = False
+      ExplicitTop = 24
       ExplicitHeight = 366
       object Panel1: TPanel
         Left = 0
@@ -38,10 +39,12 @@ object CadastroEscola: TCadastroEscola
           Left = 8
           Top = 33
           Width = 281
-          Height = 21
+          Height = 19
+          Ctl3D = False
           EditLabel.Width = 101
           EditLabel.Height = 13
           EditLabel.Caption = 'Digite Para Pesquisar'
+          ParentCtl3D = False
           TabOrder = 0
         end
         object btnPesquisar: TButton
@@ -55,7 +58,7 @@ object CadastroEscola: TCadastroEscola
       end
       object Panel2: TPanel
         Left = 0
-        Top = 331
+        Top = 349
         Width = 740
         Height = 41
         Align = alBottom
@@ -96,7 +99,7 @@ object CadastroEscola: TCadastroEscola
         Left = 0
         Top = 60
         Width = 740
-        Height = 271
+        Height = 289
         Align = alClient
         TabOrder = 2
         ExplicitHeight = 265
@@ -110,6 +113,7 @@ object CadastroEscola: TCadastroEscola
           OptionsCustomize.ColumnMoving = False
           OptionsView.GroupByBox = False
           object cxEscolaESCCOD: TcxGridDBColumn
+            Caption = 'Codigo'
             DataBinding.FieldName = 'ESCCOD'
             MinWidth = 64
             Options.Editing = False
@@ -130,6 +134,7 @@ object CadastroEscola: TCadastroEscola
             Options.Sorting = False
           end
           object cxEscolaESCNOM: TcxGridDBColumn
+            Caption = 'Nome'
             DataBinding.FieldName = 'ESCNOM'
             MinWidth = 205
             Options.Editing = False
@@ -150,6 +155,7 @@ object CadastroEscola: TCadastroEscola
             Width = 205
           end
           object cxEscolaESCEND: TcxGridDBColumn
+            Caption = 'Endere'#231'o'
             DataBinding.FieldName = 'ESCEND'
             MinWidth = 257
             Options.Editing = False
@@ -171,6 +177,7 @@ object CadastroEscola: TCadastroEscola
             Width = 257
           end
           object cxEscolaESCCNJ: TcxGridDBColumn
+            Caption = 'Cnpj'
             DataBinding.FieldName = 'ESCCNJ'
             MinWidth = 168
             Options.Editing = False
@@ -200,10 +207,12 @@ object CadastroEscola: TCadastroEscola
     object TbDados: TTabSheet
       Caption = 'tbDados'
       ImageIndex = 1
+      TabVisible = False
+      ExplicitTop = 24
       ExplicitHeight = 366
       object Panel3: TPanel
         Left = 0
-        Top = 331
+        Top = 349
         Width = 740
         Height = 41
         Align = alBottom

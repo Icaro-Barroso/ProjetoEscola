@@ -19,7 +19,7 @@ implementation
 
 function TNotaController.Inserir(Nota: TAluno; var sErro: string): boolean;
 begin
-Result := DmAluno.InserirNota(Nota, sErro);
+  Result := DmAluno.InserirNota(Nota, sErro);
 end;
 
 end.

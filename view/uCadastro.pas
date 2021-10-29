@@ -195,7 +195,7 @@ begin
   tbPesq.TabVisible := False;
   tbDados.TabVisible := False;
   pgcPrincipal.ActivePage := tbPesq;
-  dsPesq.DataSet.Active := True;
+  //dsPesq.DataSet.Active := True;
 end;
 
 procedure TCadastro.DBGridPesquisaDblClick(Sender: TObject);

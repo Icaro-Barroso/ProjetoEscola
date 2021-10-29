@@ -32,6 +32,11 @@ type
     cdsAlunoALNNOTBI2: TFloatField;
     cdsAlunoALNNOTBI3: TFloatField;
     cdsAlunoALNNOTBI4: TFloatField;
+    sqlEscola: TSQLDataSet;
+    dsEscola: TDataSetProvider;
+    cdsEscola: TClientDataSet;
+    cdsEscolaesccod: TIntegerField;
+    cdsEscolaescnom: TWideStringField;
   private
     { Private declarations }
   public
@@ -187,6 +192,7 @@ end;
 
 function TDmAluno.InserirNota(oAluno: TAluno; out sErro: string): boolean;
 begin
+   cdsNota.Close;
  sqlNota.CommandText := format('select * from Aluno where ALNCOD = %d',
     [oAluno.CodigoAluno]);
   cdsNota.Open;
