@@ -37,9 +37,13 @@ type
     ADOQuery1ALNNOTBI2: TFloatField;
     ADOQuery1ALNNOTBI3: TFloatField;
     ADOQuery1ALNNOTBI4: TFloatField;
+    lbMedia: TRLLabel;
+    lbResultadoMedia: TRLLabel;
     procedure RLDBText3BeforePrint(Sender: TObject; var Text: string; var PrintIt: Boolean);
+    procedure CalcularMedia(Sender: TObject; var Text: string; var PrintIt: Boolean);
   private
     { Private declarations }
+    Function CalculaMedia: extended;
   public
     { Public declarations }
   end;
@@ -52,8 +56,25 @@ implementation
 {$R *.dfm}
 
 
+function TForm1.CalculaMedia: extended;
+begin
 
+   Result:= (adoquery1.FieldByName('ALNNOTBI1').AsFloat + adoquery1.FieldByName('ALNNOTBI2').AsFloat +
+   adoquery1.FieldByName('ALNNOTBI3').AsFloat + adoquery1.FieldByName('ALNNOTBI4').AsFloat ) / 4  ;
 
+end;
+
+procedure TForm1.CalcularMedia(Sender: TObject; var Text: string; var PrintIt: Boolean);
+begin
+  if (adoquery1.FieldByName('ALNNOTBI1').AsString <> '') and
+   (adoquery1.FieldByName('ALNNOTBI2').AsString <> '') and
+   (adoquery1.FieldByName('ALNNOTBI3').AsString <> '') and
+   (adoquery1.FieldByName('ALNNOTBI4').AsString <> '') then
+   begin
+   Text := FloatToStr(CalculaMedia);
+   PrintIt:= true;
+   end;
+end;
 procedure TForm1.RLDBText3BeforePrint(Sender: TObject; var Text: string; var PrintIt: Boolean);
 begin
 //  if adoquery1.FieldByName('ALUNONOTA1') <> '' AND  then

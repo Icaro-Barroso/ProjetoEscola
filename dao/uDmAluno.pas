@@ -17,21 +17,9 @@ type
     sqlAluno: TSQLDataSet;
     dsAluno: TDataSetProvider;
     cdsAluno: TClientDataSet;
-    cdsAlunoALNCOD: TIntegerField;
-    cdsAlunoPESCOD: TIntegerField;
-    cdsAlunoSRICOD: TIntegerField;
-    cdsAlunoESCCOD: TIntegerField;
-    cdsAlunoPESNOM: TStringField;
-    cdsAlunoPESEND: TStringField;
-    cdsAlunoPESIDT: TStringField;
-    cdsAlunoPESDOC: TStringField;
     sqlNota: TSQLDataSet;
     dsNota: TDataSetProvider;
     cdsNota: TClientDataSet;
-    cdsAlunoALNNOTBI1: TFloatField;
-    cdsAlunoALNNOTBI2: TFloatField;
-    cdsAlunoALNNOTBI3: TFloatField;
-    cdsAlunoALNNOTBI4: TFloatField;
     sqlEscola: TSQLDataSet;
     dsEscola: TDataSetProvider;
     cdsEscola: TClientDataSet;
@@ -64,6 +52,7 @@ implementation
 
 function TDmAluno.Alterar(oAluno: TAluno; out sErro: string): boolean;
 begin
+  cdsAluno.Close;
   sqlAluno.CommandText := format('select * from pessoa where pescod = %d',
     [oAluno.CodigoPessoa]);
   cdsAluno.Open;
@@ -92,6 +81,7 @@ begin
       begin
         Aluno.CodigoAluno := sqlAluno.FieldByName('ALNCOD').AsInteger;
         Aluno.CodigoPessoa := sqlAluno.FieldByName('PESCOD').AsInteger;
+        Aluno.CodigoEscola := sqlAluno.FieldByName('ESCCOD').AsInteger;
         Aluno.NomeAluno := sqlAluno.FieldByName('PESNOM').AsString;
         Aluno.CodigoSerie := sqlAluno.FieldByName('SRICOD').AsInteger;
         Aluno.DocumentoAluno := sqlAluno.FieldByName('PESDOC').AsString;

@@ -60,7 +60,7 @@ begin
     begin
       oAluno.CodigoPessoa := StrToIntDef(edtCodigo.Text, 0);
       oAluno.CodigoAluno := StrToInt(edCodigoAluno.Text);
-      oAluno.CodigoEscola := StrToInt(edtCodigoEscola.Text);
+      oAluno.CodigoEscola := StrToInt(lcbEscola.EditValue);
       oAluno.NomeAluno := edtNome.Text;
       oAluno.DocumentoAluno := edtDocumento.Text;
       oAluno.EnderecoAluno := edtEndereco.Text;
@@ -79,7 +79,6 @@ end;
 procedure TCadastroAluno.btnExcluirClick(Sender: TObject);
 begin
  ExcluirAluno;
-
 end;
 
 procedure TCadastroAluno.btnListarClick(Sender: TObject);
@@ -100,7 +99,7 @@ begin
     dsCxgridAluno.DataSet.FieldByName('PESCOD').AsInteger);
     begin
       edtCodigo.Text := IntToStr(oAluno.CodigoPessoa);
-      edtCodigoEscola.Text := IntToStr(oAluno.CodigoEscola);
+      lcbEscola.EditValue := IntToStr(oAluno.CodigoEscola);
       edtNome.Text := oAluno.NomeAluno;
       cbxTipo.ItemIndex := 0;
       edtDocumento.Text := oAluno.DocumentoAluno;

@@ -36,6 +36,7 @@ object Cadastro: TCadastro
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = -3
         object edtPesquisar: TLabeledEdit
           Left = 8
           Top = 24

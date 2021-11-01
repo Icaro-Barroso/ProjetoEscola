@@ -66,6 +66,7 @@ begin
   sqlFuncionario := TSQLDataSet.create(nil);
   try
     begin
+      sqlFuncionario.close;
       sqlFuncionario.SQLConnection := DmConexao.sqlConexao;
       sqlFuncionario.CommandText := format('select * from v_FUNCIONARIO where pescod = %d',
     [iCodigo]);
@@ -78,7 +79,7 @@ begin
         Funcionario.FuncionarioCargo := sqlFuncionario.FieldByName('FNCCRG').AsString;
         Funcionario.CodigoEspecialidade := sqlFuncionario.FieldByName('ESPCOD').AsInteger;
         Funcionario.FuncionarioSalario := sqlFuncionario.FieldByName('FNCSLR').AsString;
-
+        Funcionario.EnderecoFuncionario:= sqlFuncionario.FieldByName('PESEND').AsString;
       end;
     end;
   finally

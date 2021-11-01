@@ -1,11 +1,10 @@
 inherited CadastroAluno: TCadastroAluno
   Caption = 'Cadastro Aluno'
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    ActivePage = tbDados
-    ExplicitLeft = 24
-    ExplicitTop = -64
     inherited tbPesq: TTabSheet
       inherited DBGridPesquisa: TDBGrid
         Columns = <
@@ -135,8 +134,8 @@ inherited CadastroAluno: TCadastroAluno
       end
     end
     inherited tbDados: TTabSheet
-      ExplicitLeft = 8
-      ExplicitTop = 22
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel [1]
         Left = 150
         Top = 0

@@ -172,51 +172,6 @@ object DmAluno: TDmAluno
     StoreDefs = True
     Left = 168
     Top = 240
-    object cdsAlunoALNCOD: TIntegerField
-      FieldName = 'ALNCOD'
-      Required = True
-    end
-    object cdsAlunoPESCOD: TIntegerField
-      FieldName = 'PESCOD'
-      Required = True
-    end
-    object cdsAlunoSRICOD: TIntegerField
-      FieldName = 'SRICOD'
-      Required = True
-    end
-    object cdsAlunoESCCOD: TIntegerField
-      FieldName = 'ESCCOD'
-      Required = True
-    end
-    object cdsAlunoPESNOM: TStringField
-      FieldName = 'PESNOM'
-      Size = 40
-    end
-    object cdsAlunoPESEND: TStringField
-      FieldName = 'PESEND'
-      Size = 40
-    end
-    object cdsAlunoPESIDT: TStringField
-      FieldName = 'PESIDT'
-      Size = 1
-    end
-    object cdsAlunoPESDOC: TStringField
-      FieldName = 'PESDOC'
-      Required = True
-      Size = 40
-    end
-    object cdsAlunoALNNOTBI1: TFloatField
-      FieldName = 'ALNNOTBI1'
-    end
-    object cdsAlunoALNNOTBI2: TFloatField
-      FieldName = 'ALNNOTBI2'
-    end
-    object cdsAlunoALNNOTBI3: TFloatField
-      FieldName = 'ALNNOTBI3'
-    end
-    object cdsAlunoALNNOTBI4: TFloatField
-      FieldName = 'ALNNOTBI4'
-    end
   end
   object sqlNota: TSQLDataSet
     SchemaName = 'sa'
@@ -234,7 +189,6 @@ object DmAluno: TDmAluno
     Top = 168
   end
   object cdsNota: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dsNota'

@@ -26,8 +26,6 @@ type
     cxGridFuncionarioPESDOC: TcxGridDBColumn;
     cxGridFuncionarioPESNOM: TcxGridDBColumn;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
-    procedure FormShow(Sender: TObject); override;
     procedure btnExcluirClick(Sender: TObject);
     procedure btnListarClick(Sender: TObject);
   protected
@@ -121,14 +119,17 @@ var
   oFuncionario: TFuncionario;
   oFuncioanrioController: TFuncionarioController;
 begin
-  inherited;
+
   oFuncionario := TFuncionario.Create;
   oFuncioanrioController := TFuncionarioController.Create;
   try
     oFuncioanrioController.CarregarFuncionario(oFuncionario,
-      DBGridPesquisa.SelectedField.AsInteger);
+      dsPesqFuncionario.DataSet.FieldByName('PESCOD').AsInteger);
     begin
       edCodigoFuncionario.Text := IntToStr(oFuncionario.CodigoFuncionario);
+      edtNome.Text := oFuncionario.NomeFuncionario;
+      edtDocumento.Text := oFuncionario.DocumentoFuncionario;
+      edtEndereco.Text := oFuncionario.EnderecoFuncionario;
       edSalario.Text := oFuncionario.FuncionarioSalario;
       edCargo.Text := oFuncionario.FuncionarioCargo;
       edEspecialidade.Text := IntToStr(oFuncionario.CodigoEspecialidade);
@@ -171,18 +172,6 @@ end;
 procedure TCadastroFuncionario.FormCreate(Sender: TObject);
 begin
   DmFuncionario := TDmFuncionario.Create(nil);
-end;
-
-procedure TCadastroFuncionario.FormDestroy(Sender: TObject);
-begin
-          //aa
-end;
-
-procedure TCadastroFuncionario.FormShow(Sender: TObject);
-begin
-  inherited;
-  //a
-
 end;
 
 procedure TCadastroFuncionario.Gravar;

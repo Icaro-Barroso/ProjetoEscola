@@ -18,15 +18,12 @@ object NotaAluno: TNotaAluno
     Top = 0
     Width = 614
     Height = 375
-    ActivePage = tbDados
+    ActivePage = tbPesq
     Align = alClient
     TabOrder = 0
     object tbPesq: TTabSheet
       Caption = 'tbPesq'
       TabVisible = False
-      ExplicitTop = 24
-      ExplicitWidth = 284
-      ExplicitHeight = 210
       object Panel2: TPanel
         Left = 0
         Top = 314
@@ -36,7 +33,6 @@ object NotaAluno: TNotaAluno
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = 296
         object btnSelecionar: TButton
           Left = 464
           Top = 12
@@ -82,10 +78,6 @@ object NotaAluno: TNotaAluno
         Height = 241
         Align = alClient
         TabOrder = 2
-        ExplicitLeft = 128
-        ExplicitTop = 90
-        ExplicitWidth = 250
-        ExplicitHeight = 200
         object cxNotas: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dscxgridNota
@@ -119,7 +111,7 @@ object NotaAluno: TNotaAluno
           object cxNotasPESNOM: TcxGridDBColumn
             Caption = 'Nome'
             DataBinding.FieldName = 'PESNOM'
-            MinWidth = 244
+            MinWidth = 64
             Options.Editing = False
             Options.Filtering = False
             Options.FilteringAddValueItems = False
@@ -230,10 +222,6 @@ object NotaAluno: TNotaAluno
       Caption = 'tbDados'
       ImageIndex = 1
       TabVisible = False
-      ExplicitLeft = 0
-      ExplicitTop = 28
-      ExplicitWidth = 475
-      ExplicitHeight = 264
       object edtCodigo: TLabeledEdit
         Left = 16
         Top = 32

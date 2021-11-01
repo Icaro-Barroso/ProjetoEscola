@@ -222,18 +222,11 @@ begin
 end;
 
 procedure TCadastroEscola.Gravar;
-var
-  oEscolaController: TEscolaController;
 begin
-////////////////////////  oEscolaController := TEscolaController.Create;
-  try
     case Operacao of
       opNovo: Inserir;
       opAlterar: Alterar;
     end;
-  finally
-    FreeAndNil(oEscolaController);
-  end;
 end;
 
 procedure TCadastroEscola.HabilitarControles(aOperacao: TOperacao);

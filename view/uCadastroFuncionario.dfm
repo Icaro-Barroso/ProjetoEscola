@@ -36,6 +36,7 @@ inherited CadastroFuncionario: TCadastroFuncionario
           end>
       end
       inherited cxGrid1: TcxGrid
+        ExplicitTop = 67
         object cxGrid1DBTableView2: TcxGridDBTableView [0]
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dsPesq

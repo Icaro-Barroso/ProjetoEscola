@@ -78,6 +78,13 @@ object Form1: TForm1
         Height = 16
         Caption = 'Documento'
       end
+      object lbMedia: TRLLabel
+        Left = 488
+        Top = 24
+        Width = 39
+        Height = 16
+        Caption = 'Media'
+      end
     end
     object RLBand3: TRLBand
       Left = 38
@@ -117,6 +124,13 @@ object Form1: TForm1
         DataSource = DataSource1
         Holder = lbDocumento
         BeforePrint = RLDBText3BeforePrint
+      end
+      object lbResultadoMedia: TRLLabel
+        Left = 488
+        Top = 32
+        Width = 107
+        Height = 16
+        BeforePrint = Calcularmedia
       end
     end
     object RLBand4: TRLBand

@@ -24,7 +24,9 @@ object CadastroEscola: TCadastroEscola
     object TbPesquisar: TTabSheet
       Caption = 'tbPesquisar'
       TabVisible = False
+      ExplicitLeft = 0
       ExplicitTop = 24
+      ExplicitWidth = 0
       ExplicitHeight = 366
       object Panel1: TPanel
         Left = 0
@@ -208,7 +210,9 @@ object CadastroEscola: TCadastroEscola
       Caption = 'tbDados'
       ImageIndex = 1
       TabVisible = False
+      ExplicitLeft = 0
       ExplicitTop = 24
+      ExplicitWidth = 0
       ExplicitHeight = 366
       object Panel3: TPanel
         Left = 0
